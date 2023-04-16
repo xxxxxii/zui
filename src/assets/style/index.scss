@@ -1,0 +1,58 @@
+$primary: #0d6efd;
+$success: #52c41a;
+$second-success:#f0f9eb;
+$info: #0dcaf0;
+$second-info: #afe7fb;
+$warning: #ffc107;
+$second-warning:#fdf6ec;
+$danger:#ce2435;
+$second-danger: #fb8383;
+$text:#303133;
+
+$light-border:#adb5bd;
+$dark-border:#525252;
+$color:#495057;
+$second-color:#8e8e8e;
+
+
+$light-bg:#fff;
+$dark-bg:#000000;
+
+$light-color:#5b5b5b;
+$dark-color:#e8e8e8;
+$comp-light-bg:#ffffff;
+$comp-dark-bg:#212121;
+
+
+$menu-light-bg:#fff;
+$menu-dark-bg:#242424;
+
+$hover-light-bg:#e9e9e9;
+$hover-dark-bg:#303030;
+
+$border-light-shadow:1px 2px 5px #d1d1d1;
+$border-dark-shadow: 1px 2px 5px #454545;
+
+$light-disabled:#ececec;
+$dark-disabled:#444444;
+
+html{
+    background-color: $light-bg;
+    color: $light-color;
+    
+
+    // .z-menu{
+    //     background-color: $comp-light-bg;
+    // }
+}
+html.dark{
+    background-color: $dark-bg;
+    color: $dark-color;
+
+    // .z-menu{
+    //     background-color: $comp-dark-bg;
+    // }
+}
+
+
+

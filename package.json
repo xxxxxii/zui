@@ -1,0 +1,39 @@
+{
+  "name": "v3-yl-ui",
+  "private": false,
+  "version": "0.0.3",
+  "description": "",
+  "main": "./dist/v3-yl-ui.umd.js",
+  "module": "./dist/v3-yl-ui.mjs",
+  "exports": {
+    ".": {
+      "import": "./dist/v3-yl-ui.mjs",
+      "require": "./dist/v3-yl-ui.umd.js"
+    }
+  },
+  "files": [
+    "dist/*"
+  ],
+  "scripts": {
+    "dev": "vite --mode dev",
+    "build": "vite build --mode dev",
+    "build:ui": "vite build --mode prod",
+    "preview": "vite preview --mode prod"
+  },
+  "dependencies": {
+    "md-editor-v3": "^2.8.1",
+    "sass": "^1.58.3",
+    "terser": "^5.16.6",
+    "v3-yl-ui": "^0.0.3",
+    "vue": "^3.2.45",
+    "vue-router": "^4.1.6"
+  },
+  "devDependencies": {
+    "@types/node": "^18.14.2",
+    "@vitejs/plugin-vue": "^4.0.0",
+    "typescript": "^4.9.3",
+    "vite": "^4.1.4",
+    "vite-plugin-vue-markdown": "^0.22.4",
+    "vue-tsc": "^1.0.24"
+  }
+}
