@@ -11,15 +11,22 @@
     <input
       :placeholder="placeholder"
       :disabled="disabled"
-      type="text"
+      v-bind="$attrs"
       @input="input"
       :value="modelValue"
       :readonly="readonly"
+      @blur="inputBlur"
       class="z-input_inner"
     />
     <span class="right-icon">
       <i v-if="rightIcon">
         <z-icon :name="rightIcon" />
+      </i>
+      <i
+        v-if="!clearable && validState === 'success'"
+        class="right-icon--valid-success"
+      >
+        <z-icon name="icon-zhengque" />
       </i>
       <i
         v-if="clearable && !rightIcon ? (modelValue ? true : false) : false"
@@ -34,12 +41,18 @@
 <script lang="ts">
 export default {
   name: "zInput",
+  inheritAttrs: false,
 };
 </script>
 
 <script setup lang="ts">
-import { computed } from "vue";
-const emit = defineEmits(["update:modelValue"]);
+import { formItemContextKey } from "../form/src/form-item";
+import { inject } from "vue";
+import { computed, ref, watch } from "vue";
+const emit = defineEmits(["update:modelValue", "blur"]);
+const fromItemContext = inject(formItemContextKey, null);
+
+console.log(fromItemContext);
 const props = defineProps({
   modelValue: {
     type: [String, Number],
@@ -62,8 +75,26 @@ const props = defineProps({
   rightIcon: {
     type: String,
   },
+  number: Boolean,
 });
 
+console.log(props.number);
+
+watch(
+  () => props.modelValue,
+  (newVal, oldVal) => {
+    console.log(typeof newVal, newVal);
+    fromItemContext
+      ?.validate("change")
+      .then((res) => {
+        // console.log("input", res);
+        // validState.value = "success";
+      })
+      .catch(() => {
+        // validState.value = "error";
+      });
+  }
+);
 const zClass = computed(() => {
   return [
     "z-input",
@@ -77,8 +108,31 @@ const zClass = computed(() => {
   ];
 });
 
+const validState = ref(null);
+
 const input = (e: Event) => {
+  fromItemContext
+    ?.validate("change")
+    .then((res) => {
+      console.log("input", typeof e.target.value);
+      // validState.value = "success";
+    })
+    .catch(() => {
+      // validState.value = "error";
+    });
   emit("update:modelValue", (e.target as HTMLInputElement).value);
+};
+const inputBlur = (e: Event) => {
+  fromItemContext
+    ?.validate("blur")
+    .then(() => {
+      console.log("input");
+      validState.value = "success";
+    })
+    .catch(() => {
+      validState.value = "error";
+    });
+  emit("blur", (e.target as HTMLInputElement).value);
 };
 const clearValue = () => {
   emit("update:modelValue", "");
@@ -109,11 +163,11 @@ const clearValue = () => {
   input {
     outline: none;
     width: 100%;
-    line-height: 1;
     border: 1px solid $light-border;
     font-size: 14px;
     color: $color;
-    padding: 10px 8px;
+    height: 30px;
+    padding: 0 8px;
     border-radius: 5px;
     transition: all 0.2s ease;
     background: $comp-light-bg;
@@ -129,7 +183,9 @@ const clearValue = () => {
     font-size: 14px;
     // top: 50%;
     // transform: translate(0, -50%);
-
+    .right-icon--valid-success {
+      color: $success;
+    }
     right: 12px;
     top: 0;
     bottom: 0;
@@ -162,12 +218,14 @@ html.dark {
 }
 .z-input-lg {
   input {
-    padding: 14px 10px;
+    height: 38px;
+    padding: 0 10px;
   }
 }
 .z-input-xs {
   input {
-    padding: 6px 6px;
+    height: 22px;
+    padding: 0 6px;
   }
 }
 
@@ -181,5 +239,15 @@ html.dark {
   input {
     padding-right: 22px;
   }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+} /* 火狐 */
+input {
+  -moz-appearance: textfield;
 }
 </style>

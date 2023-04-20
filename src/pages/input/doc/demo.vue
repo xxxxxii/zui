@@ -30,7 +30,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from "vue";
 const input = ref("22222222");
 </script>

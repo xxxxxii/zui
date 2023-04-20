@@ -2,18 +2,20 @@
   <div :id="compUuid" :class="Class" v-click>
     <div class="z-select__wrapper" v-if="!multiple">
       <!-- <z-input
-        readonly
-        :placeholder="placeholder"
-        v-model="Select"
-        :size="size"
-        right-icon="icon-xialajiantouxiao"
-      /> -->
+                readonly
+                :placeholder="placeholder"
+                v-model="Select"
+                :size="size"
+                right-icon="icon-xialajiantouxiao"
+              /> -->
       <div class="z-select__wrapper__multiple__input">
         <input
           type="text"
           :value="Select"
           :placeholder="placeholder"
           :readonly="!seach"
+          @focus="seachChange"
+          @input="seachChange"
         />
       </div>
       <span class="z-select__wrapper__icon">
@@ -22,13 +24,7 @@
     </div>
     <div v-else class="z-select__wrapper">
       <div class="z-select__wrapper__left">
-        <div
-          class="z-select__wrapper__multiple__input"
-          v-show="!SelectArr || SelectArr?.length === 0"
-        >
-          <input type="text" :placeholder="placeholder" :readonly="seach" />
-        </div>
-        <div class="z-select__wrapper__multiple">
+        <div class="z-select__wrapper__multiple" v-show="SelectArr?.length > 0">
           <z-tag
             style="margin: 1px 2px"
             v-for="(item, index) in SelectArr"
@@ -39,6 +35,18 @@
             >{{ item.label }}</z-tag
           >
         </div>
+        <div
+          class="z-select__wrapper__multiple__input"
+          v-show="!SelectArr || SelectArr?.length === 0 || seach"
+        >
+          <input
+            type="text"
+            :placeholder="placeholder"
+            :readonly="!seach"
+            @focus="seachChange"
+            @input="seachChange"
+          />
+        </div>
       </div>
       <div class="z-select__wrapper__right">
         <span class="z-select__wrapper__icon">
@@ -46,37 +54,23 @@
         </span>
       </div>
     </div>
+    <!-- {{ optionsData }} -->
     <transition name="fade" v-show="showOptions">
-      <!-- <ul class="z-select-dropdown">
-        <z-options
-          v-for="(item, index) in options"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value"
-          :active="(modelValue as any).includes(item.value)"
-          @selected="optionChange"
-          @cancel="optionCancel"
-          :multiple="multiple"
-        />
-      </ul> -->
       <list
-        :options="options"
+        :options="optionsData"
         :multiple="multiple"
         :modelValue="modelValue"
         @singeItem="singeItem"
         @multipleItem="multipleItem"
+        @cancel="optionCancel"
       />
     </transition>
   </div>
 </template>
 
 <script lang="ts">
-import setLabel from "./setLabel";
 export default {
   name: "zSelect",
-  directives: {
-    setLabel,
-  },
 };
 </script>
 
@@ -130,7 +124,33 @@ const props = defineProps({
   },
   seach: Boolean,
 });
+
+const optionsData = ref(props.options);
+const defaultActive = ref(props.modelValue);
 const showOptions = ref(false);
+
+const filterArr = ref([]);
+
+const seachChange = (event) => {
+  if (!props.seach) {
+    return;
+  }
+  // showOptions.value = true;
+  let inputValue = event.target.value;
+  // if (inputValue === "") {
+  //   optionsData.value = [];
+  //   return;
+  // }
+
+  filterArr.value = props.options.filter((item) => {
+    if (item.label.indexOf(inputValue) !== -1) {
+      return item;
+    }
+  });
+  optionsData.value = filterArr.value;
+
+  console.log(filterArr.value);
+};
 
 const Class = computed(() => {
   return [
@@ -149,7 +169,7 @@ if (
 }
 
 const tagClose = (item, index) => {
-  console.log(labelArr.value);
+  console.log(labelArr.value, index);
   labelArr.value.splice(index, 1);
   console.log(labelArr.value);
   labelArr.value = labelArr.value.map((item) => {
@@ -162,6 +182,7 @@ const tagClose = (item, index) => {
 const labelArr = ref([]);
 
 const singeItem = (val) => {
+  showOptions.value = false;
   emit("update:modelValue", Array.from(new Set(val.value)));
 };
 
@@ -222,32 +243,13 @@ const Select: any = computed(() => {
   }
 });
 
-const selectArr = ref([]);
-const optionChange = (val) => {
-  selectArr.value = [...(props.modelValue as Array<string | number>)];
-
-  console.log(val, props.modelValue, selectArr.value);
-  // 多选
-  if (props.multiple) {
-    selectArr.value.push(val.value);
-    emit("update:modelValue", Array.from(new Set(selectArr.value)));
-    emit("change", Array.from(new Set(selectArr.value)));
-  } else {
-    emit("update:modelValue", [val.value]);
-    emit("change", val.value);
-  }
-};
-
 const optionCancel = (val) => {
   console.log(labelArr.value);
-
-  const index = Array.from(
-    new Set(
-      ...labelArr.value.map((item) => {
-        return item.value;
-      })
-    )
-  ).indexOf(val.value);
+  let valueArr = labelArr.value.map((item) => {
+    return item.value;
+  });
+  let index = valueArr.indexOf(val.value);
+  console.log(val.value, index);
   labelArr.value.splice(index, 1);
   console.log(labelArr.value);
   labelArr.value = labelArr.value.map((item) => {
@@ -257,34 +259,28 @@ const optionCancel = (val) => {
   emit("change", Array.from(new Set(labelArr.value)));
 };
 
-// function isParent(obj, parentObj) {
-//   while (
-//     obj != undefined &&
-//     obj != null &&
-//     obj.tagName.toUpperCase() != "BODY"
-//   ) {
-//     if (obj == parentObj) {
-//       return true;
-//     }
-//     obj = obj.parentNode;
-//   }
-//   return false;
-// }
-
 // 控制下拉显示指令
 const vClick = {
   beforeMount(el) {
     const handler = (e) => {
-      console.log(e.target.classList);
-      console.log();
+      console.log(e.target.classList, el.contains(e.target));
       let dropdownDom = el?.querySelector(".z-select-dropdown");
       if (el.contains(e.target)) {
+        // || e.target.classList.contains("icon")
+        console.log(
+          e.target.parentNode.parentNode.classList.contains(
+            "z-tag__wrapper__close"
+          )
+        );
         if (
           e.target.classList.contains("z-tag__wrapper__close") ||
-          e.target.classList.contains("icon")
+          e.target.parentNode.parentNode.classList.contains(
+            "z-tag__wrapper__close"
+          )
         ) {
           showOptions.value = false;
         } else {
+          // if (!props.seach)
           showOptions.value = !showOptions.value;
         }
       } else {
@@ -312,26 +308,38 @@ const vClick = {
   align-items: center;
   &--lg {
     .z-select__wrapper {
-      padding: 10px 8px;
+      padding: 0 8px;
+      // height: 38px;
+
+      .z-select__wrapper__multiple {
+        min-height: 36px;
+      }
+      input {
+        height: 36px;
+      }
     }
   }
   &--md {
     .z-select__wrapper {
-      padding: 8px 6px;
+      padding: 0 6px;
+      // height: 32px;
+      .z-select__wrapper__multiple {
+        min-height: 30px;
+      }
+      input {
+        height: 30px;
+      }
     }
   }
   &--xs {
     .z-select__wrapper {
-      padding: 6px 4px;
-    }
-  }
-}
-html.dark {
-  .z-select {
-    color: $dark-color;
-    .z-select-dropdown {
-      background: $comp-dark-bg;
-      box-shadow: $border-dark-shadow;
+      padding: 0 4px;
+      .z-select__wrapper__multiple {
+        min-height: 26px;
+      }
+      input {
+        height: 26px;
+      }
     }
   }
 }
@@ -355,6 +363,11 @@ html.dark {
   border: 1px solid $light-border;
   cursor: pointer;
   border-radius: 4px;
+}
+.z-select-multiple {
+  .z-select__wrapper {
+    // padding: 0;
+  }
 }
 .z-select-is-fcous {
   border: 1px solid $primary;
@@ -386,6 +399,9 @@ html.dark {
   flex-wrap: wrap;
   font-size: 14px;
   color: $color;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
   // width: 100%;
   // min-height: 16px;
 }
@@ -393,7 +409,9 @@ html.dark {
   min-height: 16px;
   display: flex;
   align-items: center;
+  width: 100%;
   input {
+    box-sizing: border-box;
     outline: none;
     border: none;
     height: 100%;
@@ -419,5 +437,20 @@ html.dark {
 .fade-leave-to {
   transform: translate(0, -10px) !important;
   opacity: 0;
+}
+
+html.dark {
+  .z-select {
+    .z-select__wrapper__multiple__input {
+      input {
+        color: $dark-color;
+      }
+    }
+
+    .z-select-dropdown {
+      background: $comp-dark-bg;
+      box-shadow: $border-dark-shadow;
+    }
+  }
 }
 </style>

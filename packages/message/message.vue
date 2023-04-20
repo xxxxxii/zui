@@ -12,8 +12,6 @@
 <script setup lang="ts">
 import { onMounted, ref, computed, onUnmounted } from "vue";
 import zIcon from "../icon";
-// import variables from "../../src/assets/style/variables.module.scss";
-// console.log(variables);
 const props = defineProps({
   topOffset: {
     type: Number,
@@ -126,6 +124,7 @@ onUnmounted(() => {});
   z-index: 999;
   transition: all 0.4s linear;
   display: flex;
+  align-items: center;
 }
 // .fade-enter-from,
 // .fade-leave-to {

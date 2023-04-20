@@ -7,6 +7,7 @@
       multiple
       width="200px"
       @change="change"
+      seach
     />
   </div>
 </template>

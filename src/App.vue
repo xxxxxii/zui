@@ -23,19 +23,61 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, h, render, createVNode } from "vue";
+import { Result } from "postcss";
+import { ref, computed, watch } from "vue";
+import { useRoute, useRouter } from "vue-router";
 const menus: any = ref([
-  // {
-  //   path: "/",
-  //   label: "ZUI",
-  // },
   {
     path: "/comp",
     label: "组件",
   },
+  {
+    path: "/updateLog",
+    label: "更新日志",
+  },
 ]);
+const router = useRouter();
+const route = useRoute();
+const active = ref("/");
 
-const active = ref("/comp");
+// 递归查询
+const selectRoute = (children, path) => {
+  if (children.children) {
+    return selectRoute(children.children, path);
+  } else {
+    let result = children.filter((element) => {
+      console.log(element, path);
+      return element.path === path;
+    });
+    return result;
+  }
+};
+
+const activeMenuSetting = (path) => {
+  let menusArr = menus.value.filter((item) => {
+    return item.path === path;
+  });
+  if (menusArr.length > 0) {
+    active.value = menusArr[0].path;
+  } else {
+    let routerArr = router.getRoutes();
+    routerArr.forEach((item) => {
+      if (item.children && item.children.length > 0) {
+        let arr = selectRoute(item.children, path);
+        if (arr) {
+          active.value = item.path;
+        }
+      }
+    });
+  }
+};
+
+watch(
+  () => route.fullPath,
+  (newVal) => {
+    activeMenuSetting(newVal);
+  }
+);
 
 const theme = computed(() => {
   const htmlDom: HTMLElement = document.querySelector("html");

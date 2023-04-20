@@ -16,7 +16,7 @@
  */
 
 import { App } from "vue";
-import { createRouter, createWebHashHistory } from "vue-router";
+import { Router, createRouter, createWebHashHistory } from "vue-router";
 import { guard } from "./permission";
 
 // 2. 定义一些路由：每个路由都需要映射到一个组件。
@@ -25,7 +25,12 @@ export const routesList = [
     path: "/",
     name: 'index',
     component: () => import('@/pages/index/index.vue'),
-    redirect: "comp",
+    redirect: "updateLog",
+  },
+  {
+    path: '/updateLog',
+    name: 'UpdateLog',
+    component: () => import('../../README.md'),
   },
   {
     path: "/comp",
@@ -118,17 +123,29 @@ export const routesList = [
         component: () => import("@/pages/select/doc/index.md"),
       },
       {
-        // test
-        path: "/test",
-        name: "test",
-        component: () => import("@/pages/test/index.vue"),
+        // checkbox
+        path: "/checkbox",
+        name: "checkbox",
+        component: () => import("@/pages/checkbox/doc/index.md"),
       },
       {
-        // test
-        path: "/bf",
-        name: "bf",
-        component: () => import("@/pages/test/bf.vue"),
+        // form
+        path: "/form",
+        name: "form",
+        component: () => import("@/pages/form/doc/index.md"),
       },
+      // {
+      //   // test
+      //   path: "/test",
+      //   name: "test",
+      //   component: () => import("@/pages/test/index.vue"),
+      // },
+      // {
+      //   // test
+      //   path: "/bf",
+      //   name: "bf",
+      //   component: () => import("@/pages/test/bf.vue"),
+      // },
     ],
   },
 ];
@@ -137,11 +154,8 @@ export const routesList = [
 const router = createRouter({
   // 内部提供了 history 模式的实现。为了简单起见，我们在这里使用 hash 模式。
   history: createWebHashHistory(),
-  routes: routesList, // `routes: routes` 的缩写
+  routes: routesList as [], // `routes: routes` 的缩写
   scrollBehavior: (to, from, savedPosition) => {
-    console.log("to: ", to);
-    console.log("from: ", from);
-    console.log("savedPosition: ", savedPosition);
     return { left: 0, top: 0 };
   },
 });

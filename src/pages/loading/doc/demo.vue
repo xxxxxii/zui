@@ -10,7 +10,7 @@ import { ZLoading } from "../../../../packages";
 // import { ZLoading } from "v3-yl-ui";
 
 const loading = () => {
-  ZLoading.server({});
+  ZLoading.server();
 
   setTimeout(() => {
     ZLoading.stop();

@@ -1,11 +1,4 @@
-<!--
- * @Author: error: error: git config user.name & please set dead value or install git && error: git config user.email & please set dead value or install git & please set dead value or install git
- * @Date: 2023-02-26 19:13:28
- * @LastEditors: xxxxxii 1973329248@qq.com
- * @LastEditTime: 2023-02-28 05:02:56
- * @FilePath: \vue3-music\README.md
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
--->
+
 
 # Vue 3 UI
 
@@ -13,7 +6,11 @@ vue3 ui library
 
 ## 文档地址
 
-blogyl.xyz/zui
+[blogyl.xyz/zui](https://github.com/xxxxxii/zui)
+
+## 项目地址
+
+https://github.com/xxxxxii/zui
 
 ## 本人联系方式
 
@@ -21,9 +18,23 @@ QQ 1504335501
 
 # use
 
+```ts
+// 安装
 npm i v3-zy-ui
 
+
+// 使用
 import ZUI form "v3-zy-ui"
+// 引入组件样式文件
+import "../node_modules/v3-yl-ui/dist/style.css";
 app.use(ZUI)
 or
 import {zButton} form "v3-zy-ui"
+```
+
+# 更新日志
+
+## 2023-4-20
+
+1. form 表单组件 发布
+2. 多选组件 checkbox 发布

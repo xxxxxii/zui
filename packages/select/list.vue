@@ -1,6 +1,8 @@
 <template>
   <ul class="z-select-dropdown">
+    <no-data v-if="options.length === 0" />
     <z-options
+      v-else
       v-for="(item, index) in options"
       :key="item.value"
       :label="item.label"
@@ -15,6 +17,7 @@
 </template>
 
 <script setup lang="ts">
+import noData from "./noData.vue";
 const props = defineProps({
   modelValue: {
     type: [Number, String, Array],
@@ -44,7 +47,12 @@ const props = defineProps({
     type: Boolean,
   },
 });
-const emit = defineEmits(["singeItem", "multipleItem", "update:modelValue"]);
+const emit = defineEmits([
+  "singeItem",
+  "multipleItem",
+  "cancel",
+  "update:modelValue",
+]);
 
 if (
   typeof props.modelValue === "number" ||
@@ -65,5 +73,7 @@ const selected = (val) => {
 };
 const cancel = (val) => {
   console.log(val);
+
+  emit("cancel", val);
 };
 </script>

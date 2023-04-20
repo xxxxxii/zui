@@ -11,6 +11,12 @@
     <z-select :options="options" v-model="value1" width="100px"> </z-select>
     <z-select :options="options" v-model="value1"> </z-select>
   </div>
+
+  <div>
+    <h2>可搜索</h2>
+    <z-select :options="options" v-model="value1" width="100px" seach>
+    </z-select>
+  </div>
 </template>
 
 <script setup lang="ts">

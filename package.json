@@ -1,7 +1,7 @@
 {
   "name": "v3-yl-ui",
   "private": false,
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "",
   "main": "./dist/v3-yl-ui.umd.js",
   "module": "./dist/v3-yl-ui.mjs",
@@ -21,6 +21,7 @@
     "preview": "vite preview --mode prod"
   },
   "dependencies": {
+    "async-validator": "^4.2.5",
     "md-editor-v3": "^2.8.1",
     "sass": "^1.58.3",
     "terser": "^5.16.6",

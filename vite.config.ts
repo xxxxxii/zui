@@ -15,6 +15,7 @@ import path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: '/zui',
   plugins: [
     vue({
       include: [/\.md$/, /\.vue$/],
@@ -27,7 +28,7 @@ export default defineConfig({
       external: [
         "vue",
         "md-editor-v3",
-        "vue-router",
+        "vueRouter",
         "vite-plugin-vue-markdown",
       ],
       output: {
