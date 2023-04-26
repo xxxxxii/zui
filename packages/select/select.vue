@@ -75,9 +75,19 @@ export default {
 </script>
 
 <script setup lang="ts">
-import { computed, onMounted, ref, watch, getCurrentInstance } from "vue";
+import {
+  computed,
+  onMounted,
+  ref,
+  watch,
+  getCurrentInstance,
+  inject,
+} from "vue";
 import { uuidv4 } from "../utils/uuid";
 import list from "./list.vue";
+import { formItemContextKey } from "../form/src/form-item";
+
+const formItemContext = inject(formItemContextKey, null);
 
 const compUuid = ref("z-select-" + uuidv4());
 
@@ -175,6 +185,8 @@ const tagClose = (item, index) => {
   labelArr.value = labelArr.value.map((item) => {
     return item.value;
   });
+
+  formItemContext?.validate("change").catch(() => {});
   emit("update:modelValue", Array.from(new Set(labelArr.value)));
   emit("change", Array.from(new Set(labelArr.value)));
 };
@@ -183,6 +195,7 @@ const labelArr = ref([]);
 
 const singeItem = (val) => {
   showOptions.value = false;
+
   emit("update:modelValue", Array.from(new Set(val.value)));
 };
 
@@ -190,6 +203,7 @@ const arr = ref([]);
 const multipleItem = (val) => {
   arr.value = [...(props.modelValue as Array<string | number>)];
   arr.value.push(val.value);
+  formItemContext?.validate("blur").catch(() => {});
   emit("update:modelValue", Array.from(new Set(arr.value)));
 };
 const SelectArr = computed(() => {
@@ -197,7 +211,6 @@ const SelectArr = computed(() => {
     return null;
   }
   if (Array.isArray(props.modelValue)) {
-    console.log(props.modelValue);
     let Currentitem = [];
     props.modelValue.forEach((valueItem) => {
       console.log(valueItem);
@@ -219,6 +232,7 @@ const Select: any = computed(() => {
     return null;
   }
   if (Array.isArray(props.modelValue)) {
+    formItemContext?.validate("blur").catch(() => {});
     console.log(props.modelValue);
     let Currentitem = [];
     props.modelValue.forEach((valueItem) => {
@@ -257,6 +271,7 @@ const optionCancel = (val) => {
   });
   emit("update:modelValue", Array.from(new Set(labelArr.value)));
   emit("change", Array.from(new Set(labelArr.value)));
+  formItemContext?.validate("change").catch(() => {});
 };
 
 // 控制下拉显示指令
@@ -267,17 +282,15 @@ const vClick = {
       let dropdownDom = el?.querySelector(".z-select-dropdown");
       if (el.contains(e.target)) {
         // || e.target.classList.contains("icon")
-        console.log(
-          e.target.parentNode.parentNode.classList.contains(
-            "z-tag__wrapper__close"
-          )
-        );
+
+        formItemContext?.validate("blur").catch(() => {});
         if (
           e.target.classList.contains("z-tag__wrapper__close") ||
           e.target.parentNode.parentNode.classList.contains(
             "z-tag__wrapper__close"
           )
         ) {
+          formItemContext?.validate("blur").catch(() => {});
           showOptions.value = false;
         } else {
           // if (!props.seach)

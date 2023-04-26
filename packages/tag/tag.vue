@@ -5,7 +5,7 @@
         <z-icon :name="icon" />
       </i>
       <slot />
-      <i class="icon z-tag__wrapper__close" @click="tagClose">
+      <i class="icon z-tag__wrapper__close" v-if="closeable" @click="tagClose">
         <z-icon name="icon-guanbijiantou"
       /></i>
     </div>
@@ -26,9 +26,14 @@ const props = defineProps({
   icon: {
     type: String,
   },
+  closeable: Boolean,
   type: {
     type: String,
     default: "primary",
+  },
+  size: {
+    type: String,
+    default: "md",
   },
   plain: Boolean,
   bor: Boolean,
@@ -39,6 +44,7 @@ const Class = computed(() => {
   return [
     "z-tag",
     `z-tag--${props.type}`,
+    `z-tag--${props.size}`,
     props.plain ? `z-tag--${props.type}--plain` : "",
     props.bor ? `z-tag--${props.type}--border` : "",
     props.round ? `is-round` : "",
@@ -61,6 +67,19 @@ const tagClose = () => {
   justify-content: space-between;
   color: $dark-color;
   border-radius: 4px;
+
+  &--lg {
+    height: 32px;
+    padding: 0px 10px;
+  }
+  &--md {
+    height: 24px;
+    padding: 0px 8px;
+  }
+  &--xs {
+    height: 20px;
+    padding: 0px 6px;
+  }
   .z-tag__wrapper {
     display: flex;
     align-items: center;

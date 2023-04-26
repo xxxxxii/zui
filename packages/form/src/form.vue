@@ -11,7 +11,7 @@ export default {
 </script>
 
 <script setup lang="ts">
-import { provide } from "vue";
+import { provide, ref } from "vue";
 import { FormContext, formProps, formContextKey } from "./form";
 import { FormItemContext } from "./form-item";
 import { Values } from "async-validator";
@@ -48,22 +48,32 @@ const validate = async (
   }
 };
 
+// form restForm
+const restValidate = () => {
+  for (let field of fields) {
+    // 恢复初始值
+    props.model[field?.prop] = field?.compInitData;
+    field.resetField();
+  }
+};
+
 // 收集form-item 的实列
 const collectField: FormContext["collectField"] = (context) => {
   fields.push(context);
   console.log(fields);
 };
 
-const context = {
+const context = ref({
   ...props,
   collectField,
-};
+});
 // 传递上下文
-provide(formContextKey, context);
+provide(formContextKey, context.value);
 
 // 暴露form 的validate方法
 defineExpose({
   validate,
+  restValidate,
 });
 </script>
 

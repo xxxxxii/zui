@@ -18,7 +18,7 @@
       @blur="inputBlur"
       class="z-input_inner"
     />
-    <span class="right-icon">
+    <span class="right-icon" v-if="rightIcon || clearable">
       <i v-if="rightIcon">
         <z-icon :name="rightIcon" />
       </i>

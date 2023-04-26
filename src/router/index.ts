@@ -39,6 +39,12 @@ export const routesList = [
     component: () => import("../layout/home.vue"),
     redirect: "button",
     children: [
+      {
+        // button
+        path: "/button",
+        name: "button",
+        component: () => import("@/pages/button/doc/index.md"),
+      },
       {// container
         path: "/container",
         name: "container",
@@ -49,12 +55,7 @@ export const routesList = [
         name: "layout",
         component: () => import("@/pages/layout/doc/index.md"),
       },
-      {
-        // button
-        path: "/button",
-        name: "button",
-        component: () => import("@/pages/button/doc/index.md"),
-      },
+
       {
         // input
         path: "/input",
@@ -117,11 +118,30 @@ export const routesList = [
         component: () => import("@/pages/tag/doc/index.md"),
       },
       {
+        // popover
+        path: "/popover",
+        name: "popover",
+        component: () => import("@/pages/popover/doc/index.md"),
+      },
+      {
         // select
         path: "/select",
         name: "select",
         component: () => import("@/pages/select/doc/index.md"),
       },
+      {
+        // selectV2
+        path: "/selectV2",
+        name: "selectV2",
+        component: () => import("@/pages/selectV2/doc/index.md"),
+      },
+      {
+        // radio
+        path: "/radio",
+        name: "radio",
+        component: () => import("@/pages/radio/doc/index.md"),
+      },
+
       {
         // checkbox
         path: "/checkbox",

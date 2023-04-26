@@ -1,3 +1,42 @@
+// 深度克隆。
+deepClone.cached = new WeakMap();
+function deepClone(obj) {
+    // obj 不是引用数据类型 不需要处理，直接返回
+    if (typeof obj !== "object" || obj === null) {
+        return obj;
+    }
+
+    if (deepClone.cached.has(obj)) {
+        return deepClone.cached.get(obj);
+    }
+
+    let temp;
+    if (obj instanceof Map) {
+        temp = new Map();
+        deepClone.cached.set(obj, temp);
+        for (let [key, val] of obj) {
+            temp.set(deepClone(key), deepClone(val));
+        }
+    } else if (obj instanceof Set) {
+        temp = new Set();
+        deepClone.cached.set(obj, temp);
+        for (let val of obj) {
+            temp.add(deepClone(val));
+        }
+    } else if (obj instanceof RegExp) {
+        temp = new RegExp(obj);
+        deepClone.cached.set(obj, temp);
+    } else {
+        temp = new obj.constructor();
+        deepClone.cached.set(obj, temp);
+        for (let key in obj) {
+            temp[key] = deepClone(obj[key]);
+        }
+    }
+    return temp;
+}
+
+
 // 十六进制转rgb值
 function colorRgb(string) {
     let sColor = string.toLowerCase()
@@ -157,6 +196,8 @@ function rgbToColor(rgb) {
 //     return color
 // }
 
+
+
 export {
     colorRgb,
     // rgbToHsl,
@@ -165,4 +206,5 @@ export {
     rgbToHsb,
     rgbToRgba,
     rgbToColor,
+    deepClone
 }

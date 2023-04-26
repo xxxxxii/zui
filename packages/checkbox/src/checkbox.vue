@@ -42,6 +42,7 @@ const checkState = computed(() => {
   //   } else {
   //     return props.modelValue;
   //   }
+  console.log(checkboxGroupContext);
   let checked = checkboxGroupContext?.modelValue.includes(props.value);
   if (checked) {
     emit("update:modelValue", true);
@@ -83,7 +84,7 @@ const checkboxChange = (e) => {
     display: none;
     cursor: pointer;
     &:checked ~ .z-checkbox__mark {
-      background-color: blue;
+      background-color: $primary;
       &::after {
         display: block;
       }
@@ -103,8 +104,8 @@ const checkboxChange = (e) => {
     // position: absolute;
     top: 0;
     left: 0;
-    height: 16px;
-    width: 16px;
+    height: 15px;
+    width: 15px;
     display: block;
     border-radius: 2px;
     border: 1px solid $light-border;
@@ -156,7 +157,7 @@ const checkboxChange = (e) => {
   cursor: no-drop;
   input {
     &:checked ~ .z-checkbox__mark {
-      background-color: rgba($color: $primary, $alpha: 0.3);
+      background-color: rgba($color: $primary, $alpha: 0.5);
       &::after {
         display: block;
       }
@@ -164,6 +165,7 @@ const checkboxChange = (e) => {
   }
   input,
   .z-checkbox__mark {
+    background-color: $light-disabled;
     cursor: no-drop;
     &::after {
       cursor: no-drop;
@@ -178,6 +180,19 @@ html.dark {
   .z-checkbox {
     .z-checkbox__mark {
       border: 1px solid $dark-border;
+    }
+  }
+  .is-disabled {
+    input {
+      &:checked ~ .z-checkbox__mark {
+        background-color: rgba($color: $primary, $alpha: 0.5);
+        &::after {
+          display: block;
+        }
+      }
+    }
+    .z-checkbox__mark {
+      background-color: $dark-disabled;
     }
   }
 }

@@ -1,8 +1,11 @@
 <template>
   <div class="container">
-    <div class="left-menu">
-      <z-menu :items="menuList" :menuKey="menuKey" v-model="currentPath" />
-    </div>
+    <z-scrollbar>
+      <div class="left-menu">
+        <z-menu :items="menuList" :menuKey="menuKey" v-model="currentPath" />
+      </div>
+    </z-scrollbar>
+
     <div class="main">
       <RouterView />
     </div>
@@ -52,10 +55,10 @@ const routeTo = (item, index) => {
   display: flex;
   .left-menu {
     // width: 360px;
-    height: auto;
     overflow-y: auto;
     position: fixed;
     overflow-y: auto;
+    max-height: calc(100vh - 60px);
     ul {
       list-style: none;
       padding: 0;
@@ -85,7 +88,7 @@ const routeTo = (item, index) => {
     // overflow-y: auto;
     padding: 10px;
     box-sizing: border-box;
-    margin-left: 200px;
+    margin-left: 220px;
   }
 }
 </style>

@@ -49,8 +49,48 @@
         </z-checkbox-group>
       </z-form-item>
 
+      <z-form-item label="地址" prop="address">
+        <z-radio-group v-model="model.address">
+          <z-radio label="重庆" value="chongqing"></z-radio>
+          <z-radio label="上海" value="shanghai"></z-radio>
+          <z-radio label="成都" value="chengdu"></z-radio>
+          <z-radio label="深圳" value="shenzhen"></z-radio>
+        </z-radio-group>
+      </z-form-item>
+      <z-form-item label="Select" prop="select">
+        <z-select-v2 v-model="model.select" width="100%" placeholder="请选择">
+          <z-option-v2
+            v-for="item in options"
+            :label="item.label"
+            :value="item.value"
+            :key="item.value"
+          >
+            <span>城市: {{ item.label }}</span>
+          </z-option-v2>
+        </z-select-v2>
+      </z-form-item>
+      <z-form-item label="multiple" prop="selectlMultiple">
+        <z-select-v2
+          v-model="model.selectlMultiple"
+          width="100%"
+          multiple
+          placeholder="请选择"
+        >
+          <z-option-v2
+            v-for="item in options"
+            :label="item.label"
+            :value="item.value"
+            :key="item.value"
+          >
+            <span>城市: {{ item.label }}</span>
+          </z-option-v2>
+        </z-select-v2>
+        <!-- seach -->
+      </z-form-item>
+
       <z-form-item label="">
         <z-button @click="submit" type="primary"> submit</z-button>
+        <z-button @click="restForm" type="primary"> rest</z-button>
       </z-form-item>
     </z-form>
   </div>
@@ -68,8 +108,32 @@ const model = ref({
   password: "",
   age: "",
   interests: [],
+  address: "",
+  select: "",
+  selectlMultiple: [],
 });
-
+const options = ref([
+  {
+    label: "重庆",
+    icon: "icon-tingche1",
+    value: "1",
+  },
+  {
+    label: "上海",
+    icon: "icon-tingche1",
+    value: "2",
+  },
+  {
+    label: "成都",
+    icon: "icon-tingche1",
+    value: "3",
+  },
+  {
+    label: "广州",
+    icon: "icon-tingche1",
+    value: "4",
+  },
+]);
 const validatePass = (rule: any, value: any, callback: any) => {
   if (value === "") {
     callback(new Error("Please input the password"));
@@ -90,6 +154,24 @@ const formRules = ref({
       min: 1,
       max: 150,
       message: "请输入正确的年龄1~150",
+    },
+  ],
+  address: [
+    {
+      required: true,
+      message: "请选择地址",
+    },
+  ],
+  select: [
+    {
+      required: true,
+      message: "请选择一项",
+    },
+  ],
+  selectlMultiple: [
+    {
+      required: true,
+      message: "请选择一项",
     },
   ],
   // password: [{ validator: validatePass, trigger: "blur" }],
@@ -135,6 +217,11 @@ const submit = () => {
     }
     console.log(valid, errors);
   });
+};
+
+const restForm = () => {
+  let form = formRef.value;
+  form.restValidate();
 };
 </script>
 <style>

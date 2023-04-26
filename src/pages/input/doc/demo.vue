@@ -2,6 +2,7 @@
   <div>
     <h2>基础用法</h2>
     <z-input v-model="input"></z-input>
+    <z-input v-model="input" type="password"></z-input>
   </div>
   <div>
     <h2>size</h2>

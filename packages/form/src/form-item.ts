@@ -32,7 +32,9 @@ export const formItemProps = {
 export type FormItemProps = Partial<ExtractPropTypes<typeof formItemProps>>
 
 export interface FormItemContext extends FormItemProps {
-    validate: (trigger: string, callback?: (isValid: boolean) => void) => Promise<void>
+    compInitData: any,
+    validate: (trigger: string, callback?: (isValid: boolean) => void) => Promise<any>
+    resetField: () => void
 }
 
 export const formItemContextKey: InjectionKey<FormItemContext> = Symbol()

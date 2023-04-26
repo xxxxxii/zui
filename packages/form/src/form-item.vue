@@ -1,5 +1,6 @@
 <template>
   <div class="z-form-item">
+    {{ formContext.formRest }}
     <label for="" :style="{ width: labelWidth }">
       <z-icon
         v-show="itemIcon"
@@ -26,7 +27,7 @@ export default {
 </script>
 
 <script setup lang="ts">
-import { ref, computed, provide, inject } from "vue";
+import { ref, computed, provide, inject, nextTick } from "vue";
 import {
   FormItemValidateState,
   formItemProps,
@@ -38,10 +39,13 @@ import {
 import { FormContext, formContextKey } from "./form";
 import AsyncValdaitor from "async-validator";
 import { onMounted } from "vue";
+import { deepClone } from "../../utils";
+import { watch } from "vue";
 
 const props = defineProps(formItemProps);
 
 const validateState = ref<FormItemValidateState>("");
+let isResettingField = false;
 
 // form 上下文
 const formContext: FormContext = inject(formContextKey, null);
@@ -96,7 +100,6 @@ const _rules = computed(() => {
       itemRules.push(...converArr(_temp));
     }
   }
-  console.log(itemRules);
   return itemRules;
 });
 
@@ -121,18 +124,23 @@ const validateError = (err) => {
   const { errors } = err;
   validateState.value = errors ? errors[0].message : "";
 };
-const validate: FormItemContext["validate"] = async (trigger, callback?) => {
-  const rules = getRuleFitered(trigger);
 
+const validate: FormItemContext["validate"] = async (trigger, callback?) => {
+  if (isResettingField || !props.prop) {
+    return false;
+  }
+
+  const rules = getRuleFitered(trigger);
   const modelName = props.prop;
   //   if (modelName) {
   // 校验器
   const validater = new AsyncValdaitor({
     [modelName]: rules,
   });
+
   const model = formContext?.model;
   console.log(rules, model[modelName]);
-  return validater
+  return await validater
     .validate({
       [modelName]: model[modelName],
     })
@@ -144,16 +152,37 @@ const validate: FormItemContext["validate"] = async (trigger, callback?) => {
       validateError(err);
       return Promise.reject(err);
     });
+
   //   }
 };
-const context = {
-  ...props,
-  validate,
+
+const clearValidate = () => {
+  validateState.value = "";
+  isResettingField = false;
 };
 
-provide(formItemContextKey, context);
+const resetField = async () => {
+  isResettingField = true;
+
+  console.log(formContext?.model[props.prop]);
+  await nextTick();
+  clearValidate();
+  isResettingField = false;
+};
+let compInitData = ref();
+
+const context = ref({
+  ...props,
+  compInitData,
+  validate,
+  clearValidate,
+  resetField,
+});
+
+provide(formItemContextKey, context.value);
 onMounted(() => {
-  formContext?.collectField(context);
+  formContext?.collectField(context.value);
+  compInitData.value = deepClone(formContext?.model[props.prop]);
 });
 
 const marginValue = computed(() => {
@@ -180,7 +209,7 @@ const marginValue = computed(() => {
   label {
     display: inline-flex;
     justify-content: flex-end;
-    align-items: flex-start;
+    align-items: center;
     flex: 0 0 auto;
     font-size: 14px;
     height: 32px;

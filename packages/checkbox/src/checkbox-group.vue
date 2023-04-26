@@ -14,6 +14,7 @@ export default {
 import { provide, ref, computed, inject, watch } from "vue";
 import { checkboxGroupContextKey, checkboxGroupProps } from "./checkbox-group";
 import { formItemContextKey } from "../../form/src/form-item";
+import { formContextKey } from "../../form/src/form";
 const props = defineProps(checkboxGroupProps);
 
 const emit = defineEmits(["update:modelValue", "update"]);
@@ -25,6 +26,7 @@ const emit = defineEmits(["update:modelValue", "update"]);
 
 // 表单上下文，用于验证
 const formItemContext = inject(formItemContextKey, null);
+const formContext = inject(formContextKey, null);
 
 const Class = computed(() => {
   return ["z-checkbox-group", `is-${props.mode}`];
@@ -58,7 +60,12 @@ watch(
   () => props.modelValue,
   (newVal) => {
     // 触发表单验证
+    // let isRest = formContext?.formRest;
+    // console.log(isRest);
+    // if (!isRest) {
     formItemContext?.validate("change").catch(() => {});
+    // }
+
     emit("update:modelValue", newVal);
     context.value.modelValue = newVal;
   }
@@ -70,6 +77,7 @@ provide(checkboxGroupContextKey, context.value);
 <style scoped lang="scss">
 .z-checkbox-group {
   display: inline-flex;
+  flex-flow: wrap;
   align-items: center;
 }
 .is-vertical {

@@ -1,7 +1,10 @@
 <template>
   <z-header class="doc-header">
     <div class="doc-header-box">
-      <span class="logo"> ZUI </span>
+      <span class="logo"> ZUI </span
+      ><span
+        ><z-tag round>V {{ version }}</z-tag>
+      </span>
       <div class="menu-box">
         <z-menu :items="menus" mode="horizontal" v-model="active" />
         <z-switch
@@ -23,9 +26,10 @@
 </template>
 
 <script setup lang="ts">
-import { Result } from "postcss";
 import { ref, computed, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
+import { version } from "../package.json";
+
 const menus: any = ref([
   {
     path: "/comp",

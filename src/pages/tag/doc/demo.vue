@@ -8,6 +8,14 @@
     <z-tag type="warning">Tag</z-tag>
   </div>
   <div>
+    <h2>closeable</h2>
+    <z-tag icon="icon-pro-success" closeable>Tag</z-tag>
+    <z-tag icon="icon-pro-success" type="success" closeable>Tag</z-tag>
+    <z-tag icon="icon-pro-success" type="info" closeable>Tag</z-tag>
+    <z-tag icon="icon-pro-success" type="danger" closeable>Tag</z-tag>
+    <z-tag icon="icon-pro-success" type="warning" closeable>Tag</z-tag>
+  </div>
+  <div>
     <h2>icon</h2>
     <z-tag icon="icon-pro-success">Tag</z-tag>
     <z-tag icon="icon-pro-success" type="success">Tag</z-tag>
@@ -43,7 +51,7 @@
 
   <div>
     <h2>关闭事件</h2>
-    <z-tag icon="icon-pro-success" round @close="close">Tag</z-tag>
+    <z-tag icon="icon-pro-success" closeable round @close="close">Tag</z-tag>
   </div>
 </template>
 
