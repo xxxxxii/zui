@@ -98,7 +98,12 @@ export const routesList = [
         name: "menu",
         component: () => import("@/pages/menu/doc/index.md"),
       },
-
+      {
+        // menu v2
+        path: "/menuV2",
+        name: "menuV2",
+        component: () => import("@/pages/menu v2/doc/index.md"),
+      },
       {
         // progress
         path: "/progress",
@@ -123,16 +128,16 @@ export const routesList = [
         name: "popover",
         component: () => import("@/pages/popover/doc/index.md"),
       },
-      {
-        // select
-        path: "/select",
-        name: "select",
-        component: () => import("@/pages/select/doc/index.md"),
-      },
+      // {
+      //   // select
+      //   path: "/select",
+      //   name: "select",
+      //   component: () => import("@/pages/select/doc/index.md"),
+      // },
       {
         // selectV2
-        path: "/selectV2",
-        name: "selectV2",
+        path: "/select",
+        name: "select",
         component: () => import("@/pages/selectV2/doc/index.md"),
       },
       {

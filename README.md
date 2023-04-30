@@ -42,7 +42,16 @@ import {zButton} form "v3-zy-ui"
 1. form 表单组件 restForm 功能新增
 2. radio 单选组件 发布
 
-## v0.0.6 2023-4-21
+## v0.0.6 2023-4-26
 
 1. Select V2 版本发布，下版本 v1 将被 废弃
 2. popover 提示组件 发布
+
+## v0.0.7 2023-4-27
+
+1. menu v2 基础架构搭建 发布，采用 slot 方式开发更加灵活
+
+## v0.0.8 2023-4-30
+
+1. menu v2 功能完善，收缩 bug 修复
+2. 移除 Select V1

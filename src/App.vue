@@ -6,7 +6,12 @@
         ><z-tag round>V {{ version }}</z-tag>
       </span>
       <div class="menu-box">
-        <z-menu :items="menus" mode="horizontal" v-model="active" />
+        <z-menu
+          :items="menus"
+          mode="horizontal"
+          v-model="active"
+          @toRouter="toRouter"
+        />
         <z-switch
           v-model="themeVal"
           size="lg"
@@ -43,6 +48,10 @@ const menus: any = ref([
 const router = useRouter();
 const route = useRoute();
 const active = ref("/");
+
+const toRouter = (path) => {
+  router.push(path);
+};
 
 // 递归查询
 const selectRoute = (children, path) => {

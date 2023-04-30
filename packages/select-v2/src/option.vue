@@ -6,7 +6,7 @@
 
 <script lang="ts">
 export default {
-  name: "z-option-v2",
+  name: "z-option",
 };
 </script>
 <script setup lang="ts">

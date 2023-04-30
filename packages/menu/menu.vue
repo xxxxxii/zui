@@ -46,6 +46,7 @@
             :items="item[menuKey.childrenKey]"
             :mode="mode"
             :menuKey="menuKey"
+            @toRouter="toRouter"
           ></zMenuItem>
         </li>
         <!--  -->
@@ -90,6 +91,7 @@
             :active="modelValue"
             :menuKey="menuKey"
             @updateActive="updateActive"
+            @toRouter="toRouter"
           />
         </div>
       </template>
@@ -107,8 +109,7 @@ export default {
 </script>
 
 <script setup lang="ts">
-import { computed, useSlots, ref, watch } from "vue";
-import { useRouter } from "vue-router";
+import { computed, useSlots, ref } from "vue";
 import zMenuItem from "./menuItem.vue";
 import zMenuVItem from "./menuVItem.vue";
 import { menuDto, menuKeyDto } from "./types/menu";
@@ -146,12 +147,14 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(["update:modelValue"]);
+const emit = defineEmits(["update:modelValue", "toRouter"]);
 
-const router = useRouter();
 const toRouter = (item) => {
   emit("update:modelValue", item[props.menuKey.activeKey]);
-  item[props.menuKey.pathKey] && router.push(item[props.menuKey.pathKey]);
+  emit("toRouter", item[props.menuKey.activeKey]);
+  // console.log(useRouter());
+  // console.log(item[props.menuKey.pathKey]);
+  // item[props.menuKey.pathKey] && router.push(item[props.menuKey.pathKey]);
 };
 
 const updateActive = (val) => {
@@ -208,6 +211,19 @@ const menuWidth = computed(() => {
 .z-menu {
   font-size: 14px;
   background: $menu-light-bg;
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    li {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      height: 56px;
+      cursor: pointer;
+      // transition: all 0.3s linear;
+    }
+  }
 }
 html.dark {
   .z-menu--collapse {
@@ -223,18 +239,6 @@ html.dark {
   }
   .z-menu {
     background: $menu-dark-bg;
-  }
-}
-ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  li {
-    display: flex;
-    align-items: center;
-    height: 56px;
-    cursor: pointer;
-    // transition: all 0.3s linear;
   }
 }
 

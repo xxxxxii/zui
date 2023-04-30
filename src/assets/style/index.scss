@@ -37,6 +37,17 @@ $light-disabled:#ececec;
 $dark-disabled:#444444;
 
 
+$menu-light-theme:#ffffff;
+$menu-dark-theme:#272727;
+
+
+.menu-hover{
+    transition: all .3s ease-in-out;
+    background: rgba($primary, .2);
+    color: $primary;
+}
+
+
 
 
 html{

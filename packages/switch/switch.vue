@@ -40,11 +40,11 @@ export default {
 
 <script setup lang="ts">
 import { uuidv4 } from "../utils/uuid";
-import { computed, createVNode, ref, h, render, nextTick, watch } from "vue";
+import { computed, ref, h, render, nextTick } from "vue";
 import zIcon from "../icon";
 
 const dateStr = ref("z-switch" + "-" + uuidv4());
-//  new Date().valueOf();
+
 const props: any = defineProps({
   type: {
     type: String,
@@ -72,19 +72,6 @@ const props: any = defineProps({
     type: String,
   },
 });
-
-// watch(
-//   () => props.text,
-//   (newVal, oldVal) => {
-//     console.log(newVal);
-//     const dom = document.querySelector(".z-switch-innerText");
-//     const container = document.createElement("div");
-//     render(null, container);
-//     dom.append(container);
-//     setIocn();
-//   },
-//   { deep: true }
-// );
 
 console.log(props.activeIcon, props.inActiveIcon);
 if (props.activeIcon) {
@@ -114,12 +101,7 @@ function setIocn(domBox, iconName) {
   });
 }
 
-// if (props.showText && props.text?.type === "icon") {
-//   setIocn();
-// }
-
 const emit = defineEmits(["update:modelValue", "change"]);
-// `z-switch-${props.type}`
 
 const Class = computed(() => {
   return [`z-switch-${props.size}`];

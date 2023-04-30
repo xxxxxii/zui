@@ -62,7 +62,7 @@
 
 <script lang="ts">
 export default {
-  name: "z-select-v2",
+  name: "z-select",
 };
 </script>
 
@@ -373,21 +373,23 @@ input {
   // background: $dark-bg;
   &__wrapper {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: start;
+    // flex-direction: column;
+    justify-content: start;
+    align-items: center;
     padding: 0 10px;
     border: 1px solid $light-border;
     border-radius: 4px;
     &__content {
       padding-right: 22px;
-      width: fit-content;
-      display: flex;
+      width: 100%;
+      display: inline-flex;
+      flex: 1;
       align-items: center;
     }
     &__tags {
       display: flex;
       flex-wrap: wrap;
+      width: 100%;
       // margin-left: -8px;
       align-items: center;
     }
@@ -413,16 +415,19 @@ input {
     // left: 0;
     // right: 0;
     top: calc(100% + 10px);
+    border-radius: 4px;
     box-shadow: $border-light-shadow;
     background: $comp-light-bg;
     transition: all 0.5s;
-    padding-top: 10px;
+    // padding-top: 10px;
   }
   input {
     padding: 0;
     color: $light-color;
     // padding: 0 10px;
     background: $light-bg;
+    width: 100%;
+    text-overflow: ellipsis;
     cursor: pointer;
   }
 }

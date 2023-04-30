@@ -1,13 +1,13 @@
-import zSelectV2 from './src/select.vue'
-import zOptionV2 from './src/option.vue';
+import zSelect from './src/select.vue'
+import zOption from './src/option.vue';
 import type { App } from "vue";
 
-zSelectV2.install = (app: App) => {
-    app.component(zSelectV2.name, zSelectV2);
+zSelect.install = (app: App) => {
+    app.component(zSelect.name, zSelect);
 };
 
-zOptionV2.install = (app: App) => {
-    app.component(zOptionV2.name, zOptionV2);
+zOption.install = (app: App) => {
+    app.component(zOption.name, zOption);
 };
 
-export { zSelectV2, zOptionV2 } 
+export { zSelect, zOption } 

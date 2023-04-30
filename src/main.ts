@@ -8,17 +8,19 @@
  */
 import { createApp } from "vue";
 import App from "./App.vue";
-import ZUI from "../packages/index";
+import ZUI from "../packages";
 import router, { setupRouter } from "./router";
 
 // import ZUI from "v3-yl-ui";
-import "../node_modules/v3-yl-ui/dist/style.css";
+// import ZUI from '../dist/v3-yl-ui.mjs'
+// import '../dist/style.css'
+// import "../node_modules/v3-yl-ui/dist/style.css";
 
 async function bootstrap() {
   const app = createApp(App);
 
   setupRouter(app);
-  await router.isReady;
+  // await router.isReady;
   app.use(ZUI);
   app.mount("#app");
 }

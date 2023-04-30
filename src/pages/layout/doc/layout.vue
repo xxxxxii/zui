@@ -50,7 +50,7 @@
   <div class="container">
     <h2>layout</h2>
     <z-row :spac="20">
-      <z-col :col="6" :xs="24" :sm="20" :md="15" :lg="12" :xl="8"
+      <z-col :col="12" :xs="24" :sm="20" :md="15" :lg="12" :xl="8"
         ><div class="col-container"></div
       ></z-col>
       <z-col :col="3" :xs="24" :sm="4" :md="9" :lg="12" :xl="16"

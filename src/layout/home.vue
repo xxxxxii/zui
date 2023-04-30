@@ -2,7 +2,12 @@
   <div class="container">
     <z-scrollbar>
       <div class="left-menu">
-        <z-menu :items="menuList" :menuKey="menuKey" v-model="currentPath" />
+        <z-menu
+          :items="menuList"
+          :menuKey="menuKey"
+          v-model="currentPath"
+          @toRouter="toRouter"
+        />
       </div>
     </z-scrollbar>
 
@@ -34,6 +39,10 @@ const router = useRouter();
 const route = useRoute();
 
 const active = ref("");
+
+const toRouter = (path) => {
+  router.push(path);
+};
 
 // 设置当前路由地址，用作菜单的选中
 const currentPath = ref(route.path);

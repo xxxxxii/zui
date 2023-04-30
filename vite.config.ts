@@ -28,7 +28,7 @@ export default defineConfig({
       external: [
         "vue",
         "md-editor-v3",
-        "vueRouter",
+        'vueRouter',
         "vite-plugin-vue-markdown",
       ],
       output: {
@@ -43,12 +43,12 @@ export default defineConfig({
     },
 
     minify: "terser",
-    terserOptions: {
-      compress: {
-        drop_console: true,
-        drop_debugger: true
-      }
-    }
+    // terserOptions: {
+    //   compress: {
+    //     drop_console: true,
+    //     drop_debugger: true
+    //   }
+    // }
 
   },
 

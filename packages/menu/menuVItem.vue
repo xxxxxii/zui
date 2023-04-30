@@ -63,8 +63,7 @@ export default {
 </script>
 
 <script setup lang="ts">
-import { ref, watch, defineEmits } from "vue";
-import { useRouter } from "vue-router";
+import { ref, defineEmits } from "vue";
 import zMenuVItem from "./menuVItem.vue";
 import { menuDto, menuKeyDto } from "./types/menu";
 
@@ -93,14 +92,17 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(["updateActive"]);
+const emit = defineEmits(["updateActive", "toRouter"]);
 
-const router = useRouter();
 const toRouter = (item) => {
-  //   props.active = item[props.menuKey.activeKey];
-  emit("updateActive", item[props.menuKey.activeKey]);
-  item[props.menuKey.pathKey] && router.push(item[props.menuKey.pathKey]);
+  emit("toRouter", item);
+  // item[props.menuKey.pathKey] && router.push(item[props.menuKey.pathKey]);
 };
+// const toRouter = (item) => {
+//   //   props.active = item[props.menuKey.activeKey];
+//   emit("updateActive", item[props.menuKey.activeKey]);
+//   item[props.menuKey.pathKey] && router.push(item[props.menuKey.pathKey]);
+// };
 
 const showSubMenu = () => {
   if (!props.collapse) subMenuShow.value = !subMenuShow.value;

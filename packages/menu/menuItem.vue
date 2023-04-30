@@ -47,7 +47,6 @@ export default {
 
 <script setup lang="ts">
 import { computed } from "vue";
-import { useRouter } from "vue-router";
 import zMenuItem from "./menuItem.vue";
 import { menuDto, menuKeyDto } from "./types/menu";
 const props = defineProps({
@@ -70,10 +69,10 @@ const props = defineProps({
     type: String,
   },
 });
-
-const router = useRouter();
+const emit = defineEmits(["toRouter"]);
 const toRouter = (item) => {
-  item[props.menuKey.pathKey] && router.push(item[props.menuKey.pathKey]);
+  emit("toRouter", item);
+  // item[props.menuKey.pathKey] && router.push(item[props.menuKey.pathKey]);
 };
 
 const Class = computed(() => {
