@@ -43,89 +43,157 @@ export const routesList = [
         // button
         path: "/button",
         name: "button",
+        meta: {
+          title: 'button',
+          group: '通用组件'
+        },
         component: () => import("@/pages/button/doc/index.md"),
       },
       {// container
         path: "/container",
         name: "container",
+        meta: {
+          title: 'container',
+          group: '通用组件'
+        },
         component: () => import("@/pages/container/doc/index.md"),
       },
       {// layout
         path: "/layout",
         name: "layout",
+        meta: {
+          title: 'layout',
+          group: '通用组件'
+        },
         component: () => import("@/pages/layout/doc/index.md"),
       },
-
+      {// skeleton
+        path: "/skeleton",
+        name: "skeleton",
+        meta: {
+          title: 'skeleton',
+          group: '指令'
+        },
+        component: () => import("@/pages/skeleton/doc/index.md"),
+      },
       {
         // input
         path: "/input",
         name: "input",
+        meta: {
+          title: 'input',
+          group: '输入组件'
+        },
         component: () => import("@/pages/input/doc/index.md"),
       },
       {
         // textarea
         path: "/textarea",
         name: "textarea",
+        meta: {
+          title: 'textarea',
+          group: '输入组件'
+        },
         component: () => import("@/pages/textarea/doc/index.md"),
       },
       {
         // icon
         path: "/icon",
         name: "icon",
+        meta: {
+          title: 'icon',
+          group: '通用组件'
+        },
         component: () => import("@/pages/icon/doc/index.md"),
       },
       {
         // message
         path: "/message",
         name: "message",
+        meta: {
+          title: 'message',
+          group: '通用组件'
+        },
         component: () => import("@/pages/message/doc/index.md"),
       },
       {
         // upload
         path: "/upload",
         name: "upload",
+        meta: {
+          title: 'upload',
+          group: '输入组件'
+        },
         component: () => import("@/pages/upload/doc/index.md"),
       },
       {
         // loading
         path: "/loading",
         name: "loading",
+        meta: {
+          title: 'loading',
+          group: '通用组件'
+        },
         component: () => import("@/pages/loading/doc/index.md"),
       },
       {
         // menu
         path: "/menu",
         name: "menu",
+        meta: {
+          title: 'menu',
+          group: '通用组件'
+        },
         component: () => import("@/pages/menu/doc/index.md"),
       },
       {
         // menu v2
         path: "/menuV2",
         name: "menuV2",
+        meta: {
+          title: 'menuV2',
+          group: '通用组件'
+        },
         component: () => import("@/pages/menu v2/doc/index.md"),
       },
       {
         // progress
         path: "/progress",
         name: "progress",
+        meta: {
+          title: 'progress',
+          group: '通用组件'
+        },
         component: () => import("@/pages/progress/doc/index.md"),
       },
       {
         // switch
         path: "/switch",
         name: "switch",
+        meta: {
+          title: 'switch',
+          group: '通用组件'
+        },
         component: () => import("@/pages/switch/doc/index.md"),
       },
       {
         // tag
         path: "/tag",
         name: "tag",
+        meta: {
+          title: 'tag',
+          group: '通用组件'
+        },
         component: () => import("@/pages/tag/doc/index.md"),
       },
       {
         // popover
         path: "/popover",
         name: "popover",
+        meta: {
+          title: 'popover',
+          group: '通用组件'
+        },
         component: () => import("@/pages/popover/doc/index.md"),
       },
       // {
@@ -138,12 +206,20 @@ export const routesList = [
         // selectV2
         path: "/select",
         name: "select",
+        meta: {
+          title: 'select',
+          group: '输入组件'
+        },
         component: () => import("@/pages/selectV2/doc/index.md"),
       },
       {
         // radio
         path: "/radio",
         name: "radio",
+        meta: {
+          title: 'radio',
+          group: '输入组件'
+        },
         component: () => import("@/pages/radio/doc/index.md"),
       },
 
@@ -151,26 +227,52 @@ export const routesList = [
         // checkbox
         path: "/checkbox",
         name: "checkbox",
+        meta: {
+          title: 'checkbox',
+          group: '输入组件'
+        },
         component: () => import("@/pages/checkbox/doc/index.md"),
       },
       {
         // form
         path: "/form",
         name: "form",
+        meta: {
+          title: 'form',
+          group: '输入组件'
+        },
         component: () => import("@/pages/form/doc/index.md"),
       },
-      // {
-      //   // test
-      //   path: "/test",
-      //   name: "test",
-      //   component: () => import("@/pages/test/index.vue"),
-      // },
-      // {
-      //   // test
-      //   path: "/bf",
-      //   name: "bf",
-      //   component: () => import("@/pages/test/bf.vue"),
-      // },
+      {
+        // dialog
+        path: "/dialog",
+        name: "dialog",
+        meta: {
+          title: 'dialog',
+          group: '通用组件'
+        },
+        component: () => import("@/pages/dialog/doc/index.md"),
+      },
+      {
+        // drawer
+        path: "/drawer",
+        name: "drawer",
+        meta: {
+          title: 'drawer',
+          group: '通用组件'
+        },
+        component: () => import("@/pages/drawer/doc/index.md"),
+      },
+      {
+        // drag
+        path: "/drag",
+        name: "drag",
+        meta: {
+          title: 'drag',
+          group: '指令'
+        },
+        component: () => import("@/pages/drag/doc/index.md"),
+      },
     ],
   },
 ];

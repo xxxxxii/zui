@@ -58,33 +58,33 @@
         </z-radio-group>
       </z-form-item>
       <z-form-item label="Select" prop="select">
-        <z-select-v2 v-model="model.select" width="100%" placeholder="请选择">
-          <z-option-v2
+        <z-select v-model="model.select" width="100%" placeholder="请选择">
+          <z-option
             v-for="item in options"
             :label="item.label"
             :value="item.value"
             :key="item.value"
           >
             <span>城市: {{ item.label }}</span>
-          </z-option-v2>
-        </z-select-v2>
+          </z-option>
+        </z-select>
       </z-form-item>
       <z-form-item label="multiple" prop="selectlMultiple">
-        <z-select-v2
+        <z-select
           v-model="model.selectlMultiple"
           width="100%"
           multiple
           placeholder="请选择"
         >
-          <z-option-v2
+          <z-option
             v-for="item in options"
             :label="item.label"
             :value="item.value"
             :key="item.value"
           >
             <span>城市: {{ item.label }}</span>
-          </z-option-v2>
-        </z-select-v2>
+          </z-option>
+        </z-select>
         <!-- seach -->
       </z-form-item>
 

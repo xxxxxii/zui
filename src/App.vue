@@ -59,7 +59,6 @@ const selectRoute = (children, path) => {
     return selectRoute(children.children, path);
   } else {
     let result = children.filter((element) => {
-      console.log(element, path);
       return element.path === path;
     });
     return result;
@@ -123,6 +122,7 @@ const themeChange = (status) => {
 <style lang="scss">
 body {
   margin: 0;
+  padding: 0;
   width: 100%;
   min-width: 320px;
   // min-height: 100vh;
@@ -135,6 +135,9 @@ body {
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+}
+#app {
+  min-height: 100vh;
 }
 .main-container {
   width: 80%;

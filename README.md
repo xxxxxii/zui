@@ -13,6 +13,7 @@ https://github.com/xxxxxii/zui
 ## 本人联系方式
 
 QQ 1504335501
+欢迎各位朋友共同维护
 
 # use
 
@@ -55,3 +56,13 @@ import {zButton} form "v3-zy-ui"
 
 1. menu v2 功能完善，收缩 bug 修复
 2. 移除 Select V1
+
+### 2023-5-7
+
+1. 添加骨架屏指令 skeleton,skeleton-item
+
+## v0.0.9 2023-5-10
+
+1. dialog 组件发布
+2. drawer 组件发布
+3. drag 拖拽指令开发

@@ -40,9 +40,7 @@ const props = defineProps({
 
 <style scoped>
 .z-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  display: block;
 }
 .icon {
   width: 1em;

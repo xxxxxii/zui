@@ -22,6 +22,7 @@ import zOptions from "./options"
 import zProgress from "./progress";
 import { zFormItem, zForm } from "./form";
 import zPopover from "./popover";
+import zSkeleton from "./skeleton";
 
 
 import { zCheckbox, zCheckboxGroup } from "./checkbox";
@@ -32,9 +33,13 @@ import { zOption, zSelect } from './select-v2'
 import zScrollbar from "./scrollbar/src";
 import { zMenuItem, zMenuItemGroup, zNavMenu, zSubMenu } from './navMenu'
 
+import zDlalog from "./dialog";
+import zDrawer from "./drawer";
 
-
+// 指令
 import loading from "./directives/loading"
+import { SkeletonItem, Skeleton } from './directives/skeleton'
+import drag, { Drag } from "./directives/drag";
 
 
 
@@ -43,8 +48,8 @@ import *  as utils from './utils/index'
 
 
 
-const plugins: any = [zButton, zInput, zTextarea, zIcon, ZMessage, zUpload, loading, zMenu, zTag, zProgress, zSwitch, zContainer, zHeader, zMain, zAside, zFooter, zRow, zCol, zSelect, zOptions, zFormItem, zForm, zCheckbox,
-  zCheckboxGroup, zRadio, zRadioGroup, zOption, zPopover, zScrollbar, zMenuItem, zMenuItemGroup, zNavMenu, zSubMenu];
+const plugins: any = [zButton, zInput, zTextarea, zIcon, ZMessage, zUpload, loading, drag, zMenu, zTag, zProgress, zSwitch, zContainer, zHeader, zMain, zAside, zFooter, zRow, zCol, zSelect, zOptions, zFormItem, zForm, zCheckbox,
+  zCheckboxGroup, zRadio, zRadioGroup, zOption, zPopover, zScrollbar, zMenuItem, zMenuItemGroup, zNavMenu, zSubMenu, zSkeleton, zDlalog, zDrawer];
 
 const install = (app: App) => {
   plugins.forEach((item) => {
@@ -57,6 +62,6 @@ const ZUI = {
 
 export {
   zButton, zInput, zTextarea, ZMessage, zUpload, ZLoading, zMenu, zTag, zProgress, zSwitch, zContainer, zHeader, zMain, zAside, zFooter, zRow, zCol, zSelect, zOptions, zFormItem, zForm, zCheckbox, zCheckboxGroup,
-  zRadio, zRadioGroup, zOption, zPopover, zScrollbar, zMenuItem, zMenuItemGroup, zNavMenu, zSubMenu, utils
+  zRadio, zRadioGroup, zOption, zPopover, zScrollbar, zMenuItem, zMenuItemGroup, zNavMenu, zSubMenu, zSkeleton, utils, SkeletonItem, Skeleton, zDlalog, Drag, zDrawer
 };
 export default ZUI;

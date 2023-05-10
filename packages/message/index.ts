@@ -30,7 +30,7 @@ const ZMessage = (options) => {
 
     // 组件关闭时触发的回调
     // 这个回调用于显示组件的移出动画，和 onDestroy 不冲突
-    onClose() {
+    onClose(el: Event): void {
       close(options.id, topOffset);
       useClose?.();
     },

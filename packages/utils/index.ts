@@ -1,5 +1,5 @@
-import { uuidv4 } from './uuid'
-export { uuidv4 }
+import { uuidv4 } from "./uuid";
+export { uuidv4 };
 // 深度克隆。
 deepClone.cached = new WeakMap();
 export function deepClone(obj) {
@@ -38,8 +38,6 @@ export function deepClone(obj) {
     return temp;
 }
 
-
-
 // 节流
 export function throttle(callback, delay) {
     // 判断依据
@@ -47,12 +45,12 @@ export function throttle(callback, delay) {
     return function () {
         if (flag) {
             setTimeout(() => {
-                callback.call(this)
-                flag = true
-            }, delay)
+                callback.call(this);
+                flag = true;
+            }, delay);
         }
-        flag = false
-    }
+        flag = false;
+    };
 }
 
 // 防抖
@@ -62,16 +60,14 @@ export function debounce(callback, delay) {
     return function () {
         if (timer) {
             // 定时器存在，清除创建新的定时任务
-            clearTimeout(timer)
+            clearTimeout(timer);
         }
         // timer 生成新的定时任务
         timer = setTimeout(() => {
-            callback.call(this)
-        }, delay)
-    }
+            callback.call(this);
+        }, delay);
+    };
 }
-
-
 
 // 去重数组
 export function toRepeat(array) {
@@ -88,5 +84,21 @@ export function getType(obj) {
         return type;
     }
     // 是引用类型数据使用原型链方式判断
-    return Object.prototype.toString.call(obj).replace(/^\[object (\S+)\]$/, '$1');
+    return Object.prototype.toString
+        .call(obj)
+        .replace(/^\[object (\S+)\]$/, "$1");
+}
+
+export function groupBy(arr, generateKey) {
+    if (typeof generateKey === "string") {
+        const propName = generateKey;
+        generateKey = (item) => item[propName];
+    }
+    const result = {};
+    for (let item of arr) {
+        const key = generateKey(item);
+        if (!result[key]) result[key] = [];
+        result[key].push(item);
+    }
+    return result;
 }

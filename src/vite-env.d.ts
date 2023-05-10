@@ -12,4 +12,4 @@ declare module "*vue" {
   const ComponentOptions: ComponentOptions;
   export default ComponentOptions;
 }
-declare module "../packages/*/*.md";
+declare module "*.md";

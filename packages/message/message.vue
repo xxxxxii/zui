@@ -125,6 +125,9 @@ onUnmounted(() => {});
   transition: all 0.4s linear;
   display: flex;
   align-items: center;
+  > .z-icon {
+    margin-right: 6px;
+  }
 }
 // .fade-enter-from,
 // .fade-leave-to {

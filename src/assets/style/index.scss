@@ -21,7 +21,7 @@ $dark-bg:#000000;
 $light-color:#5b5b5b;
 $dark-color:#e8e8e8;
 $comp-light-bg:#ffffff;
-$comp-dark-bg:#212121;
+$comp-dark-bg:#040404;
 
 
 $menu-light-bg:#fff;
@@ -36,33 +36,43 @@ $border-dark-shadow: 0px 16px 48px 16px rgba(0, 0, 0, .08);
 $light-disabled:#ececec;
 $dark-disabled:#444444;
 
+$mask:rgba(#383838,.6) ;
 
 $menu-light-theme:#ffffff;
 $menu-dark-theme:#272727;
 
+$skeleton-light-bg: rgb(201, 201, 201);
 
+
+
+
+// @import './scrollbar.scss';
+
+@import './skeleton.scss';
 .menu-hover{
     transition: all .3s ease-in-out;
     background: rgba($primary, .2);
     color: $primary;
 }
 
-
-
-
 html{
     background-color: $light-bg;
     color: $light-color;
-    
-
-    // .z-menu{
-    //     background-color: $comp-light-bg;
-    // }
 }
 html.dark{
     background-color: $dark-bg;
     color: $dark-color;
-
+    .z-skeleton{
+        position: relative;
+        &-item{
+            background: rgb(87, 87, 87);
+        }
+    }
+    .z-skeleton.is-animated .z-skeleton-item {
+        background: linear-gradient(90deg,#515151 25%,#414141 37%,#505050 63%);
+        background-size: 400% 100%;
+        animation: z-skeleton-loading 1.4s ease infinite;
+    }
     // .z-menu{
     //     background-color: $comp-dark-bg;
     // }
