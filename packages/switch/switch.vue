@@ -222,8 +222,7 @@ const zSwitchChange = (e) => {
     top: 50%;
     left: 1px;
     transform: translate(0, -50%);
-
-    //   border: 2px solid #999999;
+    transition: all 0.2s linear;
     border-radius: 50%;
     background: #ffffff;
   }
@@ -250,10 +249,20 @@ const zSwitchChange = (e) => {
 .z-switch-checkbox:checked + .z-switch-label .z-switch-innerText {
   justify-content: flex-start;
 }
-.z-switch-checkbox:checked + .z-switch-label .z-switch-action {
-  right: 1px;
-  left: auto;
-  transition: all 0.3s ease-in-out;
+
+.z-switch-checkbox:checked + .z-switch-label {
+  .z-switch-action-lg {
+    right: 1px;
+    left: calc(100% - 20px - 1px);
+  }
+  .z-switch-action-md {
+    right: 1px;
+    left: calc(100% - 16px - 1px);
+  }
+  .z-switch-action-xs {
+    right: 1px;
+    left: calc(100% - 12px - 1px);
+  }
 }
 
 .z-switch-checkbox:checked
