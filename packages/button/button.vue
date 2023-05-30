@@ -1,8 +1,8 @@
 <!--
  * @Author: xxxxxii 1973329248@qq.com
  * @Date: 2023-02-28 02:27:35
- * @LastEditors: xxxxxii 1973329248@qq.com
- * @LastEditTime: 2023-02-28 22:39:55
+ * @LastEditors: sueRimn
+ * @LastEditTime: 2023-05-30 17:55:59
  * @FilePath: \z-ui\packages\button\button.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -74,7 +74,7 @@ const bClass = computed(() => {
 <style scoped lang="scss">
 // 按钮基础样式
 button {
-  display: inline-block;
+  display: inline-flex;
   line-height: 1;
   white-space: nowrap;
   cursor: pointer;
@@ -118,7 +118,6 @@ button {
 // 按钮plain 和对应type 样式
 .z-button-default {
   background: #fff;
-  padding: 8px 15px;
 }
 .z-button-default.is-plain {
   color: #7f7f7f;

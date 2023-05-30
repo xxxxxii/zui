@@ -24,6 +24,8 @@ import { zFormItem, zForm } from "./form";
 import zPopover from "./popover";
 import zSkeleton from "./skeleton";
 import zText from "./text";
+import zColorPicker from "./colorPicker";
+import zDatePicker from "./datePicker";
 
 import { zCheckbox, zCheckboxGroup } from "./checkbox";
 import { zRadio, zRadioGroup } from "./radio";
@@ -83,6 +85,7 @@ const plugins: any = [
   zDlalog,
   zDrawer,
   zText,
+  zColorPicker,zDatePicker
 ];
 
 const install = (app: App) => {
@@ -135,5 +138,6 @@ export {
   Drag,
   zDrawer,
   zText,
+  zColorPicker,zDatePicker
 };
 export default ZUI;

@@ -1,0 +1,21 @@
+.z-color-picker {
+  display: inline-block;
+  &-md {
+    > input {
+      width: 24px;
+      height: 24px;
+    }
+  }
+  &-lg {
+    > input {
+      width: 28px;
+      height: 28px;
+    }
+  }
+  &-xs {
+    + input {
+      width: 16px;
+      height: 16px;
+    }
+  }
+}

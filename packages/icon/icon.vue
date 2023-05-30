@@ -1,3 +1,10 @@
+<!--
+ * @Description: 
+ * @version: 
+ * @Author: yulinZ
+ * @LastEditors: sueRimn
+ * @LastEditTime: 2023-05-30 11:35:54
+-->
 <template>
   <div class="z-icon">
     <svg
@@ -40,7 +47,8 @@ const props = defineProps({
 
 <style scoped>
 .z-icon {
-  display: block;
+  display: inline-flex;
+  justify-content: center;
 }
 .icon {
   width: 1em;

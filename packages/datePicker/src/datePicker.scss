@@ -1,0 +1,67 @@
+.z-calendar {
+  font-size: 14px;
+  width: fit-content;
+  padding: 8px;
+  .z-calendar-day-dot {
+    width: 20px;
+    height: 20px;
+    padding: 2px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+  }
+  &-body {
+    display: grid;
+    grid-gap: 8px;
+    grid-template-columns: repeat(7, auto);
+  }
+  &-current-date {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+  &-header {
+    display: flex;
+    justify-content: center;
+    padding: 8px 5px;
+    align-items: center;
+    .month-ctr {
+      margin: 0 1em;
+    }
+  }
+  &-footer {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    margin: 5px 0;
+    &-current-date {
+      padding: 5px;
+      cursor: pointer;
+      margin-right: 8px;
+    }
+  }
+  &-ctr-btn {
+    width: 1em;
+    height: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  .z-calendar--note {
+    color: #b6b6b6;
+  }
+  &-day-dot {
+    cursor: pointer;
+  }
+  &-day-dot--active {
+    background: $primary;
+    border-radius: 50%;
+    color: #fff;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+  }
+}

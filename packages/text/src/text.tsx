@@ -27,16 +27,11 @@ export default defineComponent({
     } as Prop<textTypes>,
   },
   setup(props, { slots, attrs }) {
-    console.log(slots.default());
     return () =>
-      h(
-        props.type,
-        {
-          class: "demoClass",
-          style: {},
-          onclick: () => console.log(this),
-        },
-        slots.default()
-      );
+      h(props.type, {}, [
+        slots.leftIcon ? slots.leftIcon() : "",
+        slots.default ? slots.default() : "",
+        slots.rightIcon ? slots.rightIcon() : "",
+      ]);
   },
 });
