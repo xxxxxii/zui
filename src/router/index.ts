@@ -23,14 +23,14 @@ import { guard } from "./permission";
 export const routesList = [
   {
     path: "/",
-    name: 'index',
-    component: () => import('@/pages/index/index.vue'),
+    name: "index",
+    component: () => import("@/pages/index/index.vue"),
     redirect: "updateLog",
   },
   {
-    path: '/updateLog',
-    name: 'UpdateLog',
-    component: () => import('../../README.md'),
+    path: "/updateLog",
+    name: "UpdateLog",
+    component: () => import("../../README.md"),
   },
   {
     path: "/comp",
@@ -44,35 +44,38 @@ export const routesList = [
         path: "/button",
         name: "button",
         meta: {
-          title: 'button',
-          group: '通用组件'
+          title: "button",
+          group: "通用组件",
         },
         component: () => import("@/pages/button/doc/index.md"),
       },
-      {// container
+      {
+        // container
         path: "/container",
         name: "container",
         meta: {
-          title: 'container',
-          group: '通用组件'
+          title: "container",
+          group: "通用组件",
         },
         component: () => import("@/pages/container/doc/index.md"),
       },
-      {// layout
+      {
+        // layout
         path: "/layout",
         name: "layout",
         meta: {
-          title: 'layout',
-          group: '通用组件'
+          title: "layout",
+          group: "通用组件",
         },
         component: () => import("@/pages/layout/doc/index.md"),
       },
-      {// skeleton
+      {
+        // skeleton
         path: "/skeleton",
         name: "skeleton",
         meta: {
-          title: 'skeleton',
-          group: '指令'
+          title: "skeleton",
+          group: "指令",
         },
         component: () => import("@/pages/skeleton/doc/index.md"),
       },
@@ -81,8 +84,8 @@ export const routesList = [
         path: "/input",
         name: "input",
         meta: {
-          title: 'input',
-          group: '输入组件'
+          title: "input",
+          group: "输入组件",
         },
         component: () => import("@/pages/input/doc/index.md"),
       },
@@ -91,8 +94,8 @@ export const routesList = [
         path: "/textarea",
         name: "textarea",
         meta: {
-          title: 'textarea',
-          group: '输入组件'
+          title: "textarea",
+          group: "输入组件",
         },
         component: () => import("@/pages/textarea/doc/index.md"),
       },
@@ -101,8 +104,8 @@ export const routesList = [
         path: "/icon",
         name: "icon",
         meta: {
-          title: 'icon',
-          group: '通用组件'
+          title: "icon",
+          group: "通用组件",
         },
         component: () => import("@/pages/icon/doc/index.md"),
       },
@@ -111,8 +114,8 @@ export const routesList = [
         path: "/message",
         name: "message",
         meta: {
-          title: 'message',
-          group: '通用组件'
+          title: "message",
+          group: "通用组件",
         },
         component: () => import("@/pages/message/doc/index.md"),
       },
@@ -121,8 +124,8 @@ export const routesList = [
         path: "/upload",
         name: "upload",
         meta: {
-          title: 'upload',
-          group: '输入组件'
+          title: "upload",
+          group: "输入组件",
         },
         component: () => import("@/pages/upload/doc/index.md"),
       },
@@ -131,8 +134,8 @@ export const routesList = [
         path: "/loading",
         name: "loading",
         meta: {
-          title: 'loading',
-          group: '通用组件'
+          title: "loading",
+          group: "通用组件",
         },
         component: () => import("@/pages/loading/doc/index.md"),
       },
@@ -141,8 +144,8 @@ export const routesList = [
         path: "/menu",
         name: "menu",
         meta: {
-          title: 'menu',
-          group: '通用组件'
+          title: "menu",
+          group: "通用组件",
         },
         component: () => import("@/pages/menu/doc/index.md"),
       },
@@ -151,8 +154,8 @@ export const routesList = [
         path: "/menuV2",
         name: "menuV2",
         meta: {
-          title: 'menuV2',
-          group: '通用组件'
+          title: "menuV2",
+          group: "通用组件",
         },
         component: () => import("@/pages/menu v2/doc/index.md"),
       },
@@ -161,8 +164,8 @@ export const routesList = [
         path: "/progress",
         name: "progress",
         meta: {
-          title: 'progress',
-          group: '通用组件'
+          title: "progress",
+          group: "通用组件",
         },
         component: () => import("@/pages/progress/doc/index.md"),
       },
@@ -171,8 +174,8 @@ export const routesList = [
         path: "/switch",
         name: "switch",
         meta: {
-          title: 'switch',
-          group: '通用组件'
+          title: "switch",
+          group: "通用组件",
         },
         component: () => import("@/pages/switch/doc/index.md"),
       },
@@ -181,8 +184,8 @@ export const routesList = [
         path: "/tag",
         name: "tag",
         meta: {
-          title: 'tag',
-          group: '通用组件'
+          title: "tag",
+          group: "通用组件",
         },
         component: () => import("@/pages/tag/doc/index.md"),
       },
@@ -191,8 +194,8 @@ export const routesList = [
         path: "/popover",
         name: "popover",
         meta: {
-          title: 'popover',
-          group: '通用组件'
+          title: "popover",
+          group: "通用组件",
         },
         component: () => import("@/pages/popover/doc/index.md"),
       },
@@ -207,8 +210,8 @@ export const routesList = [
         path: "/select",
         name: "select",
         meta: {
-          title: 'select',
-          group: '输入组件'
+          title: "select",
+          group: "输入组件",
         },
         component: () => import("@/pages/selectV2/doc/index.md"),
       },
@@ -217,8 +220,8 @@ export const routesList = [
         path: "/radio",
         name: "radio",
         meta: {
-          title: 'radio',
-          group: '输入组件'
+          title: "radio",
+          group: "输入组件",
         },
         component: () => import("@/pages/radio/doc/index.md"),
       },
@@ -228,8 +231,8 @@ export const routesList = [
         path: "/checkbox",
         name: "checkbox",
         meta: {
-          title: 'checkbox',
-          group: '输入组件'
+          title: "checkbox",
+          group: "输入组件",
         },
         component: () => import("@/pages/checkbox/doc/index.md"),
       },
@@ -238,8 +241,8 @@ export const routesList = [
         path: "/form",
         name: "form",
         meta: {
-          title: 'form',
-          group: '输入组件'
+          title: "form",
+          group: "输入组件",
         },
         component: () => import("@/pages/form/doc/index.md"),
       },
@@ -248,8 +251,8 @@ export const routesList = [
         path: "/dialog",
         name: "dialog",
         meta: {
-          title: 'dialog',
-          group: '通用组件'
+          title: "dialog",
+          group: "通用组件",
         },
         component: () => import("@/pages/dialog/doc/index.md"),
       },
@@ -258,8 +261,8 @@ export const routesList = [
         path: "/drawer",
         name: "drawer",
         meta: {
-          title: 'drawer',
-          group: '通用组件'
+          title: "drawer",
+          group: "通用组件",
         },
         component: () => import("@/pages/drawer/doc/index.md"),
       },
@@ -268,10 +271,20 @@ export const routesList = [
         path: "/drag",
         name: "drag",
         meta: {
-          title: 'drag',
-          group: '指令'
+          title: "drag",
+          group: "指令",
         },
         component: () => import("@/pages/drag/doc/index.md"),
+      },
+      {
+        // text
+        path: "/text",
+        name: "text",
+        meta: {
+          title: "text",
+          group: "通用组件",
+        },
+        component: () => import("@/pages/text/doc/index.md"),
       },
     ],
   },

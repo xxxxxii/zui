@@ -73,7 +73,6 @@ const props: any = defineProps({
   },
 });
 
-console.log(props.activeIcon, props.inActiveIcon);
 if (props.activeIcon) {
   setIocn(".z-switch-innerTextBox-false", props.activeIcon);
 }
@@ -107,10 +106,10 @@ const Class = computed(() => {
   return [`z-switch-${props.size}`];
 });
 
-const zSwitchChange = (e) => {
-  emit("update:modelValue", e.target.checked);
-  emit("change", e.target.checked);
-  console.log(e.target.checked);
+const zSwitchChange = (e: Event) => {
+  let target = e.target as HTMLInputElement;
+  emit("update:modelValue", target.checked);
+  emit("change", target.checked);
 };
 </script>
 
@@ -118,6 +117,7 @@ const zSwitchChange = (e) => {
 .z-switch {
   display: inline-block;
   height: fit-content;
+  user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -147,37 +147,23 @@ const zSwitchChange = (e) => {
     width: 50px;
     height: 24px;
     border-radius: 12px;
-    .z-switch-label {
-      .z-switch-inner {
-        .z-switch-innerText {
-          //   width: calc(100% - 24px);
-        }
-      }
-    }
+    // .z-switch-label {
+    //   .z-switch-inner {
+    //     .z-switch-innerText {
+    //          width: calc(100% - 24px);
+    //     }
+    //   }
+    // }
   }
   &-md {
     width: 40px;
     height: 20px;
     border-radius: 10px;
-    .z-switch-label {
-      .z-switch-inner {
-        .z-switch-innerText {
-          //   width: calc(100% - 20px);
-        }
-      }
-    }
   }
   &-xs {
     width: 30px;
     height: 16px;
     border-radius: 8px;
-    .z-switch-label {
-      .z-switch-inner {
-        .z-switch-innerText {
-          //   width: calc(100% - 14px);
-        }
-      }
-    }
   }
 
   &-label {

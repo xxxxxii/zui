@@ -10,46 +10,80 @@ import ZLoading from "./loading";
 import zMenu from "./menu";
 import zSwitch from "./switch";
 import zContainer from "./container";
-import zHeader from "./header"
-import zMain from "./main"
+import zHeader from "./header";
+import zMain from "./main";
 import zAside from "./aside";
 import zFooter from "./footer";
-import zRow from "./row"
+import zRow from "./row";
 import zCol from "./col";
 import zTag from "./tag";
 // import zSelect from "./select"
-import zOptions from "./options"
+import zOptions from "./options";
 import zProgress from "./progress";
 import { zFormItem, zForm } from "./form";
 import zPopover from "./popover";
 import zSkeleton from "./skeleton";
-
+import zText from "./text";
 
 import { zCheckbox, zCheckboxGroup } from "./checkbox";
-import { zRadio, zRadioGroup } from './radio'
+import { zRadio, zRadioGroup } from "./radio";
 
-import { zOption, zSelect } from './select-v2'
+import { zOption, zSelect } from "./select-v2";
 
 import zScrollbar from "./scrollbar/src";
-import { zMenuItem, zMenuItemGroup, zNavMenu, zSubMenu } from './navMenu'
+import { zMenuItem, zMenuItemGroup, zNavMenu, zSubMenu } from "./navMenu";
 
 import zDlalog from "./dialog";
 import zDrawer from "./drawer";
 
 // 指令
-import loading from "./directives/loading"
-import { SkeletonItem, Skeleton } from './directives/skeleton'
+import loading from "./directives/loading";
+import { SkeletonItem, Skeleton } from "./directives/skeleton";
 import drag, { Drag } from "./directives/drag";
 
-
-
 // 常用函数
-import *  as utils from './utils/index'
+import * as utils from "./utils/index";
 
-
-
-const plugins: any = [zButton, zInput, zTextarea, zIcon, ZMessage, zUpload, loading, drag, zMenu, zTag, zProgress, zSwitch, zContainer, zHeader, zMain, zAside, zFooter, zRow, zCol, zSelect, zOptions, zFormItem, zForm, zCheckbox,
-  zCheckboxGroup, zRadio, zRadioGroup, zOption, zPopover, zScrollbar, zMenuItem, zMenuItemGroup, zNavMenu, zSubMenu, zSkeleton, zDlalog, zDrawer];
+const plugins: any = [
+  zButton,
+  zInput,
+  zTextarea,
+  zIcon,
+  ZMessage,
+  zUpload,
+  loading,
+  drag,
+  zMenu,
+  zTag,
+  zProgress,
+  zSwitch,
+  zContainer,
+  zHeader,
+  zMain,
+  zAside,
+  zFooter,
+  zRow,
+  zCol,
+  zSelect,
+  zOptions,
+  zFormItem,
+  zForm,
+  zCheckbox,
+  zCheckboxGroup,
+  zRadio,
+  zRadioGroup,
+  zOption,
+  zPopover,
+  zScrollbar,
+  zMenuItem,
+  zMenuItemGroup,
+  zNavMenu,
+  zSubMenu,
+  zSkeleton,
+  zDlalog,
+  zDrawer,
+  zText,
+];
 
 const install = (app: App) => {
   plugins.forEach((item) => {
@@ -61,7 +95,45 @@ const ZUI = {
 };
 
 export {
-  zButton, zInput, zTextarea, ZMessage, zUpload, ZLoading, zMenu, zTag, zProgress, zSwitch, zContainer, zHeader, zMain, zAside, zFooter, zRow, zCol, zSelect, zOptions, zFormItem, zForm, zCheckbox, zCheckboxGroup,
-  zRadio, zRadioGroup, zOption, zPopover, zScrollbar, zMenuItem, zMenuItemGroup, zNavMenu, zSubMenu, zSkeleton, utils, SkeletonItem, Skeleton, zDlalog, Drag, zDrawer
+  zButton,
+  zInput,
+  zTextarea,
+  ZMessage,
+  zUpload,
+  ZLoading,
+  zMenu,
+  zTag,
+  zProgress,
+  zSwitch,
+  zContainer,
+  zHeader,
+  zMain,
+  zAside,
+  zFooter,
+  zRow,
+  zCol,
+  zSelect,
+  zOptions,
+  zFormItem,
+  zForm,
+  zCheckbox,
+  zCheckboxGroup,
+  zRadio,
+  zRadioGroup,
+  zOption,
+  zPopover,
+  zScrollbar,
+  zMenuItem,
+  zMenuItemGroup,
+  zNavMenu,
+  zSubMenu,
+  zSkeleton,
+  utils,
+  SkeletonItem,
+  Skeleton,
+  zDlalog,
+  Drag,
+  zDrawer,
+  zText,
 };
 export default ZUI;

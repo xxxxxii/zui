@@ -20,7 +20,9 @@
     }
   },
   "include": [
+    "src/*.tsx",
     "src/**/*.ts",
+    "./**/*.tsx",
     "src/**/*.d.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
@@ -29,7 +31,8 @@
     "**/*.vue",
     "**/*.md",
     "packages/message/index.ts",
-    "packages/message/index.ts"
+    "packages/message/index.ts",
+    "packages/text/src/text.tsx"
   ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
