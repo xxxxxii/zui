@@ -11,7 +11,6 @@
       :width="width"
     >
       <span class="z-select__wrapper">
-        <!-- @click.stop="selectClick" -->
         <div class="z-select__wrapper__content">
           <div
             v-if="tag && multiple && tagList.length > 0"
@@ -47,11 +46,8 @@
       </span>
 
       <template #content>
-        <!--  -->
         <transition name="fade">
-          <!-- v-if="showDown" -->
           <z-select-dropdown class="z-select__dropdown">
-            <!-- @click="showDown = true" -->
             <slot />
           </z-select-dropdown>
         </transition>
@@ -103,21 +99,8 @@ const popoverHover = (val) => {
   hover.value = val;
 };
 const popoverClick = ({ el, target }) => {
-  // showDown.value = !showDown.value;
-  // if (props.multiple) {
-  //   showDown.value = true;
-  //   return;
-  // }
-  // showDown.value = true;
-  // console.log(el, target);
   const dropDownDom = el?.querySelector(".z-select__dropdown");
 
-  // console.log(
-  //   dropDownDom === target || dropDownDom === target.parentNode,
-  //   el.contains(target),
-  //   "2222222222222222222222222"
-  // );
-  // showDown.value = true;
   if (
     (dropDownDom === target || dropDownDom === target.parentNode) &&
     props.multiple
@@ -411,9 +394,7 @@ input {
     margin: 0;
     // position: absolute;
     z-index: 2064;
-    padding: 5px 0;
-    // left: 0;
-    // right: 0;
+    // padding: 5px 0;
     top: calc(100% + 10px);
     border-radius: 4px;
     box-shadow: $border-light-shadow;

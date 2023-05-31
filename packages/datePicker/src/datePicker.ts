@@ -10,6 +10,8 @@ export const colorPickerProps = {
     type: String,
     default: "md",
   },
+
+  
 } as const;
 
 export type ColorPickerProps = Partial<

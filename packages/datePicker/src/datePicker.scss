@@ -1,67 +1,158 @@
-.z-calendar {
-  font-size: 14px;
-  width: fit-content;
-  padding: 8px;
-  .z-calendar-day-dot {
-    width: 20px;
-    height: 20px;
-    padding: 2px;
-    display: flex;
-    justify-content: center;
-    align-content: center;
-  }
-  &-body {
-    display: grid;
-    grid-gap: 8px;
-    grid-template-columns: repeat(7, auto);
-  }
-  &-current-date {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-  }
-  &-header {
-    display: flex;
-    justify-content: center;
-    padding: 8px 5px;
-    align-items: center;
-    .month-ctr {
-      margin: 0 1em;
+input {
+  outline: none;
+  border: none;
+}
+.z-select {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  &--lg {
+    .z-select__wrapper {
+      padding: 0 12px;
+      &__content {
+        input {
+          min-height: 36px;
+        }
+      }
+      &__tags {
+        margin-left: -8px;
+      }
     }
   }
-  &-footer {
-    display: flex;
-    justify-content: end;
-    align-items: center;
-    margin: 5px 0;
-    &-current-date {
-      padding: 5px;
-      cursor: pointer;
-      margin-right: 8px;
+  &--md {
+    .z-select__wrapper {
+      padding: 0 10px;
+      // height: 32px;
+      &__content {
+        input {
+          min-height: 30px;
+        }
+      }
+      &__tags {
+        margin-left: -6px;
+      }
     }
   }
-  &-ctr-btn {
-    width: 1em;
-    height: 1em;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
+  &--xs {
+    .z-select__wrapper {
+      padding: 0 6px;
+      // height: 26px;
+      &__content {
+        input {
+          min-height: 24px;
+        }
+      }
+      &__tags {
+        margin-left: -4px;
+      }
+    }
   }
 
-  .z-calendar--note {
-    color: #b6b6b6;
+  // background: $dark-bg;
+  &__wrapper {
+    display: flex;
+    // flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    padding: 0 10px;
+    border: 1px solid $light-border;
+    border-radius: 4px;
+    &__content {
+      padding-right: 22px;
+      width: 100%;
+      display: inline-flex;
+      flex: 1;
+      align-items: center;
+    }
+    &__tags {
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+      // margin-left: -8px;
+      align-items: center;
+    }
   }
-  &-day-dot {
+  &__wrapper__icon {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 16px;
+    padding-right: 10px;
+  }
+  &__dropdown {
+    width: 100%;
+    opacity: 1;
+    list-style: none;
+    margin: 0;
+    z-index: 2064;
+    top: calc(100% + 10px);
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: $border-light-shadow;
+    background: $comp-light-bg;
+    transition: all 0.5s;
+    // padding-top: 10px;
+  }
+  input {
+    padding: 0;
+    color: $light-color;
+    // padding: 0 10px;
+    background: $light-bg;
+    width: 100%;
+    text-overflow: ellipsis;
     cursor: pointer;
   }
-  &-day-dot--active {
-    background: $primary;
-    border-radius: 50%;
-    color: #fff;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    -ms-border-radius: 50%;
-    -o-border-radius: 50%;
+}
+
+.is-fcous {
+  .z-select__wrapper {
+    border: 1px solid $primary;
+  }
+}
+
+.is-hover {
+  .z-select__wrapper {
+    border: 1px solid #787878;
+  }
+}
+
+.icon-rotate {
+  .z-select__wrapper {
+    &__icon__inner {
+      transition: transform 0.2s;
+      color: $primary;
+      //transform: rotate(-180deg) !important;
+      -webkit-transition: transform 0.2s;
+      -moz-transition: transform 0.2s;
+      -ms-transition: transform 0.2s;
+      -o-transition: transform 0.2s;
+    }
+  }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.2s ease-in-out;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  transform: translate(0, -10px) !important;
+  opacity: 0;
+}
+
+html.dark {
+  .z-select {
+    input {
+      background: $dark-bg;
+      color: $dark-color;
+    }
+    &__dropdown {
+      background: $comp-dark-bg;
+      box-shadow: $border-dark-shadow;
+    }
   }
 }

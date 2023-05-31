@@ -2,7 +2,7 @@
  * @Author: xxxxxii 1973329248@qq.com
  * @Date: 2023-02-27 03:31:06
  * @LastEditors: sueRimn
- * @LastEditTime: 2023-05-30 14:05:31
+ * @LastEditTime: 2023-05-31 11:28:56
  * @FilePath: \z-ui\src\router\index.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -295,6 +295,16 @@ export const routesList = [
           group: "通用组件",
         },
         component: () => import("@/pages/colorPicker/doc/index.md"),
+      },
+      {
+        // datePicker
+        path: "/datePicker",
+        name: "datePicker",
+        meta: {
+          title: "datePicker",
+          group: "通用组件",
+        },
+        component: () => import("@/pages/datePicker/doc/index.md"),
       },
     ],
   },

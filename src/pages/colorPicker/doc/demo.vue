@@ -3,14 +3,17 @@
  * @version: 
  * @Author: yulinZ
  * @LastEditors: sueRimn
- * @LastEditTime: 2023-05-30 15:08:15
+ * @LastEditTime: 2023-05-31 14:15:06
 -->
 <template>
   <div>
+    <z-color-picker v-model="colorValue" size="lg">
+      {{ colorValue }}</z-color-picker
+    >
     <z-color-picker v-model="colorValue"> {{ colorValue }}</z-color-picker>
-  </div>
-  <div>
-    <z-date-picker></z-date-picker>
+    <z-color-picker v-model="colorValue" size="xs">
+      {{ colorValue }}</z-color-picker
+    >
   </div>
 </template>
 

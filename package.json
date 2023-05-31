@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "async-validator": "^4.2.5",
+    "dayjs": "^1.11.7",
     "md-editor-v3": "^2.8.1",
     "sass": "^1.58.3",
     "terser": "^5.16.6",
