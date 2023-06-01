@@ -1,11 +1,24 @@
+<!--
+ * @Description: 
+ * @version: 0.0.1
+ * @Author: yulinZ
+ * @LastEditTime: 2023-06-01 11:40:35
+-->
 <template>
   <div>
     <h2>type</h2>
-    <z-tag>Tag</z-tag>
-    <z-tag type="success">Tag</z-tag>
-    <z-tag type="info">Tag</z-tag>
-    <z-tag type="danger">Tag</z-tag>
-    <z-tag type="warning">Tag</z-tag>
+    <z-tag>default</z-tag>
+    <z-tag type="success">success</z-tag>
+    <z-tag type="info">info</z-tag>
+    <z-tag type="danger">danger</z-tag>
+    <z-tag type="warning">warning</z-tag>
+  </div>
+  <div>
+    <h2>size</h2>
+    <z-tag size="xs">default</z-tag>
+    <z-tag type="info" size="md">info</z-tag>
+    <z-tag type="danger" size="lg">danger</z-tag>
+    <z-tag type="warning">warning</z-tag>
   </div>
   <div>
     <h2>closeable</h2>

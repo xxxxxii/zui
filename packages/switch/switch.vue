@@ -11,7 +11,7 @@
       />
       <label
         class="z-switch-label"
-        :class="`z-switch-${props.type}`"
+        :class="`z-switch-${compTYpe(props)}`"
         :for="dateStr"
       >
         <div class="z-switch-inner">
@@ -26,7 +26,10 @@
             <!-- <z-icon name="icon-pro-success"></z-icon> -->
           </div>
         </div>
-        <span class="z-switch-action" :class="`z-switch-action-${size}`"></span>
+        <span
+          class="z-switch-action"
+          :class="`z-switch-action-${compSize(props)}`"
+        ></span>
       </label>
     </div>
   </div>
@@ -42,17 +45,17 @@ export default {
 import { uuidv4 } from "../utils/uuid";
 import { computed, ref, h, render, nextTick } from "vue";
 import zIcon from "../icon";
+import { useCompGlobal } from "../utils/compGlobal";
+const { compSize, compTYpe } = useCompGlobal();
 
 const dateStr = ref("z-switch" + "-" + uuidv4());
 
 const props: any = defineProps({
   type: {
     type: String,
-    default: "primary",
   },
   size: {
     type: String,
-    default: "md",
   },
   modelValue: {
     type: [Boolean],
@@ -103,7 +106,7 @@ function setIocn(domBox, iconName) {
 const emit = defineEmits(["update:modelValue", "change"]);
 
 const Class = computed(() => {
-  return [`z-switch-${props.size}`];
+  return [`z-switch-${compSize.value(props)}`];
 });
 
 const zSwitchChange = (e: Event) => {

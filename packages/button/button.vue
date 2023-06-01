@@ -1,8 +1,8 @@
 <!--
  * @Author: xxxxxii 1973329248@qq.com
  * @Date: 2023-02-28 02:27:35
- * @LastEditors: sueRimn
- * @LastEditTime: 2023-05-30 17:55:59
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2023-06-01 11:14:24
  * @FilePath: \z-ui\packages\button\button.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -28,14 +28,15 @@ export default {
 </script>
 <script setup lang="ts">
 import { computed } from "vue";
+import { useCompGlobal } from "../utils/compGlobal";
+const { size } = useCompGlobal().gContent?.config;
+
 const props = defineProps({
   type: {
     type: String,
-    default: "default",
   },
   size: {
     type: String,
-    default: "default",
   },
   icon: {
     type: String,
@@ -58,11 +59,17 @@ const props = defineProps({
   },
 });
 
+const compSize = computed(() => {
+  return props.size ? props.size : size ? size : "default";
+});
+const compTYpe = computed(() => {
+  return props.type ? props.type : "default";
+});
 const bClass = computed(() => {
   return [
     "z-button",
-    `z-button-${props.type}`,
-    `z-button-${props.size}`,
+    `z-button-${compTYpe.value}`,
+    `z-button-${compSize.value}`,
     props.disabled ? "z-button-disabled" : "",
     props.loading ? "z-button-disabled" : "",
     props.plain ? "is-plain" : "",

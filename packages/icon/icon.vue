@@ -2,8 +2,8 @@
  * @Description: 
  * @version: 
  * @Author: yulinZ
- * @LastEditors: sueRimn
- * @LastEditTime: 2023-05-30 11:35:54
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2023-06-01 09:42:33
 -->
 <template>
   <div class="z-icon">
@@ -51,8 +51,8 @@ const props = defineProps({
   justify-content: center;
 }
 .icon {
-  width: 1em;
-  height: 1em;
+  width: 14px;
+  height: 14px;
   vertical-align: -0.15em;
   fill: currentColor;
   overflow: hidden;

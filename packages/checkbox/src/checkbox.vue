@@ -28,21 +28,15 @@ import { checkboxProps } from "./checkbox";
 import { inject } from "vue";
 import { checkboxGroupContextKey } from "./checkbox-group";
 
+import { useCompGlobal } from "../../utils/compGlobal";
+const { compSize, compTYpe } = useCompGlobal();
+
 const emit = defineEmits(["checked", "update:modelValue"]);
 const props = defineProps(checkboxProps);
 
 const checkboxGroupContext = inject(checkboxGroupContextKey, null);
 
 const checkState = computed(() => {
-  //   if (checkboxGroupContext?.modelValue) {
-  //     // 如果是被 checkbox-group 组件包裹着的话就判断数组中有没有符合的值
-  //     return checkboxGroupContext?.modelValue.find(
-  //       (item) => item === props.value
-  //     );
-  //   } else {
-  //     return props.modelValue;
-  //   }
-  console.log(checkboxGroupContext);
   let checked = checkboxGroupContext?.modelValue.includes(props.value);
   if (checked) {
     emit("update:modelValue", true);
@@ -58,6 +52,7 @@ const Class = computed(() => {
     props.indeterminate ? "is-indeterminate" : "",
     props.disabled ? "is-disabled" : "",
     checkboxGroupContext?.mode === "vertical" ? "is-vertical" : "",
+    `z-checkbox--${compTYpe.value(props)}`,
   ];
 });
 
@@ -80,11 +75,9 @@ const checkboxChange = (e) => {
   position: relative;
   transition: all 0.5s;
   input {
-    // visibility: hidden;
     display: none;
     cursor: pointer;
     &:checked ~ .z-checkbox__mark {
-      background-color: $primary;
       &::after {
         display: block;
       }
@@ -92,6 +85,7 @@ const checkboxChange = (e) => {
   }
 
   &__label {
+    cursor: pointer;
     padding: 0 8px 0 6px;
   }
   &:hover {
@@ -101,7 +95,6 @@ const checkboxChange = (e) => {
   }
 
   .z-checkbox__mark {
-    // position: absolute;
     top: 0;
     left: 0;
     height: 15px;
@@ -110,8 +103,7 @@ const checkboxChange = (e) => {
     border-radius: 2px;
     border: 1px solid $light-border;
     position: relative;
-    // background-color: lightgray;
-
+    cursor: pointer;
     &::after {
       content: "";
       position: absolute;
@@ -127,8 +119,68 @@ const checkboxChange = (e) => {
       border-width: 0 2px 2px 0;
       transform: rotate(45deg);
     }
+  }
+}
+
+.z-checkbox--primary {
+  input {
+    &:checked ~ .z-checkbox__mark {
+      background-color: $primary;
+    }
+  }
+  .z-checkbox__mark {
     &:hover {
       border: 1px solid $primary;
+    }
+  }
+}
+
+.z-checkbox--success {
+  input {
+    &:checked ~ .z-checkbox__mark {
+      background-color: $success;
+    }
+  }
+  .z-checkbox__mark {
+    &:hover {
+      border: 1px solid $success;
+    }
+  }
+}
+
+.z-checkbox--info {
+  input {
+    &:checked ~ .z-checkbox__mark {
+      background-color: $info;
+    }
+  }
+  .z-checkbox__mark {
+    &:hover {
+      border: 1px solid $info;
+    }
+  }
+}
+.z-checkbox--danger {
+  input {
+    &:checked ~ .z-checkbox__mark {
+      background-color: $danger;
+    }
+  }
+  .z-checkbox__mark {
+    &:hover {
+      border: 1px solid $danger;
+    }
+  }
+}
+.z-checkbox--warning {
+  input {
+    &:checked ~ .z-checkbox__mark {
+      background-color: $warning;
+    }
+  }
+  .z-checkbox__mark {
+    &:hover {
+      border: 1px solid $warning;
     }
   }
 }
@@ -145,10 +197,8 @@ const checkboxChange = (e) => {
       margin: auto;
       width: 8px;
       height: 0.5px;
-      //   border: solid white;
       border-radius: 1px;
       background-color: white;
-      //   border-width: 0 2px 2px 0;
       transform: rotate(0deg);
     }
   }
@@ -157,7 +207,6 @@ const checkboxChange = (e) => {
   cursor: no-drop;
   input {
     &:checked ~ .z-checkbox__mark {
-      background-color: rgba($color: $primary, $alpha: 0.5);
       &::after {
         display: block;
       }
@@ -172,6 +221,41 @@ const checkboxChange = (e) => {
     }
   }
 }
+.is-disabled.z-checkbox--primary {
+  input {
+    &:checked ~ .z-checkbox__mark {
+      background-color: rgba($color: $primary, $alpha: 0.5);
+    }
+  }
+}
+.is-disabled.z-checkbox--success {
+  input {
+    &:checked ~ .z-checkbox__mark {
+      background-color: rgba($color: $success, $alpha: 0.5);
+    }
+  }
+}
+.is-disabled.z-checkbox--danger {
+  input {
+    &:checked ~ .z-checkbox__mark {
+      background-color: rgba($color: $danger, $alpha: 0.5);
+    }
+  }
+}
+.is-disabled.z-checkbox--info {
+  input {
+    &:checked ~ .z-checkbox__mark {
+      background-color: rgba($color: $info, $alpha: 0.5);
+    }
+  }
+}
+.is-disabled.z-checkbox--warning {
+  input {
+    &:checked ~ .z-checkbox__mark {
+      background-color: rgba($color: $warning, $alpha: 0.5);
+    }
+  }
+}
 .is-vertical {
   padding: 6px 0;
 }
@@ -183,14 +267,6 @@ html.dark {
     }
   }
   .is-disabled {
-    input {
-      &:checked ~ .z-checkbox__mark {
-        background-color: rgba($color: $primary, $alpha: 0.5);
-        &::after {
-          display: block;
-        }
-      }
-    }
     .z-checkbox__mark {
       background-color: $dark-disabled;
     }

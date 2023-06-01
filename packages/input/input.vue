@@ -1,8 +1,8 @@
 <!--
  * @Author: xxxxxii 1973329248@qq.com
  * @Date: 2023-02-28 03:49:19
- * @LastEditors: xxxxxii 1973329248@qq.com
- * @LastEditTime: 2023-02-28 04:21:37
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2023-06-01 11:37:17
  * @FilePath: \z-ui\packages\input\input.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -49,10 +49,12 @@ export default {
 import { formItemContextKey } from "../form/src/form-item";
 import { inject } from "vue";
 import { computed, ref, watch } from "vue";
+import { useCompGlobal } from "../utils/compGlobal";
 const emit = defineEmits(["update:modelValue", "blur"]);
+
+const { compSize, compTYpe } = useCompGlobal();
 const fromItemContext = inject(formItemContextKey, null);
 
-console.log(fromItemContext);
 const props = defineProps({
   modelValue: {
     type: [String, Number],
@@ -66,7 +68,6 @@ const props = defineProps({
   clearable: Boolean,
   size: {
     type: String,
-    default: "md",
   },
   readonly: {
     type: Boolean,
@@ -86,13 +87,8 @@ watch(
     console.log(typeof newVal, newVal);
     fromItemContext
       ?.validate("change")
-      .then((res) => {
-        // console.log("input", res);
-        // validState.value = "success";
-      })
-      .catch(() => {
-        // validState.value = "error";
-      });
+      .then((res) => {})
+      .catch(() => {});
   }
 );
 const zClass = computed(() => {
@@ -104,7 +100,7 @@ const zClass = computed(() => {
     {
       "z-input-clearable": props.clearable,
     },
-    `z-input-${props.size}`,
+    `z-input-${compSize.value(props)}`,
   ];
 });
 
@@ -114,7 +110,7 @@ const input = (e: Event) => {
   fromItemContext
     ?.validate("change")
     .then((res) => {
-      console.log("input", typeof e.target.value);
+      console.log("input", e.target.value);
       // validState.value = "success";
     })
     .catch(() => {
@@ -142,22 +138,12 @@ const clearValue = () => {
 <style scoped lang="scss">
 .z-input {
   display: inline-flex;
-  // flex-grow: 1;
   align-items: center;
   justify-content: center;
   background-image: none;
   width: 100%;
-  // transform: translateZ(0);
   position: relative;
   .z-input_inner {
-    // width: 100%;
-    // flex-grow: 1;
-    // -webkit-appearance: none;
-    // font-size: inherit;
-    // padding: 0;
-    // outline: none;
-    // border: none;
-    // background: none;
     box-sizing: border-box;
   }
   input {

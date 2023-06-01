@@ -28,6 +28,9 @@ import { inject, computed } from "vue";
 import { radioProps } from "./radio";
 import { radioGroupContextKey } from "./radio-group";
 
+import { useCompGlobal } from "../../utils/compGlobal";
+const { compSize, compTYpe } = useCompGlobal();
+
 const props = defineProps(radioProps);
 
 const radioGroupContext = inject(radioGroupContextKey, null);
@@ -36,6 +39,7 @@ const Class = computed(() => {
   return [
     "z-radio",
     props.disabled || radioGroupContext?.disabled ? "is-disabled" : "",
+    `z-radio__dot--${compTYpe.value(props)}`,
   ];
 });
 
@@ -95,15 +99,18 @@ const radioChange = (e) => {
       border: solid rgba($color: $primary, $alpha: 0.2) 1px;
       background-color: white;
       border-radius: 50%;
-      //   border-width: 0 2px 2px 0;
-      //   transform: rotate(45deg);
+    }
+  }
+  input[type="radio"] + span.z-radio__select-dot--primary {
+    &::after {
+      border: solid rgba($color: $success, $alpha: 0.2) 1px;
     }
   }
 
   input[type="radio"]:checked + span {
-    background-color: $primary;
+    // background-color: $primary;
     background-clip: content-box;
-    border: 1px solid $primary;
+    // border: 1px solid $primary;
     // padding: 0.1rem;
     box-sizing: border-box;
     position: relative;
@@ -116,13 +123,69 @@ const radioChange = (e) => {
     display: none;
   }
 }
+
+.z-radio__dot--primary {
+  input[type="radio"]:checked + span {
+    background-color: $primary;
+    border: 1px solid $primary;
+  }
+}
+.z-radio__dot--success {
+  input[type="radio"]:checked + span {
+    background-color: $success;
+    border: 1px solid $success;
+  }
+}
+
+.z-radio__dot--info {
+  input[type="radio"]:checked + span {
+    background-color: $info;
+    border: 1px solid $info;
+  }
+}
+
+.z-radio__dot--danger {
+  input[type="radio"]:checked + span {
+    background-color: $danger;
+    border: 1px solid $danger;
+  }
+}
+.z-radio__dot--warning {
+  input[type="radio"]:checked + span {
+    background-color: $warning;
+    border: 1px solid $warning;
+  }
+}
 .is-disabled {
   cursor: no-drop;
   input[type="radio"] + span {
     background-color: $light-disabled;
   }
+}
+.is-disabled.z-radio__dot--primary {
   input[type="radio"]:checked + span {
     background-color: rgba($color: $primary, $alpha: 0.5);
+  }
+}
+
+.is-disabled.z-radio__dot--success {
+  input[type="radio"]:checked + span {
+    background-color: rgba($color: $success, $alpha: 0.3);
+  }
+}
+.is-disabled.z-radio__dot--info {
+  input[type="radio"]:checked + span {
+    background-color: rgba($color: $info, $alpha: 0.5);
+  }
+}
+.is-disabled.z-radio__dot--danger {
+  input[type="radio"]:checked + span {
+    background-color: rgba($color: $danger, $alpha: 0.5);
+  }
+}
+.is-disabled.z-radio__dot--warning {
+  input[type="radio"]:checked + span {
+    background-color: rgba($color: $warning, $alpha: 0.5);
   }
 }
 html.dark {
@@ -130,9 +193,6 @@ html.dark {
     cursor: no-drop;
     input[type="radio"] + span {
       background-color: $dark-disabled;
-    }
-    input[type="radio"]:checked + span {
-      background-color: rgba($color: $primary, $alpha: 0.5);
     }
   }
 }

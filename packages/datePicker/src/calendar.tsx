@@ -2,12 +2,14 @@
  * @Description:
  * @version:
  * @Author: yulinZ
- * @LastEditors: sueRimn
- * @LastEditTime: 2023-05-31 18:15:49
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2023-06-01 09:35:19
  */
 import { defineComponent, computed, ref, reactive } from "vue";
 import { calendarProps } from "./calendar";
 import "./calendar.scss";
+import { pub } from "./utils";
+const { dataFormat } = pub();
 import dayjs from "dayjs";
 
 import { useDates } from "./hooks/useDates";
@@ -92,7 +94,9 @@ export default defineComponent({
     const confirm = () => {
       let transfer = null;
       if (props.type === "dates") {
-        transfer = dayjs(actives.one).format(dataFormat.value("valueFormat"));
+        transfer = dayjs(actives.one).format(
+          dataFormat.value(props, "valueFormat")
+        );
       }
       if (props.type === "year") {
         transfer = year.value;
@@ -100,10 +104,10 @@ export default defineComponent({
 
       if (props.type === "month") {
         transfer = dayjs(year.value + "-" + month.value).format(
-          dataFormat.value("valueFormat")
+          dataFormat.value(props, "valueFormat")
         );
       }
-      
+
       emit("change", transfer + "");
     };
 
@@ -111,14 +115,16 @@ export default defineComponent({
     const showDateFormt = computed(() => {
       if (props.type === "dates") {
         return dayjs(year.value + "-" + month.value + "-" + day.value).format(
-          dataFormat.value()
+          dataFormat.value(props)
         );
       }
       if (props.type === "year") {
         return year.value;
       }
       if (props.type === "month") {
-        return dayjs(year.value + "-" + month.value).format(dataFormat.value());
+        return dayjs(year.value + "-" + month.value).format(
+          dataFormat.value(props)
+        );
       }
     });
 
@@ -195,22 +201,6 @@ export default defineComponent({
 
       props.type === "month" && initMonthData();
     };
-
-    console.log(months.value);
-    // 显示
-    const dataFormat = computed(() => (key = "format") => {
-      console.log(key, props[key]);
-      // 没有设置格式化的格式时，初始化
-      if (!props[key]) {
-        if (props.type === "month") {
-          return "YYYY-MM";
-        } else {
-          return "YYYY-MM-DD";
-        }
-      } else {
-        return props[key];
-      }
-    });
 
     init();
 

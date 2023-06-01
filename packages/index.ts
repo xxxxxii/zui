@@ -1,5 +1,6 @@
 import type { App } from "vue";
 
+import zGlobalConfig from "./globalConfig";
 import zButton from "./button/index";
 import zInput from "./input/index";
 import zTextarea from "./textarea/index";
@@ -47,6 +48,7 @@ import drag, { Drag } from "./directives/drag";
 import * as utils from "./utils/index";
 
 const plugins: any = [
+  zGlobalConfig,
   zButton,
   zInput,
   zTextarea,
@@ -85,7 +87,8 @@ const plugins: any = [
   zDlalog,
   zDrawer,
   zText,
-  zColorPicker,zDatePicker
+  zColorPicker,
+  zDatePicker,
 ];
 
 const install = (app: App) => {
@@ -98,6 +101,7 @@ const ZUI = {
 };
 
 export {
+  zGlobalConfig,
   zButton,
   zInput,
   zTextarea,
@@ -138,6 +142,7 @@ export {
   Drag,
   zDrawer,
   zText,
-  zColorPicker,zDatePicker
+  zColorPicker,
+  zDatePicker,
 };
 export default ZUI;

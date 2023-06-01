@@ -185,17 +185,6 @@ const isOpen = computed(() => {
     });
   }
 });
-// watch(
-//   () => menuContext?.collapse,
-//   (newVal) => {
-//     if (newVal) {
-//       showMenu.value = false;
-//     }
-//   },
-//   {
-//     immediate: true,
-//   }
-// );
 
 watch(
   () => showMenu.value,

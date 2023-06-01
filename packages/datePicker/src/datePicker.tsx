@@ -3,11 +3,13 @@
  * @version:
  * @Author: yulinZ
  * @LastEditors: sueRimn
- * @LastEditTime: 2023-05-31 18:15:03
+ * @LastEditTime: 2023-06-01 09:16:40
  */
 import { defineComponent, computed, ref, Transition } from "vue";
 import zCalendar from "./calendar.jsx";
 import "./datePicker.scss";
+import { pub } from "./utils";
+const { dataFormat } = pub();
 import dayjs from "dayjs";
 
 export default defineComponent({
@@ -93,6 +95,13 @@ export default defineComponent({
       console.log(val);
       emit("update:modelValue", val);
     };
+
+    // 格式化input value
+    const formatData = computed(() => {
+      return dayjs(props.modelValue).format(
+        dataFormat.value(props, "valueFormat")
+      );
+    });
     return () => (
       <div class={Class.value} style={{ width: props.width }}>
         <z-popover
@@ -124,11 +133,11 @@ export default defineComponent({
                 type="text"
                 value={
                   props.type === "dates"
-                    ? dayjs(props.modelValue).format(props.valueFormat)
+                    ? formatData.value
                     : props.type === "year"
                     ? props.modelValue
                     : props.type === "month"
-                    ? props.modelValue
+                    ? formatData.value
                     : ""
                 }
                 placeholder={props.placeholder}

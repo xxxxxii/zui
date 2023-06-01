@@ -1,39 +1,46 @@
 <template>
-  <z-header class="doc-header">
-    <div class="doc-header-box">
-      <span class="logo"> ZUI </span
-      ><span
-        ><z-tag round>V {{ version }}</z-tag>
-      </span>
-      <div class="menu-box">
-        <z-menu
-          :items="menus"
-          mode="horizontal"
-          v-model="active"
-          @toRouter="toRouter"
-        />
-        <z-switch
-          v-model="themeVal"
-          size="lg"
-          :text="switchText"
-          showText
-          activeIcon="icon-dark"
-          inActiveIcon="icon-light-on"
-          @change="themeChange"
-        >
-        </z-switch>
+  <z-global-config :config="config">
+    <z-header class="doc-header">
+      <div class="doc-header-box">
+        <span class="logo"> ZUI </span
+        ><span
+          ><z-tag round>V {{ version }}</z-tag>
+        </span>
+        <div class="menu-box">
+          <z-menu
+            :items="menus"
+            mode="horizontal"
+            v-model="active"
+            @toRouter="toRouter"
+          />
+          <z-switch
+            v-model="themeVal"
+            size="lg"
+            :text="switchText"
+            showText
+            activeIcon="icon-dark"
+            inActiveIcon="icon-light-on"
+            @change="themeChange"
+          >
+          </z-switch>
+        </div>
       </div>
-    </div>
-  </z-header>
-  <z-main padding="0" class="main-container">
-    <router-view />
-  </z-main>
+    </z-header>
+    <z-main padding="0" class="main-container">
+      <router-view />
+    </z-main>
+  </z-global-config>
 </template>
 
 <script setup lang="ts">
 import { ref, computed, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { version } from "../package.json";
+
+const config = ref({
+  type: "success",
+  size: "xs",
+});
 
 const menus: any = ref([
   {

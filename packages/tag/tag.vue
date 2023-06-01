@@ -4,7 +4,10 @@
       <i v-if="icon" class="icon z-tag__wrapper__icon">
         <z-icon :name="icon" />
       </i>
-      <slot />
+      <span class="z-tag__wrapper__label">
+        <slot />
+      </span>
+
       <i class="icon z-tag__wrapper__close" v-if="closeable" @click="tagClose">
         <z-icon name="icon-guanbijiantou"
       /></i>
@@ -13,7 +16,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted } from "vue";
+import { defineComponent } from "vue";
 export default defineComponent({
   name: "zTag",
 });
@@ -21,6 +24,8 @@ export default defineComponent({
 
 <script setup lang="ts">
 import { computed, defineProps } from "vue";
+import { useCompGlobal } from "../utils/compGlobal";
+const { compSize, compTYpe } = useCompGlobal();
 
 const props = defineProps({
   icon: {
@@ -29,11 +34,9 @@ const props = defineProps({
   closeable: Boolean,
   type: {
     type: String,
-    default: "primary",
   },
   size: {
     type: String,
-    default: "md",
   },
   plain: Boolean,
   bor: Boolean,
@@ -43,10 +46,10 @@ const props = defineProps({
 const Class = computed(() => {
   return [
     "z-tag",
-    `z-tag--${props.type}`,
-    `z-tag--${props.size}`,
-    props.plain ? `z-tag--${props.type}--plain` : "",
-    props.bor ? `z-tag--${props.type}--border` : "",
+    `z-tag--${compTYpe.value(props)}`,
+    `z-tag--${compSize.value(props)}`,
+    props.plain ? `z-tag--${compTYpe.value(props)}--plain` : "",
+    props.bor ? `z-tag--${compTYpe.value(props)}--border` : "",
     props.round ? `is-round` : "",
   ];
 });
@@ -84,6 +87,10 @@ const tagClose = () => {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    &__label {
+      display: flex;
+      align-content: center;
+    }
     .icon {
       margin: 2px;
       width: 14px;
