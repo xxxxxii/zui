@@ -23,9 +23,8 @@ export default {
 </script>
 
 <script setup lang="ts">
-import { computed, ref, watch } from "vue";
+import { computed, inject } from "vue";
 import { checkboxProps } from "./checkbox";
-import { inject } from "vue";
 import { checkboxGroupContextKey } from "./checkbox-group";
 
 import { useCompGlobal } from "../../utils/compGlobal";

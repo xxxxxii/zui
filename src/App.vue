@@ -38,7 +38,7 @@ import { useRoute, useRouter } from "vue-router";
 import { version } from "../package.json";
 
 const config = ref({
-  type: "success",
+  // type: "warning",
   size: "xs",
 });
 
@@ -113,7 +113,6 @@ const switchText = ref({
 });
 
 const themeChange = (status) => {
-  console.log(status);
   const htmlDom: HTMLElement = document.querySelector("html");
   if (status) {
     htmlDom.classList.add("dark");

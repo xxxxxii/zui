@@ -1,8 +1,8 @@
 /*
  * @Author: xxxxxii 1973329248@qq.com
  * @Date: 2023-02-27 03:31:06
- * @LastEditors: sueRimn
- * @LastEditTime: 2023-05-31 11:28:56
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2023-06-01 15:03:24
  * @FilePath: \z-ui\src\router\index.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -39,6 +39,16 @@ export const routesList = [
     component: () => import("../layout/home.vue"),
     redirect: "button",
     children: [
+      {
+        // sysConfig
+        path: "/sysConfig",
+        name: "sysConfig",
+        meta: {
+          title: "globalConfig 全局配置",
+          group: "系统配置",
+        },
+        component: () => import("@/pages/sys/doc/index.md"),
+      },
       {
         // button
         path: "/button",

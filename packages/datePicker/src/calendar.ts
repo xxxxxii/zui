@@ -1,3 +1,9 @@
+/*
+ * @Description:
+ * @version: 0.0.1
+ * @Author: yulinZ
+ * @LastEditTime: 2023-06-01 16:59:13
+ */
 import type { ExtractPropTypes, InjectionKey, Prop, PropType } from "vue";
 
 export const calendarProps = {
@@ -7,6 +13,9 @@ export const calendarProps = {
   size: {
     type: String,
     default: "md",
+  },
+  activeType: {
+    type: String,
   },
   format: {
     type: String,

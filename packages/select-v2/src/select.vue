@@ -46,11 +46,9 @@
       </span>
 
       <template #content>
-        <transition name="fade">
-          <z-select-dropdown class="z-select__dropdown">
-            <slot />
-          </z-select-dropdown>
-        </transition>
+        <z-select-dropdown class="z-select__dropdown">
+          <slot />
+        </z-select-dropdown>
       </template>
     </z-popover>
   </div>
@@ -132,11 +130,7 @@ const popoverClick = ({ el, target }) => {
   }
 };
 
-const blur = (e) => {
-  //   console.log("blur", e);
-  //   showDown.value = false;
-  //   fcous.value = false;
-};
+const blur = (e) => {};
 
 // 控制下拉显示指令
 const vClick = {
@@ -325,7 +319,6 @@ input {
   &--md {
     .z-select__wrapper {
       padding: 0 10px;
-      // height: 32px;
       &__content {
         .z-select__wrapper__tags,
         input {
@@ -340,7 +333,6 @@ input {
   &--xs {
     .z-select__wrapper {
       padding: 0 6px;
-      // height: 26px;
       &__content {
         .z-select__wrapper__tags,
         input {
@@ -352,18 +344,15 @@ input {
       }
     }
   }
-
-  // background: $dark-bg;
   &__wrapper {
     display: flex;
-    // flex-direction: column;
     justify-content: start;
     align-items: center;
     padding: 0 10px;
     border: 1px solid $light-border;
     border-radius: 4px;
     &__content {
-      padding-right: 22px;
+      padding-right: 18px;
       width: 100%;
       display: inline-flex;
       flex: 1;
@@ -373,7 +362,6 @@ input {
       display: flex;
       flex-wrap: wrap;
       width: 100%;
-      // margin-left: -8px;
       align-items: center;
     }
   }
@@ -392,20 +380,17 @@ input {
     opacity: 1;
     list-style: none;
     margin: 0;
-    // position: absolute;
     z-index: 2064;
-    // padding: 5px 0;
     top: calc(100% + 10px);
     border-radius: 4px;
     box-shadow: $border-light-shadow;
     background: $comp-light-bg;
     transition: all 0.5s;
-    // padding-top: 10px;
   }
   input {
+    font-size: 14px;
     padding: 0;
     color: $light-color;
-    // padding: 0 10px;
     background: $light-bg;
     width: 100%;
     text-overflow: ellipsis;
@@ -432,17 +417,6 @@ input {
       transform: rotate(-180deg) !important;
     }
   }
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: all 0.2s ease-in-out;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  transform: translate(0, -10px) !important;
-  opacity: 0;
 }
 
 html.dark {

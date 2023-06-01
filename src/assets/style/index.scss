@@ -41,7 +41,15 @@ $menu-dark-theme: #272727;
 
 $skeleton-light-bg: rgb(201, 201, 201);
 
-// @import './scrollbar.scss';
+:root {
+  font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC",
+    "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei",
+    sans-serif;
+}
+
+input {
+  vertical-align: middle;
+}
 
 @import "./skeleton.scss";
 .menu-hover {

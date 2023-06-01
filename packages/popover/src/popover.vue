@@ -11,22 +11,24 @@
       <slot />
     </span>
 
-    <div
-      v-show="visible"
-      class="z-popover__content"
-      :style="contentStyle"
-      ref="popoverContent"
-    >
-      <span v-if="$slots.content">
-        <slot name="content" />
-      </span>
-      <span v-else class="z-popover__text">
-        <div>{{ title }}</div>
-        <div class="z-popover__text__content">
-          {{ content }} {{ placement }}{{ width }}
-        </div>
-      </span>
-    </div>
+    <transition name="popover">
+      <div
+        v-show="visible"
+        class="z-popover__content"
+        :style="contentStyle"
+        ref="popoverContent"
+      >
+        <span v-if="$slots.content">
+          <slot name="content" />
+        </span>
+        <span v-else class="z-popover__text">
+          <div>{{ title }}</div>
+          <div class="z-popover__text__content">
+            {{ content }} {{ placement }}
+          </div>
+        </span>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -122,6 +124,13 @@ watch(
   }
 );
 
+const aniYHeight = computed(() => {
+  if (placement.value === "bottom") {
+    return "-15px";
+  } else {
+    return "15px";
+  }
+});
 const placement = ref(props.placement);
 const contentStyle = computed(() => {
   if (placement.value === "bottom") {
@@ -147,6 +156,7 @@ function offsetTop(elements) {
   // console.log(top);
   return top;
 }
+
 const eventPos = () => {
   nextTick(() => {
     getContentHeight();
@@ -182,6 +192,24 @@ onMounted(() => {});
 </script>
 
 <style scoped lang="scss">
+.popover-enter-active,
+.popover-leave-active {
+  transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+}
+
+.popover-enter-from,
+.popover-leave-to {
+  transform: translate(0, v-bind(aniYHeight));
+  opacity: 0;
+  -webkit-transform: translate(0, v-bind(aniYHeight));
+  -moz-transform: translate(0, v-bind(aniYHeight));
+  -ms-transform: translate(0, v-bind(aniYHeight));
+  -o-transform: translate(0, v-bind(aniYHeight));
+}
 .z-popover {
   display: block;
   position: relative;

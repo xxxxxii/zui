@@ -66,3 +66,23 @@ import {zButton} form "v3-zy-ui"
 1. dialog 组件发布
 2. drawer 组件发布
 3. drag 拖拽指令开发
+
+## v0.0.11 2023-6-1
+
+1. text 组件发布
+2. date 日期选择组件发布
+3. 添加 switch 动画
+4. 优化 popover 组件显示动画失效问题（包括基于此组件开发的其他组件）
+5. 添加全局组件配置 globaConfig
+
+## v0.0.11 2023-6-1
+
+1. fix datePicker 选择 date 点击 ok 不关闭 bug
+2. 添加 globalConfig 控制 datePicker 主题色
+3. 组件库添加 基础 font-family:
+
+```css
+font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC",
+  "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei",
+  sans-serif;
+```

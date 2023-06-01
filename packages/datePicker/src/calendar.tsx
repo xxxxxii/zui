@@ -3,7 +3,7 @@
  * @version:
  * @Author: yulinZ
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-06-01 09:35:19
+ * @LastEditTime: 2023-06-01 17:17:20
  */
 import { defineComponent, computed, ref, reactive } from "vue";
 import { calendarProps } from "./calendar";
@@ -15,6 +15,8 @@ import dayjs from "dayjs";
 import { useDates } from "./hooks/useDates";
 import { useYear } from "./hooks/useYear";
 import { useMonth } from "./hooks/useMonth";
+import { useCompGlobal } from "../../utils/compGlobal";
+
 const { year, selectYear, yearList, updateYearData } = useYear();
 const { day, days, week, actives } = useDates();
 const { months, setMonths } = useMonth();
@@ -25,6 +27,10 @@ export default defineComponent({
   props: calendarProps,
 
   setup(props, { slots, attrs, emit }) {
+    const { compSize, type } = useCompGlobal();
+    const compTYpe = computed(() => (props, compInitType = "primary") => {
+      return props.activeType ? props.activeType : type ? type : compInitType;
+    });
     const date = new Date(); // 时间
     const month = ref(0); // 月
 
@@ -108,6 +114,8 @@ export default defineComponent({
         );
       }
 
+      console.log(transfer);
+
       emit("change", transfer + "");
     };
 
@@ -185,10 +193,10 @@ export default defineComponent({
         const [y, m] = props.modelValue.split("-");
         month.value = parseInt(m);
         setMonths(y);
-        console.log("22222", months.value);
+        console.log("22222", months);
       } else {
         setMonths(date.getFullYear());
-        console.log("dddd", months.value);
+        console.log("dddd", months);
         month.value = date.getMonth() + 1;
       }
     };
@@ -203,9 +211,12 @@ export default defineComponent({
     };
 
     init();
+    const Class = computed(() => {
+      return ["z-calendar", `z-calendar--${compTYpe.value(props)}`];
+    });
 
     return () => (
-      <div class="z-calendar">
+      <div class={Class.value}>
         <div class="z-calendar-header">
           <div class="z-calendar-ctr-btn year-ctr" onClick={prevYear}>
             &#10094;&#10094;
@@ -304,7 +315,7 @@ export default defineComponent({
           </div>
           <z-button
             class="z-calendar-confirm"
-            type="primary"
+            type={compTYpe.value(props)}
             size="xs"
             onClick={confirm}
           >

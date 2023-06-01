@@ -80,7 +80,6 @@
     cursor: pointer;
   }
   &-day-dot--active {
-    background: $primary;
     border-radius: 50%;
     color: #fff;
     -webkit-border-radius: 50%;
@@ -89,12 +88,43 @@
     -o-border-radius: 50%;
   }
   &-year-dot--active {
-    background: $primary;
     border-radius: 4px;
     color: #fff;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     -ms-border-radius: 4px;
     -o-border-radius: 4px;
+  }
+}
+
+.z-calendar.z-calendar--primary {
+  .z-calendar-day-dot--active,
+  .z-calendar-year-dot--active {
+    background: $primary;
+  }
+}
+.z-calendar.z-calendar--warning {
+  .z-calendar-day-dot--active,
+  .z-calendar-year-dot--active {
+    background: $warning;
+  }
+}
+.z-calendar.z-calendar--info {
+  .z-calendar-day-dot--active,
+  .z-calendar-year-dot--active {
+    background: $info;
+  }
+}
+
+.z-calendar.z-calendar--success {
+  .z-calendar-day-dot--active,
+  .z-calendar-year-dot--active {
+    background: $info;
+  }
+}
+.z-calendar.z-calendar--danger {
+  .z-calendar-day-dot--active,
+  .z-calendar-year-dot--active {
+    background: $danger;
   }
 }

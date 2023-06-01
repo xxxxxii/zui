@@ -1145,6 +1145,20 @@
     "escalade" "^3.1.1"
     "picocolors" "^1.0.0"
 
+"v3-yl-ui@^0.0.10":
+  "integrity" "sha512-veAfiyzYQNfvXFFG3j7CryIXk/hTvnvzTpQpZwI+4jYQC4Hks5fW3879UjlUJQR3CpxIdoKhHi9RV3PC/Gb/Kw=="
+  "resolved" "https://registry.npmjs.org/v3-yl-ui/-/v3-yl-ui-0.0.10.tgz"
+  "version" "0.0.10"
+  dependencies:
+    "async-validator" "^4.2.5"
+    "dayjs" "^1.11.7"
+    "md-editor-v3" "^2.8.1"
+    "sass" "^1.58.3"
+    "terser" "^5.16.6"
+    "v3-yl-ui" "^0.0.6"
+    "vue" "^3.2.45"
+    "vue-router" "^4.1.6"
+
 "v3-yl-ui@^0.0.2":
   "integrity" "sha512-KWmKFpWBTb0BsklZke8KOQ8vPdta9fhJXLBo0QBVSThG9aub5ykFupeaPzm5UQjK+QQVxnYgPCHVHYXmMscf/w=="
   "resolved" "https://registry.npmjs.org/v3-yl-ui/-/v3-yl-ui-0.0.2.tgz"

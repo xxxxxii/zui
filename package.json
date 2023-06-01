@@ -1,7 +1,7 @@
 {
   "name": "v3-yl-ui",
   "private": false,
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "",
   "main": "./dist/v3-yl-ui.umd.js",
   "module": "./dist/v3-yl-ui.mjs",
@@ -26,7 +26,7 @@
     "md-editor-v3": "^2.8.1",
     "sass": "^1.58.3",
     "terser": "^5.16.6",
-    "v3-yl-ui": "^0.0.6",
+    "v3-yl-ui": "^0.0.10",
     "vue": "^3.2.45",
     "vue-router": "^4.1.6"
   },

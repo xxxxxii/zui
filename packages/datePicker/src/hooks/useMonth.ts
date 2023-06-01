@@ -2,12 +2,12 @@
  * @Description:
  * @version:
  * @Author: yulinZ
- * @LastEditors: sueRimn
- * @LastEditTime: 2023-06-01 09:22:27
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2023-06-01 17:16:58
  */
-import { ref } from "vue";
+import { ref, reactive } from "vue";
 export function useMonth() {
-  const months = ref([]);
+  let months = ref([]);
   // 设置月份数组
   const setMonths = (year) => {
     months.value = [];

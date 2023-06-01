@@ -2,8 +2,8 @@
  * @Description:
  * @version:
  * @Author: yulinZ
- * @LastEditors: sueRimn
- * @LastEditTime: 2023-06-01 09:16:40
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2023-06-01 18:00:01
  */
 import { defineComponent, computed, ref, Transition } from "vue";
 import zCalendar from "./calendar.jsx";
@@ -69,16 +69,22 @@ export default defineComponent({
     };
 
     // 控制点击是否显示
+
     const popoverClick = ({ el, target }) => {
       if (el.contains(target)) {
-        let isContain = document
-          .querySelector(".z-calendar-confirm")
-          .contains(target);
-        if (isContain) {
+        // 判断是否点击的确认按钮
+        let isExis =
+          target.className.indexOf("z-calendar-confirm") != -1 ||
+          target.parentNode.className.indexOf("z-calendar-confirm") != -1 ||
+          target.parentNode.parentNode.className.indexOf(
+            "z-calendar-confirm"
+          ) != -1;
+        if (isExis) {
           fcous.value = false;
           showDown.value = false;
           return;
         }
+
         fcous.value = true;
         showDown.value = true;
 
@@ -113,17 +119,15 @@ export default defineComponent({
           onClickTarget={popoverClick}
           v-slots={{
             content: () => (
-              <Transition name="fade">
-                <div class="">
-                  <zCalendar
-                    type={props.type}
-                    format={props.format}
-                    value-format={props.valueFormat}
-                    v-model={props.modelValue}
-                    onChange={confirm}
-                  />
-                </div>
-              </Transition>
+              <div class="">
+                <zCalendar
+                  type={props.type}
+                  format={props.format}
+                  value-format={props.valueFormat}
+                  v-model={props.modelValue}
+                  onChange={confirm}
+                />
+              </div>
             ),
           }}
         >

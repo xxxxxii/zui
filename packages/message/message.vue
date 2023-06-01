@@ -1,5 +1,5 @@
 <template>
-  <transition name="fade" @before-leave="onClose" @after-leave="onDestroy">
+  <transition name="message" @before-leave="onClose" @after-leave="onDestroy">
     <div :style="{ top: topOffset + 'px' }" :class="zClass" v-if="visiable">
       <z-icon v-show="isIcon" :name="iconName" :color="iconColor"></z-icon>
       <span>
@@ -98,24 +98,23 @@ onUnmounted(() => {});
 </script>
 
 <style scoped lang="scss">
-.fade-enter-active,
-.fade-leave-active {
+.message-enter-active,
+.message-leave-active {
   transition: transform 0.4s, opacity 0.4s;
 }
 
-.fade-enter-from {
-  transform: translate(-50%, 0);
+.message-enter-from {
+  transform: translate(-50%, -100%);
   opacity: 0;
 }
 
-.fade-leave-to {
-  transform: translate(-50%, -10px) !important;
+.message-leave-to {
+  transform: translate(-50%, -20px) !important;
   opacity: 0;
 }
 
 .z-message {
   position: fixed;
-  top: 20px;
   left: 50%;
   transform: translateX(-50%);
   background-color: rgb(119, 119, 118);
@@ -129,10 +128,6 @@ onUnmounted(() => {});
     margin-right: 6px;
   }
 }
-// .fade-enter-from,
-// .fade-leave-to {
-//   transform: translate(-50%, -100%);
-// }
 
 .is-center {
   justify-content: center;
