@@ -23,7 +23,7 @@ ul {
   flex-direction: column;
   border-radius: 4px;
   max-height: 134px;
-  overflow-y: scroll;
+  overflow-y: auto;
   li {
     padding: 5px;
   }

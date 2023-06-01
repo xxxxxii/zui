@@ -71,6 +71,7 @@ const radioChange = (e) => {
 
   &__label {
     padding: 0 8px 0 6px;
+    cursor: pointer;
   }
 
   input[type="radio"] + span {
@@ -101,7 +102,8 @@ const radioChange = (e) => {
       border-radius: 50%;
     }
   }
-  input[type="radio"] + span.z-radio__select-dot--primary {
+  input[type="radio"] + span {
+    cursor: pointer;
     &::after {
       border: solid rgba($color: $success, $alpha: 0.2) 1px;
     }
@@ -114,6 +116,7 @@ const radioChange = (e) => {
     // padding: 0.1rem;
     box-sizing: border-box;
     position: relative;
+
     &::after {
       display: block;
     }
