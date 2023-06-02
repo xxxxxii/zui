@@ -1,3 +1,9 @@
+<!--
+ * @Description: 
+ * @version: 0.0.1
+ * @Author: yulinZ
+ * @LastEditTime: 2023-06-02 10:32:19
+-->
 <template>
   <li :class="Class" @click="optionClick">
     <slot>{{ label }}</slot>
@@ -13,6 +19,8 @@ export default {
 import { inject, computed, watch } from "vue";
 import { optionProps } from "./option";
 import { selectContextKey } from "./select";
+import { useCompGlobal } from "../../utils/compGlobal";
+const { compSize, compTYpe } = useCompGlobal();
 const props = defineProps(optionProps);
 
 const selectContext = inject(selectContextKey, null);
@@ -24,7 +32,7 @@ const Class = computed(() => {
     "z-option-item",
     selectContext?.modelValue === props.value ||
     (selectContext?.modelValue as Array<number | string>)?.includes(props.value)
-      ? "is-active"
+      ? `is-active--${compTYpe.value(props)}`
       : "",
   ];
 });
@@ -43,8 +51,20 @@ const optionClick = (e) => {
   }
 }
 
-.is-active {
+.is-active--primary {
   color: $primary;
+}
+.is-active--success {
+  color: $success;
+}
+.is-active--info {
+  color: $info;
+}
+.is-active--danger {
+  color: $danger;
+}
+.is-active--warning {
+  color: $warning;
 }
 
 html.dark {

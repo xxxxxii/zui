@@ -1,13 +1,6 @@
 <template>
   <li
-    class="z-sub-menu z-menu-item"
-    :class="[
-      showMenu ? 'is-open' : '',
-      menuContext?.mode === 'horizontal' ? 'is-horizontal' : '',
-      menuContext?.collapse && menuContext?.mode === 'horizontal'
-        ? 'z-menu-item--horizontal'
-        : '',
-    ]"
+    :class="Class"
     :style="titleStyle"
     v-click
     @mouseenter="mouseenter"
@@ -52,13 +45,21 @@ export default {
 </script>
 
 <script setup lang="ts">
-import { inject, provide, ref, toRefs, useSlots, computed } from "vue";
+import {
+  inject,
+  provide,
+  ref,
+  watch,
+  onUnmounted,
+  toRefs,
+  useSlots,
+  computed,
+} from "vue";
 import { subMenuContextKey, subMenuProps } from "./sub-menu";
 import { menuContextKey } from "./menu";
-import { onMounted } from "vue";
-import { onUnmounted } from "vue";
-import { watch } from "vue";
 import { deepClone } from "../../utils";
+import { useCompGlobal } from "../../utils/compGlobal";
+const { compSize, compTYpe } = useCompGlobal();
 
 const showMenu = ref(false);
 const cacheMenuOpen = ref(false);
@@ -73,6 +74,18 @@ const subMenuData = ref({
   // 菜单的层级
   tier: 1,
 });
+const Class = computed(() => {
+  return [
+    "z-sub-menu",
+    "z-menu-item",
+    showMenu.value ? "is-open" : "",
+    menuContext?.mode === "horizontal" ? "is-horizontal" : "",
+    menuContext?.collapse && menuContext?.mode === "horizontal"
+      ? "z-menu-item--horizontal"
+      : "",
+    `z-menu-item--${compTYpe.value(menuContext)}`,
+  ];
+});
 
 const collectMneu = (item) => {
   console.log(item);
@@ -84,12 +97,17 @@ const menuContext = inject(menuContextKey, null);
 const subMenuContext = inject(subMenuContextKey, null);
 
 const showSubMenu = () => {
+  // 垂直模式下 hover 触发 不能点击
+  if (menuContext?.trigger === "hover" && menuContext?.mode != "horizontal") {
+    return;
+  }
   if (!menuContext?.collapse) {
     showMenu.value = !showMenu.value;
     cacheMenuOpen.value = showMenu.value;
   }
 };
 
+// 收集 子菜单数据
 if (subMenuContext) {
   subMenuData.value.tier += subMenuData.value.tier;
   subMenuContext?.collectMneu(subMenuData.value);
@@ -178,14 +196,6 @@ const mouseleave = () => {
   cacheMenuOpen.value = showMenu.value;
 };
 
-const isOpen = computed(() => {
-  if (menuContext?.opens) {
-    return menuContext?.opens.some((item) => {
-      return item === props.path;
-    });
-  }
-});
-
 watch(
   () => showMenu.value,
   () => {
@@ -196,6 +206,7 @@ watch(
 const vClick = {
   beforeMount(el) {
     const handler = (e) => {
+      e.preventDefault();
       console.log(el.contains(e.target));
       if (!el.contains(e.target)) {
         showMenu.value = false;
@@ -204,8 +215,11 @@ const vClick = {
 
     // 只在 horizontal 模式下生效
     menuContext?.mode === "horizontal" && menuContext?.trigger === "click"
-      ? document.addEventListener("click", handler)
+      ? document.addEventListener("click", handler, true)
       : "";
+  },
+  updated(el) {
+    console.log(menuContext?.trigger, menuContext?.mode);
   },
 };
 
@@ -247,23 +261,26 @@ li {
   .z-sub-menu__title__right {
     display: flex;
     align-items: center;
-
     .z-sub-menu__title__right--icon {
-      // width: 44px;
-      // height: 44px;
       margin-right: 10px;
       font-size: 18px;
     }
   }
   &:hover {
-    @extend .menu-hover;
+    transition: all 0.2s ease-out;
+    -webkit-transition: all 0.2s ease-out;
+    -moz-transition: all 0.2s ease-out;
+    -ms-transition: all 0.2s ease-out;
+    -o-transition: all 0.2s ease-out;
   }
+
   .z-sub-menu__title__icon {
     transition: all 0.3s;
     font-size: 12px;
     margin-left: 10px;
   }
 }
+
 .is-open {
   > .z-sub-menu__title {
     > .z-sub-menu__title__icon {
@@ -306,7 +323,6 @@ html.dark {
 }
 
 // 动画
-
 .fade-enter-active,
 .fade-leave-active {
   transition: all 0.4s transform 0.4s, opacity 0.1s;

@@ -7,12 +7,20 @@
           ><z-tag round>V {{ version }}</z-tag>
         </span>
         <div class="menu-box">
-          <z-menu
-            :items="menus"
+          <z-nav-menu
+            class="top-menu"
             mode="horizontal"
-            v-model="active"
-            @toRouter="toRouter"
-          />
+            :active="active"
+            @clickMenuItem="toRouter"
+          >
+            <z-menu-item
+              :path="item.path"
+              v-for="item in menus"
+              :key="item.path"
+            >
+              {{ item?.label }}
+            </z-menu-item>
+          </z-nav-menu>
           <z-switch
             v-model="themeVal"
             size="lg"
@@ -38,7 +46,7 @@ import { useRoute, useRouter } from "vue-router";
 import { version } from "../package.json";
 
 const config = ref({
-  // type: "warning",
+  type: "info",
   size: "xs",
 });
 
@@ -148,7 +156,6 @@ body {
 .main-container {
   width: 80%;
   margin: 0 auto;
-  // margin-top: 60px;
 }
 table {
   width: 100%;
@@ -189,6 +196,9 @@ html.dark {
     align-items: center;
     width: 80%;
     margin: 0 auto;
+  }
+  .top-menu {
+    justify-content: right;
   }
   .logo {
     margin: 0 15px;

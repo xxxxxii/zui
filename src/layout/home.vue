@@ -2,15 +2,9 @@
   <div class="container">
     <z-scrollbar>
       <div class="left-menu">
-        <!-- <z-menu
-          :items="menuList"
-          :menuKey="menuKey"
-          v-model="currentPath"
-          @toRouter="toRouter"
-        /> -->
         <z-nav-menu :active="currentPath" @clickMenuItem="clickMenuItem">
           <z-menu-item-group
-            v-for="(menuItem, menuGroup, index) in menuListGroup"
+            v-for="(menuItem, menuGroup) in menuListGroup"
             :key="menuGroup"
           >
             <template #title>
@@ -59,7 +53,6 @@ let menuList: any = routesList.getRoutes().find((item) => {
 
 // 路由分组
 let menuListGroup: any = utils.groupBy(menuList, (item) => item.meta.group);
-console.log(menuListGroup, "22222222222222222222222222222222222222222222");
 
 const clickMenuItem = (path) => {
   router.push(path);

@@ -1,0 +1,26 @@
+.is-fcous--primary {
+  .z-select__wrapper {
+    border: 1px solid $primary;
+  }
+}
+
+.is-fcous--success {
+  .z-select__wrapper {
+    border: 1px solid $success;
+  }
+}
+.is-fcous--info {
+  .z-select__wrapper {
+    border: 1px solid $info;
+  }
+}
+.is-fcous--danger {
+  .z-select__wrapper {
+    border: 1px solid $danger;
+  }
+}
+.is-fcous--warning {
+  .z-select__wrapper {
+    border: 1px solid $warning;
+  }
+}

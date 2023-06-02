@@ -1,5 +1,11 @@
+<!--
+ * @Description: 
+ * @version: 0.0.1
+ * @Author: yulinZ
+ * @LastEditTime: 2023-06-02 10:38:48
+-->
 <template>
-  <div class="z-scrollbar">
+  <div :class="Class">
     <slot />
   </div>
 </template>
@@ -8,6 +14,22 @@
 export default {
   name: "z-scrollbar",
 };
+</script>
+
+<script setup lang="ts">
+import { computed } from "vue";
+import { useCompGlobal } from "../../utils/compGlobal";
+const { compTYpe } = useCompGlobal();
+
+const props = defineProps({
+  type: {
+    type: String,
+  },
+});
+
+const Class = computed(() => {
+  return ["z-scrollbar", `z-scrollbar--${compTYpe.value(props)}`];
+});
 </script>
 
 <style lang="scss" scoped>
@@ -61,6 +83,88 @@ html.dark {
   ::-webkit-scrollbar-thumb:vertical:hover,
   ::-webkit-scrollbar-thumb:horizontal:hover {
     background-color: rgba($color: $primary, $alpha: 0.9);
+    cursor: pointer;
+  }
+}
+.z-scrollbar--primary {
+  /* 滚动条里面的小方块，能上下移动 */
+  ::-webkit-scrollbar-thumb {
+    border-radius: 6px;
+    // box-shadow: inset 0 0 1px 0 #f2f2f2;
+    // border: 3px solid #f2f2f2;
+    background-color: rgba($color: $primary, $alpha: 0.3);
+  }
+
+  /* 滚动条滑块hover时样式 */
+  ::-webkit-scrollbar-thumb:vertical:hover,
+  ::-webkit-scrollbar-thumb:horizontal:hover {
+    background-color: rgba($color: $primary, $alpha: 0.9);
+    cursor: pointer;
+  }
+}
+.z-scrollbar--warning {
+  /* 滚动条里面的小方块，能上下移动 */
+  ::-webkit-scrollbar-thumb {
+    border-radius: 6px;
+    // box-shadow: inset 0 0 1px 0 #f2f2f2;
+    // border: 3px solid #f2f2f2;
+    background-color: rgba($color: $warning, $alpha: 0.3);
+  }
+
+  /* 滚动条滑块hover时样式 */
+  ::-webkit-scrollbar-thumb:vertical:hover,
+  ::-webkit-scrollbar-thumb:horizontal:hover {
+    background-color: rgba($color: $warning, $alpha: 0.9);
+    cursor: pointer;
+  }
+}
+
+.z-scrollbar--success {
+  /* 滚动条里面的小方块，能上下移动 */
+  ::-webkit-scrollbar-thumb {
+    border-radius: 6px;
+    // box-shadow: inset 0 0 1px 0 #f2f2f2;
+    // border: 3px solid #f2f2f2;
+    background-color: rgba($color: $success, $alpha: 0.3);
+  }
+
+  /* 滚动条滑块hover时样式 */
+  ::-webkit-scrollbar-thumb:vertical:hover,
+  ::-webkit-scrollbar-thumb:horizontal:hover {
+    background-color: rgba($color: $success, $alpha: 0.9);
+    cursor: pointer;
+  }
+}
+
+.z-scrollbar--info {
+  /* 滚动条里面的小方块，能上下移动 */
+  ::-webkit-scrollbar-thumb {
+    border-radius: 6px;
+    // box-shadow: inset 0 0 1px 0 #f2f2f2;
+    // border: 3px solid #f2f2f2;
+    background-color: rgba($color: $info, $alpha: 0.3);
+  }
+
+  /* 滚动条滑块hover时样式 */
+  ::-webkit-scrollbar-thumb:vertical:hover,
+  ::-webkit-scrollbar-thumb:horizontal:hover {
+    background-color: rgba($color: $info, $alpha: 0.9);
+    cursor: pointer;
+  }
+}
+.z-scrollbar--danger {
+  /* 滚动条里面的小方块，能上下移动 */
+  ::-webkit-scrollbar-thumb {
+    border-radius: 6px;
+    // box-shadow: inset 0 0 1px 0 #f2f2f2;
+    // border: 3px solid #f2f2f2;
+    background-color: rgba($color: $info, $alpha: 0.3);
+  }
+
+  /* 滚动条滑块hover时样式 */
+  ::-webkit-scrollbar-thumb:vertical:hover,
+  ::-webkit-scrollbar-thumb:horizontal:hover {
+    background-color: rgba($color: $danger, $alpha: 0.9);
     cursor: pointer;
   }
 }

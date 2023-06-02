@@ -1,12 +1,6 @@
 <template>
   <li
-    class="z-menu-item"
-    :class="[
-      menuContext?.menuActive === props.path && props.path ? 'is-active' : '',
-      menuContext?.collapse && menuContext?.mode === 'horizontal'
-        ? 'z-menu-item--horizontal'
-        : '',
-    ]"
+    :class="Class"
     @mouseenter="mouseenter"
     @mouseleave="mouseleave"
     @click="menuItemClick"
@@ -34,6 +28,8 @@ import { menuItemProps } from "./menu-item";
 import { subMenuContextKey } from "./sub-menu";
 import { menuContextKey } from "./menu";
 import { uuidv4 } from "../../utils";
+import { useCompGlobal } from "../../utils/compGlobal";
+const { compSize, compTYpe } = useCompGlobal();
 
 const props = defineProps(menuItemProps);
 
@@ -53,6 +49,20 @@ if (subMenuContext) {
     path: props.path || menuItemId,
   });
 }
+
+const Class = computed(() => {
+  // (menuContext?.menuActive === props.path && props.path) ||
+  return [
+    "z-menu-item",
+    menuContext?.menuActive === props?.path
+      ? `is-active--${compTYpe.value(menuContext)}`
+      : "",
+    menuContext?.collapse && menuContext?.mode === "horizontal"
+      ? "z-menu-item--horizontal"
+      : "",
+    `z-menu-item--${compTYpe.value(menuContext)}`,
+  ];
+});
 
 const menuItemClick = () => {
   menuContext?.menuActiveChange(props.path);
@@ -87,7 +97,7 @@ const mouseleave = () => {
   if (menuContext?.collapse) showTitle.value = false;
 };
 
-const labelStyle = computed(() => {
+const labelStyle: any = computed(() => {
   if (menuContext?.collapse && !subMenuContext && showTitle.value)
     return {
       position: "absolute",
@@ -148,13 +158,46 @@ li {
   .z-menu-item--icon {
     font-size: 18px;
     margin-right: 10px;
-    // display: flex;
-    // align-items: center;
-    // width: 44px;
-    // height: 44px;
   }
   &:hover {
-    @extend .menu-hover;
+    transition: all 0.2s ease-out;
+    -webkit-transition: all 0.2s ease-out;
+    -moz-transition: all 0.2s ease-out;
+    -ms-transition: all 0.2s ease-out;
+    -o-transition: all 0.2s ease-out;
+  }
+}
+
+.z-menu-item--info {
+  &:hover {
+    background: rgba($info, 0.2);
+    color: $info;
+  }
+}
+.z-menu-item--primary {
+  &:hover {
+    background: rgba($primary, 0.2);
+    color: $primary;
+  }
+}
+.z-menu-item--success {
+  &:hover {
+    background: rgba($success, 0.2);
+    color: $success;
+  }
+}
+
+.z-menu-item--danger {
+  &:hover {
+    background: rgba($danger, 0.2);
+    color: $danger;
+  }
+}
+
+.z-menu-item--warning {
+  &:hover {
+    background: rgba($warning, 0.2);
+    color: $warning;
   }
 }
 .z-menu-item--horizontal {
@@ -162,15 +205,19 @@ li {
     margin: 0;
   }
 }
-.is-active {
+.is-active--primary {
   color: $primary;
 }
-html.dark {
-  .z-menu-item {
-    &--title {
-      .z-menu-item__margin {
-      }
-    }
-  }
+.is-active--success {
+  color: $success;
+}
+.is-active--info {
+  color: $info;
+}
+.is-active--warning {
+  color: $warning;
+}
+.is-active--danger {
+  color: $danger;
 }
 </style>

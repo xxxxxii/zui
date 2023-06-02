@@ -52,6 +52,7 @@ export default {
 import { ref, useSlots, Ref, computed } from "vue";
 import { diglogProps } from "./dialog";
 import { Drag as vDrag } from "../../directives/drag";
+import { watch } from "vue";
 
 const props = defineProps(diglogProps);
 const emit = defineEmits(["update:modelValue", "close"]);
@@ -59,6 +60,17 @@ const emit = defineEmits(["update:modelValue", "close"]);
 const Class = computed(() => {
   return ["z-dialog", props.mask ? "z-dialog-mask" : ""];
 });
+
+watch(
+  () => props.modelValue,
+  (newVal) => {
+    if (newVal) {
+      document.querySelector("body").style.overflow = "hidden";
+    } else {
+      document.querySelector("body").style.overflow = "auto";
+    }
+  }
+);
 
 // 关闭diglog
 function closeDiglog() {

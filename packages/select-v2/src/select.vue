@@ -69,6 +69,8 @@ import { watch } from "vue";
 import { toRefs } from "vue";
 import { onMounted } from "vue";
 import { formItemContextKey } from "../../form/src/form-item";
+import { useCompGlobal } from "../../utils/compGlobal";
+const { compSize, compTYpe } = useCompGlobal();
 
 const formItemContext = inject(formItemContextKey, null);
 
@@ -86,16 +88,18 @@ const Class = computed(() => {
   return [
     "z-select",
     hover.value && !fcous.value ? "is-hover" : "",
-    fcous.value ? "is-fcous" : "",
+    fcous.value ? `is-fcous--${compTYpe.value(props)}` : "",
     showDown.value ? "icon-rotate" : "",
     props.multiple ? "z-select-multiple" : "",
-    `z-select--${props.size}`,
+    `z-select--${compSize.value(props)}`,
   ];
 });
 
 const popoverHover = (val) => {
   hover.value = val;
 };
+
+// 控制下拉逻辑
 const popoverClick = ({ el, target }) => {
   const dropDownDom = el?.querySelector(".z-select__dropdown");
 
@@ -131,46 +135,6 @@ const popoverClick = ({ el, target }) => {
 };
 
 const blur = (e) => {};
-
-// 控制下拉显示指令
-const vClick = {
-  beforeMount(el) {
-    const handler = (e) => {
-      let dropdownDom = el?.querySelector(".z-select__dropdown");
-      if (el.contains(e.target)) {
-        // 点击 让input 获取 焦点
-        const input = el.querySelector("input");
-        input.focus();
-        fcous.value = true;
-
-        if (
-          e.target.classList.contains("z-tag__wrapper__close") ||
-          e.target.parentNode.parentNode.classList.contains(
-            "z-tag__wrapper__close"
-          )
-        ) {
-          //   formItemContext?.validate("blur").catch(() => {});
-          showDown.value = false;
-        } else {
-          // if (!props.seach)
-          showDown.value = !showDown.value;
-        }
-      } else {
-        console.log("no");
-        if (
-          !(
-            (e.target as HTMLElement).parentNode === dropdownDom ||
-            e.target === dropdownDom
-          )
-        ) {
-          showDown.value = false;
-          fcous.value = false;
-        }
-      }
-    };
-    document.addEventListener("click", handler);
-  },
-};
 
 const optionList: Array<object> = [];
 onMounted(() => {
@@ -293,117 +257,13 @@ provide(selectContextKey, context.value);
 </script>
 
 <style lang="scss" scoped>
+.z-select {
+  width: v-bind(width);
+}
 input {
   outline: none;
   border: none;
 }
-.z-select {
-  display: inline-block;
-  position: relative;
-  width: v-bind(width);
-  cursor: pointer;
-  &--lg {
-    .z-select__wrapper {
-      padding: 0 12px;
-      &__content {
-        .z-select__wrapper__tags,
-        input {
-          min-height: 36px;
-        }
-      }
-      &__tags {
-        margin-left: -8px;
-      }
-    }
-  }
-  &--md {
-    .z-select__wrapper {
-      padding: 0 10px;
-      &__content {
-        .z-select__wrapper__tags,
-        input {
-          min-height: 30px;
-        }
-      }
-      &__tags {
-        margin-left: -6px;
-      }
-    }
-  }
-  &--xs {
-    .z-select__wrapper {
-      padding: 0 6px;
-      &__content {
-        .z-select__wrapper__tags,
-        input {
-          min-height: 24px;
-        }
-      }
-      &__tags {
-        margin-left: -4px;
-      }
-    }
-  }
-  &__wrapper {
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    padding: 0 10px;
-    border: 1px solid $light-border;
-    border-radius: 4px;
-    &__content {
-      padding-right: 18px;
-      width: 100%;
-      display: inline-flex;
-      flex: 1;
-      align-items: center;
-    }
-    &__tags {
-      display: flex;
-      flex-wrap: wrap;
-      width: 100%;
-      align-items: center;
-    }
-  }
-  &__wrapper__icon {
-    display: flex;
-    align-items: center;
-    position: absolute;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    width: 16px;
-    padding-right: 10px;
-  }
-  &__dropdown {
-    width: 100%;
-    opacity: 1;
-    list-style: none;
-    margin: 0;
-    z-index: 2064;
-    top: calc(100% + 10px);
-    border-radius: 4px;
-    box-shadow: $border-light-shadow;
-    background: $comp-light-bg;
-    transition: all 0.5s;
-  }
-  input {
-    font-size: 14px;
-    padding: 0;
-    color: $light-color;
-    background: $light-bg;
-    width: 100%;
-    text-overflow: ellipsis;
-    cursor: pointer;
-  }
-}
-
-.is-fcous {
-  .z-select__wrapper {
-    border: 1px solid $primary;
-  }
-}
-
 .is-hover {
   .z-select__wrapper {
     border: 1px solid #787878;

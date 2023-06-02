@@ -2,7 +2,7 @@
  * @Author: xxxxxii 1973329248@qq.com
  * @Date: 2023-02-28 03:49:19
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-06-01 11:37:17
+ * @LastEditTime: 2023-06-02 10:12:02
  * @FilePath: \z-ui\packages\input\input.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -76,10 +76,11 @@ const props = defineProps({
   rightIcon: {
     type: String,
   },
+  type: {
+    type: String,
+  },
   number: Boolean,
 });
-
-console.log(props.number);
 
 watch(
   () => props.modelValue,
@@ -100,7 +101,8 @@ const zClass = computed(() => {
     {
       "z-input-clearable": props.clearable,
     },
-    `z-input-${compSize.value(props)}`,
+    `z-input--${compSize.value(props)}`,
+    `z-input--${compTYpe.value(props)}`,
   ];
 });
 
@@ -144,22 +146,14 @@ const clearValue = () => {
   width: 100%;
   position: relative;
   .z-input_inner {
-    box-sizing: border-box;
-  }
-  input {
     outline: none;
     width: 100%;
     border: 1px solid $light-border;
     font-size: 14px;
     color: $color;
-    height: 30px;
-    padding: 0 8px;
-    border-radius: 5px;
-    transition: all 0.2s ease;
+    border-radius: $input-border-radius;
+    transition: all 0.2s ease-out;
     background: $comp-light-bg;
-    &:focus {
-      border: 1px solid $primary;
-    }
   }
   .right-icon {
     position: absolute;
@@ -167,12 +161,10 @@ const clearValue = () => {
     justify-content: center;
     align-items: center;
     font-size: 14px;
-    // top: 50%;
-    // transform: translate(0, -50%);
     .right-icon--valid-success {
       color: $success;
     }
-    right: 12px;
+    right: 6px;
     top: 0;
     bottom: 0;
     margin: auto;
@@ -188,6 +180,72 @@ const clearValue = () => {
     }
   }
 }
+.z-input--primary {
+  .z-input_inner {
+    &:focus {
+      border: 1px solid $primary;
+    }
+  }
+}
+
+.z-input--success {
+  .z-input_inner {
+    &:focus {
+      border: 1px solid $success;
+    }
+  }
+}
+
+.z-input--info {
+  .z-input_inner {
+    &:focus {
+      border: 1px solid $info;
+    }
+  }
+}
+.z-input--danger {
+  .z-input_inner {
+    &:focus {
+      border: 1px solid $danger;
+    }
+  }
+}
+
+.z-input--warning {
+  .z-input_inner {
+    &:focus {
+      border: 1px solid $warning;
+    }
+  }
+}
+
+.z-input--lg {
+  input {
+    height: calc($input-lg-height - 2px);
+    padding: 0 $input-lg-x-padding;
+  }
+  .right-icon {
+    right: $input-lg-x-padding;
+  }
+}
+.z-input--md {
+  input {
+    height: calc($input-md-height - 2px);
+    padding: 0 $input-md-x-padding;
+  }
+  .right-icon {
+    right: $input-md-x-padding;
+  }
+}
+.z-input--xs {
+  input {
+    height: calc($input-xs-height - 2px);
+    padding: 0 $input-xs-x-padding;
+  }
+  .right-icon {
+    right: $input-xs-x-padding;
+  }
+}
 html.dark {
   .z-input {
     .z-input_inner {
@@ -197,26 +255,13 @@ html.dark {
     }
   }
   .z-input-disabled {
-    input {
+    .z-input_inner {
       background: $dark-disabled;
     }
   }
 }
-.z-input-lg {
-  input {
-    height: 38px;
-    padding: 0 10px;
-  }
-}
-.z-input-xs {
-  input {
-    height: 22px;
-    padding: 0 6px;
-  }
-}
-
 .z-input-disabled {
-  input {
+  .z-input_inner {
     cursor: no-drop;
     background: $light-disabled;
   }
@@ -232,7 +277,8 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   appearance: none;
   margin: 0;
-} /* 火狐 */
+}
+/* 火狐 */
 input {
   -moz-appearance: textfield;
 }

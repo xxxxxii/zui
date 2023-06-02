@@ -11,11 +11,8 @@ export default {
 </script>
 
 <script setup lang="ts">
-import { ref, computed, watch } from "vue";
+import { ref, computed, watch, toRefs, provide } from "vue";
 import { menuContextKey, menuProps } from "./menu";
-import { toRefs } from "vue";
-import { provide } from "vue";
-import { onMounted } from "vue";
 
 const props = defineProps(menuProps);
 const emit = defineEmits(["clickMenuItem", "open", "close"]);
@@ -71,9 +68,6 @@ const menuActive = ref(props.active);
 const subMenuContextList = ref([]);
 const collectMneuContext = (item) => {
   subMenuContextList.value.push(item);
-  // subMenuContextList.value.map((item) => {
-  //   item?.setShowMenu(true);
-  // });
 };
 
 watch(
@@ -109,6 +103,13 @@ watch(
   }
 );
 
+// 监听 选中菜单
+watch(
+  () => props.active,
+  (newVal) => {
+    menuActive.value = newVal;
+  }
+);
 const isOverflowHidden = ref(false);
 const setOverflowStyle = (state) => {
   isOverflowHidden.value = state;
@@ -149,6 +150,7 @@ provide(menuContextKey, context.value);
   width: v-bind(menuWidth);
   background: $menu-light-theme;
   transition: width 0.3s;
+  display: inline;
 }
 html.dark {
   .z-nav-menu {

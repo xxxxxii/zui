@@ -14,7 +14,6 @@ export const selectProps = {
     },
     size: {
         type: String,
-        default: "md",
     },
     width: {
         type: String,

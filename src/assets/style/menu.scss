@@ -1,0 +1,54 @@
+.z-menu-item--primary {
+  .z-sub-menu__title {
+    &:hover {
+      background: rgba($primary, 0.2);
+      color: $primary;
+    }
+  }
+  &:hover {
+    background: rgba($primary, 0.2);
+    color: $primary;
+  }
+}
+
+.z-menu-item--info {
+  .z-sub-menu__title {
+    &:hover {
+      background: rgba($info, 0.2);
+      color: $info;
+    }
+  }
+  //   &:hover {
+  //     background: rgba($info, 0.2);
+  //     color: $info;
+  //   }
+}
+.z-menu-item--success {
+  .z-sub-menu__title {
+    &:hover {
+      background: rgba($success, 0.2);
+      color: $success;
+    }
+  }
+  &:hover {
+    background: rgba($success, 0.2);
+    color: $success;
+  }
+}
+.z-menu-item--danger {
+  .z-sub-menu__title {
+    &:hover {
+      background: rgba($danger, 0.2);
+      color: $danger;
+    }
+  }
+}
+
+.z-menu-item--warning {
+  .z-sub-menu__title {
+    &:hover {
+      background: rgba($warning, 0.2);
+      color: $warning;
+    }
+  }
+}

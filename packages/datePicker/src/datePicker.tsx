@@ -3,12 +3,14 @@
  * @version:
  * @Author: yulinZ
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-06-01 18:00:01
+ * @LastEditTime: 2023-06-02 10:47:41
  */
 import { defineComponent, computed, ref, Transition } from "vue";
 import zCalendar from "./calendar.jsx";
 import "./datePicker.scss";
 import { pub } from "./utils";
+import { useCompGlobal } from "../../utils/compGlobal";
+
 const { dataFormat } = pub();
 import dayjs from "dayjs";
 
@@ -23,7 +25,6 @@ export default defineComponent({
     },
     size: {
       type: String,
-      default: "md",
     },
     width: {
       type: String,
@@ -43,10 +44,14 @@ export default defineComponent({
       type: String,
       default: "dates",
     },
+    activeType: {
+      type: String,
+    },
   },
   emits: ["update:modelValue", "change"],
 
   setup(props, { slots, attrs, emit }) {
+    const { compSize, type } = useCompGlobal();
     // 显示下拉
     const showDown = ref(false);
     // 显示hover
@@ -54,13 +59,17 @@ export default defineComponent({
     // 显示focus
     const fcous = ref(false);
 
+    // 自定义判断传入的字段
+    const compTYpe = computed(() => (props, compInitType = "primary") => {
+      return props.activeType ? props.activeType : type ? type : compInitType;
+    });
     const Class = computed(() => {
       return [
         "z-select",
         hover.value && !fcous.value ? "is-hover" : "",
-        fcous.value ? "is-fcous" : "",
+        fcous.value ? `is-fcous--${compTYpe.value(props)}` : "",
         showDown.value ? "icon-rotate" : "",
-        `z-select--${props.size}`,
+        `z-select--${compSize.value(props)}`,
       ];
     });
 

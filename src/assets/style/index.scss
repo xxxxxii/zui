@@ -41,6 +41,21 @@ $menu-dark-theme: #272727;
 
 $skeleton-light-bg: rgb(201, 201, 201);
 
+$input-xs-x-padding: 6px;
+$input-md-x-padding: 8px;
+$input-lg-x-padding: 10px;
+
+$input-border-radius: 5px;
+
+$input-xs-height: 24px;
+$input-md-height: 32px;
+$input-lg-height: 38px;
+
+@import "./fcous.scss";
+@import "./select.scss";
+@import "./skeleton.scss";
+@import "./menu.scss";
+
 :root {
   font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC",
     "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei",
@@ -48,14 +63,8 @@ $skeleton-light-bg: rgb(201, 201, 201);
 }
 
 input {
+  font-size: 14px;
   vertical-align: middle;
-}
-
-@import "./skeleton.scss";
-.menu-hover {
-  transition: all 0.3s ease-in-out;
-  background: rgba($primary, 0.2);
-  color: $primary;
 }
 
 html {

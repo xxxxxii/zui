@@ -1,3 +1,10 @@
+<!--
+ * @Description:
+ * @version: 0.0.1
+ * @Author: yulinZ
+ * @LastEditTime: 2023-06-02 15:23:40
+-->
+
 # Vue 3 UI
 
 vue3 ui library
@@ -86,3 +93,10 @@ font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC",
   "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei",
   sans-serif;
 ```
+
+## v0.0.11 2023-6-2
+
+1. fix navMenu 侧边模式下 hover 触发状态下点击还能控制的 bug,active 变化时为更新 bug
+2. fix dialog 可见时 页面还能滚动
+3. 更新datePicker组件跟随 全局控制
+4. input，select 样式调整 
