@@ -38,6 +38,7 @@ import { zMenuItem, zMenuItemGroup, zNavMenu, zSubMenu } from "./navMenu";
 
 import zDlalog from "./dialog";
 import zDrawer from "./drawer";
+import { zInfiniteScroll, zInfiniteScrollItem } from "./infiniteScroll";
 
 // 指令
 import loading from "./directives/loading";
@@ -89,6 +90,8 @@ const plugins: any = [
   zText,
   zColorPicker,
   zDatePicker,
+  zInfiniteScroll,
+  zInfiniteScrollItem,
 ];
 
 const install = (app: App) => {
@@ -144,5 +147,7 @@ export {
   zText,
   zColorPicker,
   zDatePicker,
+  zInfiniteScroll,
+  zInfiniteScrollItem,
 };
 export default ZUI;

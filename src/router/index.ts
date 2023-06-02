@@ -2,7 +2,7 @@
  * @Author: xxxxxii 1973329248@qq.com
  * @Date: 2023-02-27 03:31:06
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-06-01 15:03:24
+ * @LastEditTime: 2023-06-02 16:06:56
  * @FilePath: \z-ui\src\router\index.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -54,7 +54,7 @@ export const routesList = [
         path: "/button",
         name: "button",
         meta: {
-          title: "button",
+          title: "button 按钮",
           group: "通用组件",
         },
         component: () => import("@/pages/button/doc/index.md"),
@@ -64,7 +64,7 @@ export const routesList = [
         path: "/container",
         name: "container",
         meta: {
-          title: "container",
+          title: "container 容器",
           group: "通用组件",
         },
         component: () => import("@/pages/container/doc/index.md"),
@@ -74,7 +74,7 @@ export const routesList = [
         path: "/layout",
         name: "layout",
         meta: {
-          title: "layout",
+          title: "layout 布局",
           group: "通用组件",
         },
         component: () => import("@/pages/layout/doc/index.md"),
@@ -84,7 +84,7 @@ export const routesList = [
         path: "/skeleton",
         name: "skeleton",
         meta: {
-          title: "skeleton",
+          title: "skeleton 骨架屏指令",
           group: "指令",
         },
         component: () => import("@/pages/skeleton/doc/index.md"),
@@ -94,7 +94,7 @@ export const routesList = [
         path: "/input",
         name: "input",
         meta: {
-          title: "input",
+          title: "input 输入框",
           group: "输入组件",
         },
         component: () => import("@/pages/input/doc/index.md"),
@@ -104,7 +104,7 @@ export const routesList = [
         path: "/textarea",
         name: "textarea",
         meta: {
-          title: "textarea",
+          title: "textarea 文本域",
           group: "输入组件",
         },
         component: () => import("@/pages/textarea/doc/index.md"),
@@ -114,7 +114,7 @@ export const routesList = [
         path: "/icon",
         name: "icon",
         meta: {
-          title: "icon",
+          title: "icon 图标",
           group: "通用组件",
         },
         component: () => import("@/pages/icon/doc/index.md"),
@@ -124,7 +124,7 @@ export const routesList = [
         path: "/message",
         name: "message",
         meta: {
-          title: "message",
+          title: "message 消息",
           group: "通用组件",
         },
         component: () => import("@/pages/message/doc/index.md"),
@@ -134,7 +134,7 @@ export const routesList = [
         path: "/upload",
         name: "upload",
         meta: {
-          title: "upload",
+          title: "upload 上传",
           group: "输入组件",
         },
         component: () => import("@/pages/upload/doc/index.md"),
@@ -144,27 +144,27 @@ export const routesList = [
         path: "/loading",
         name: "loading",
         meta: {
-          title: "loading",
+          title: "loading 加载",
           group: "通用组件",
         },
         component: () => import("@/pages/loading/doc/index.md"),
       },
-      {
-        // menu
-        path: "/menu",
-        name: "menu",
-        meta: {
-          title: "menu",
-          group: "通用组件",
-        },
-        component: () => import("@/pages/menu/doc/index.md"),
-      },
+      // {
+      //   // menu
+      //   path: "/menu",
+      //   name: "menu",
+      //   meta: {
+      //     title: "menu",
+      //     group: "通用组件",
+      //   },
+      //   component: () => import("@/pages/menu/doc/index.md"),
+      // },
       {
         // menu v2
         path: "/menuV2",
         name: "menuV2",
         meta: {
-          title: "menuV2",
+          title: "menuV2 菜单",
           group: "通用组件",
         },
         component: () => import("@/pages/menu v2/doc/index.md"),
@@ -174,7 +174,7 @@ export const routesList = [
         path: "/progress",
         name: "progress",
         meta: {
-          title: "progress",
+          title: "progress 进度条",
           group: "通用组件",
         },
         component: () => import("@/pages/progress/doc/index.md"),
@@ -184,7 +184,7 @@ export const routesList = [
         path: "/switch",
         name: "switch",
         meta: {
-          title: "switch",
+          title: "switch 开关",
           group: "通用组件",
         },
         component: () => import("@/pages/switch/doc/index.md"),
@@ -194,7 +194,7 @@ export const routesList = [
         path: "/tag",
         name: "tag",
         meta: {
-          title: "tag",
+          title: "tag 标签",
           group: "通用组件",
         },
         component: () => import("@/pages/tag/doc/index.md"),
@@ -204,7 +204,7 @@ export const routesList = [
         path: "/popover",
         name: "popover",
         meta: {
-          title: "popover",
+          title: "popover 触发器",
           group: "通用组件",
         },
         component: () => import("@/pages/popover/doc/index.md"),
@@ -220,7 +220,7 @@ export const routesList = [
         path: "/select",
         name: "select",
         meta: {
-          title: "select",
+          title: "select 下拉选择器",
           group: "输入组件",
         },
         component: () => import("@/pages/selectV2/doc/index.md"),
@@ -230,7 +230,7 @@ export const routesList = [
         path: "/radio",
         name: "radio",
         meta: {
-          title: "radio",
+          title: "radio 单选",
           group: "输入组件",
         },
         component: () => import("@/pages/radio/doc/index.md"),
@@ -241,7 +241,7 @@ export const routesList = [
         path: "/checkbox",
         name: "checkbox",
         meta: {
-          title: "checkbox",
+          title: "checkbox 多选",
           group: "输入组件",
         },
         component: () => import("@/pages/checkbox/doc/index.md"),
@@ -251,7 +251,7 @@ export const routesList = [
         path: "/form",
         name: "form",
         meta: {
-          title: "form",
+          title: "form 表单",
           group: "输入组件",
         },
         component: () => import("@/pages/form/doc/index.md"),
@@ -261,7 +261,7 @@ export const routesList = [
         path: "/dialog",
         name: "dialog",
         meta: {
-          title: "dialog",
+          title: "dialog 弹窗",
           group: "通用组件",
         },
         component: () => import("@/pages/dialog/doc/index.md"),
@@ -271,7 +271,7 @@ export const routesList = [
         path: "/drawer",
         name: "drawer",
         meta: {
-          title: "drawer",
+          title: "drawer 抽屉",
           group: "通用组件",
         },
         component: () => import("@/pages/drawer/doc/index.md"),
@@ -281,7 +281,7 @@ export const routesList = [
         path: "/drag",
         name: "drag",
         meta: {
-          title: "drag",
+          title: "drag 拖拽指令",
           group: "指令",
         },
         component: () => import("@/pages/drag/doc/index.md"),
@@ -291,7 +291,7 @@ export const routesList = [
         path: "/text",
         name: "text",
         meta: {
-          title: "text",
+          title: "text 文本",
           group: "通用组件",
         },
         component: () => import("@/pages/text/doc/index.md"),
@@ -301,7 +301,7 @@ export const routesList = [
         path: "/colorPicker",
         name: "colorPicker",
         meta: {
-          title: "colorPicker",
+          title: "colorPicker 颜色选择器",
           group: "通用组件",
         },
         component: () => import("@/pages/colorPicker/doc/index.md"),
@@ -311,10 +311,20 @@ export const routesList = [
         path: "/datePicker",
         name: "datePicker",
         meta: {
-          title: "datePicker",
+          title: "datePicker 日期选择器",
           group: "通用组件",
         },
         component: () => import("@/pages/datePicker/doc/index.md"),
+      },
+      {
+        // infiniteScroll
+        path: "/infiniteScroll",
+        name: "infiniteScroll",
+        meta: {
+          title: "infiniteScroll 无限滚动",
+          group: "通用组件",
+        },
+        component: () => import("@/pages/infiniteScroll/doc/index.md"),
       },
     ],
   },
