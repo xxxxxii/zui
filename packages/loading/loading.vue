@@ -2,7 +2,7 @@
   <div :class="Class">
     <div class="loader z-loading--loader">
       <div v-if="loadingType === 'dot' && !icon" class="dot-box">
-        <div class="dot" v-for="item in 5"></div>
+        <div class="dot" v-for="(item, index) in 5" :key="index"></div>
       </div>
       <div v-if="loadingType === 'round' && !icon" class="round loading">
         <svg

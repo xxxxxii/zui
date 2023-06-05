@@ -1,43 +1,45 @@
 <template>
-  <z-global-config :config="config">
-    <z-header class="doc-header">
-      <div class="doc-header-box">
-        <span class="logo"> ZUI </span
-        ><span
-          ><z-tag round>V {{ version }}</z-tag>
-        </span>
-        <div class="menu-box">
-          <z-nav-menu
-            class="top-menu"
-            mode="horizontal"
-            :active="active"
-            @clickMenuItem="toRouter"
-          >
-            <z-menu-item
-              :path="item.path"
-              v-for="item in menus"
-              :key="item.path"
+  <div class="main">
+    <z-global-config :config="config" style="height: 100vh; overflow: auto">
+      <z-header class="doc-header">
+        <div class="doc-header-box">
+          <span class="logo"> ZUI </span
+          ><span
+            ><z-tag round>V {{ version }}</z-tag>
+          </span>
+          <div class="menu-box">
+            <z-nav-menu
+              class="top-menu"
+              mode="horizontal"
+              :active="active"
+              @clickMenuItem="toRouter"
             >
-              {{ item?.label }}
-            </z-menu-item>
-          </z-nav-menu>
-          <z-switch
-            v-model="themeVal"
-            size="lg"
-            :text="switchText"
-            showText
-            activeIcon="icon-dark"
-            inActiveIcon="icon-light-on"
-            @change="themeChange"
-          >
-          </z-switch>
+              <z-menu-item
+                :path="item.path"
+                v-for="item in menus"
+                :key="item.path"
+              >
+                {{ item?.label }}
+              </z-menu-item>
+            </z-nav-menu>
+            <z-switch
+              v-model="themeVal"
+              size="lg"
+              :text="switchText"
+              showText
+              activeIcon="icon-dark"
+              inActiveIcon="icon-light-on"
+              @change="themeChange"
+            >
+            </z-switch>
+          </div>
         </div>
-      </div>
-    </z-header>
-    <z-main padding="0" class="main-container">
-      <router-view />
-    </z-main>
-  </z-global-config>
+      </z-header>
+      <z-main padding="0" class="main-container">
+        <router-view />
+      </z-main>
+    </z-global-config>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -151,7 +153,10 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 #app {
-  min-height: 100vh;
+  height: 100vh;
+  .main {
+    height: 100vh;
+  }
 }
 .main-container {
   width: 80%;

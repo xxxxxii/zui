@@ -1,16 +1,18 @@
+<!--
+ * @Description: 
+ * @version: 0.0.1
+ * @Author: yulinZ
+ * @LastEditTime: 2023-06-05 14:40:07
+-->
 <template>
   <div>
     <h2>无限滚动</h2>
-    <z-infinite-scroll>
-      <z-infinite-scroll-item v-for="(item, index) in listData" :key="index">
-        {{ item }}
-      </z-infinite-scroll-item>
-    </z-infinite-scroll>
+    <z-infinite-scroll :listData="listData" :num="4"> </z-infinite-scroll>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { h } from "vue";
 
 // 生成1000000条数据
 function getData() {
@@ -19,6 +21,17 @@ function getData() {
     data.push({
       name: "test" + i,
       id: i,
+      template: h("div", {}, [
+        h("img", {
+          src: "https://blogyl.xyz/_nuxt/banner.b86feb61.jpg",
+          height: "300",
+          style: {
+            width: "100%",
+            objectFit: "cover",
+          },
+        }),
+        h("h2", i),
+      ]),
     });
   }
   return data;
@@ -27,4 +40,11 @@ function getData() {
 const listData = getData();
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.z-infinite-scroll {
+  width: 100%;
+  height: 800px;
+  // overflow: hidden;
+  overflow-y: auto;
+}
+</style>
