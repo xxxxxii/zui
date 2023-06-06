@@ -1,14 +1,16 @@
 <template>
   <label :class="Class">
-    <input
-      type="checkbox"
-      v-bind="$attrs"
-      :checked="checkState"
-      @change="checkboxChange"
-      :disabled="disabled"
-      :value="value"
-    />
-    <span class="z-checkbox__mark"></span>
+    <div class="z-checkbox__input">
+      <input
+        type="checkbox"
+        v-bind="$attrs"
+        :checked="checkState"
+        @change="checkboxChange"
+        :disabled="disabled"
+        :value="value"
+      />
+      <span class="z-checkbox__mark"></span>
+    </div>
     <span class="z-checkbox__label"
       ><slot> {{ label }} </slot>
     </span>
@@ -74,7 +76,13 @@ const checkboxChange = (e) => {
   box-sizing: border-box;
   align-items: center;
   position: relative;
-  transition: all 0.5s;
+  // transition: all 0.2s;
+  &__input {
+    outline: none;
+    display: inline-flex;
+    position: relative;
+    vertical-align: middle;
+  }
   input {
     display: none;
     cursor: pointer;
@@ -88,6 +96,7 @@ const checkboxChange = (e) => {
   &__label {
     cursor: pointer;
     padding: 0 8px 0 6px;
+    line-height: 14px;
   }
   &:hover {
     .z-checkbox__mark {
@@ -116,6 +125,15 @@ const checkboxChange = (e) => {
       border: solid white;
       border-width: 0 2px 2px 0;
       transform: rotate(45deg);
+      animation: checkbox-ani 0.2s ease-out;
+      @keyframes checkbox-ani {
+        0% {
+          transform: rotate(45deg) scale(0);
+        }
+        100% {
+          transform: rotate(45deg) scale(1);
+        }
+      }
     }
   }
 }
@@ -238,6 +256,15 @@ const checkboxChange = (e) => {
       border-radius: 1px;
       background-color: white;
       transform: rotate(0deg);
+      animation: checkbox-ani 0.2s ease-out;
+      @keyframes checkbox-ani {
+        0% {
+          transform: rotate(0deg) scale(0);
+        }
+        100% {
+          transform: rotate(0deg) scale(1);
+        }
+      }
     }
   }
 }
@@ -281,6 +308,9 @@ const checkboxChange = (e) => {
     &::after {
       cursor: no-drop;
     }
+  }
+  .z-checkbox__label {
+    cursor: no-drop;
   }
 }
 .is-disabled.z-checkbox--primary {

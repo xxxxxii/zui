@@ -2,7 +2,7 @@
  * @Description: 
  * @version: 0.0.1
  * @Author: yulinZ
- * @LastEditTime: 2023-06-06 14:11:35
+ * @LastEditTime: 2023-06-06 16:00:22
 -->
 <template>
   <div>
@@ -76,6 +76,6 @@ const checked = ref(true);
 
 <style scoped>
 .z-checkbox {
-  padding: 10px;
+  padding: 6px;
 }
 </style>

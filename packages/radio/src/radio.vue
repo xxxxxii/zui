@@ -41,9 +41,9 @@ console.log(radioGroupContext);
 const Class = computed(() => {
   return [
     "z-radio",
-    props.disabled || radioGroupContext?.disabled ? "is-disabled" : "",
     `z-radio__dot--${compTYpe.value(props)}`,
     `z-radio--${compSize.value(props?.size ? props : radioGroupContext)}`,
+    props.disabled || radioGroupContext?.disabled ? "is-disabled" : "",
   ];
 });
 
@@ -99,6 +99,8 @@ const radioChange = (e) => {
     border: 1px solid #999999;
     box-sizing: border-box;
     position: relative;
+
+    cursor: pointer;
     // margin-top: -0.1rem;
     &::after {
       content: "";
@@ -109,17 +111,12 @@ const radioChange = (e) => {
       bottom: 0;
       left: 0;
       margin: auto;
-      width: 8px;
-      height: 8px;
+      width: 4px;
+      height: 4px;
       border: solid rgba($color: $primary, $alpha: 0.2) 1px;
       background-color: white;
       border-radius: 50%;
-    }
-  }
-  input[type="radio"] + span {
-    cursor: pointer;
-    &::after {
-      border: solid rgba($color: $success, $alpha: 0.2) 1px;
+      animation: checked-ani 0.2s ease-out;
     }
   }
 
@@ -145,30 +142,18 @@ const radioChange = (e) => {
   input[type="radio"] + span {
     width: 16px;
     height: 16px;
-    &::after {
-      width: 4px;
-      height: 4px;
-    }
   }
 }
 .z-radio--md {
   input[type="radio"] + span {
     width: 14px;
     height: 14px;
-    &::after {
-      width: 4px;
-      height: 4px;
-    }
   }
 }
 .z-radio--xs {
   input[type="radio"] + span {
     width: 12px;
     height: 12px;
-    &::after {
-      width: 4px;
-      height: 4px;
-    }
   }
 }
 
@@ -207,7 +192,11 @@ const radioChange = (e) => {
 .is-disabled {
   cursor: no-drop;
   input[type="radio"] + span {
+    cursor: no-drop;
     background-color: $light-disabled;
+  }
+  .z-radio__label {
+    cursor: no-drop;
   }
 }
 .is-disabled.z-radio__dot--primary {
