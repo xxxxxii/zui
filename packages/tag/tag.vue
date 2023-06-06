@@ -25,7 +25,7 @@ export default defineComponent({
 <script setup lang="ts">
 import { computed, defineProps } from "vue";
 import { useCompGlobal } from "../utils/compGlobal";
-const { compSize, compTYpe } = useCompGlobal();
+const { compSize, compType } = useCompGlobal();
 
 const props = defineProps({
   icon: {
@@ -46,10 +46,10 @@ const props = defineProps({
 const Class = computed(() => {
   return [
     "z-tag",
-    `z-tag--${compTYpe.value(props)}`,
+    `z-tag--${compType.value(props)}`,
     `z-tag--${compSize.value(props)}`,
-    props.plain ? `z-tag--${compTYpe.value(props)}--plain` : "",
-    props.bor ? `z-tag--${compTYpe.value(props)}--border` : "",
+    props.plain ? `z-tag--${compType.value(props)}--plain` : "",
+    props.bor ? `z-tag--${compType.value(props)}--border` : "",
     props.round ? `is-round` : "",
   ];
 });

@@ -70,7 +70,7 @@ import { toRefs } from "vue";
 import { onMounted } from "vue";
 import { formItemContextKey } from "../../form/src/form-item";
 import { useCompGlobal } from "../../utils/compGlobal";
-const { compSize, compTYpe } = useCompGlobal();
+const { compSize, compType } = useCompGlobal();
 
 const formItemContext = inject(formItemContextKey, null);
 
@@ -88,7 +88,7 @@ const Class = computed(() => {
   return [
     "z-select",
     hover.value && !fcous.value ? "is-hover" : "",
-    fcous.value ? `is-fcous--${compTYpe.value(props)}` : "",
+    fcous.value ? `is-fcous--${compType.value(props)}` : "",
     showDown.value ? "icon-rotate" : "",
     props.multiple ? "z-select-multiple" : "",
     `z-select--${compSize.value(props)}`,

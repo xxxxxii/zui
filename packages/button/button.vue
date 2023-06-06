@@ -62,13 +62,13 @@ const props = defineProps({
 const compSize = computed(() => {
   return props.size ? props.size : size ? size : "default";
 });
-const compTYpe = computed(() => {
+const compType = computed(() => {
   return props.type ? props.type : "default";
 });
 const bClass = computed(() => {
   return [
     "z-button",
-    `z-button-${compTYpe.value}`,
+    `z-button-${compType.value}`,
     `z-button-${compSize.value}`,
     props.disabled ? "z-button-disabled" : "",
     props.loading ? "z-button-disabled" : "",

@@ -2,7 +2,7 @@
  * @Description:
  * @version: 0.0.1
  * @Author: yulinZ
- * @LastEditTime: 2023-06-06 13:57:08
+ * @LastEditTime: 2023-06-06 17:58:42
  */
 import { GlobalConfigContextKey } from "../globalConfig/src/globalConfig";
 import { inject, computed } from "vue";
@@ -16,14 +16,14 @@ export function useCompGlobal() {
   const compSize = computed(() => (props, compInitSize = "md") => {
     return props?.size ? props?.size : size ? size : compInitSize;
   });
-  const compTYpe = computed(() => (props, compInitType = "primary") => {
+  const compType = computed(() => (props, compInitType = "primary") => {
     return props?.type ? props?.type : type ? type : compInitType;
   });
 
   return {
     gContent,
     compSize,
-    compTYpe,
+    compType,
     size,
     type,
   };

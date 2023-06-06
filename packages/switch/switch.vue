@@ -11,7 +11,7 @@
       />
       <label
         class="z-switch-label"
-        :class="`z-switch-${compTYpe(props)}`"
+        :class="`z-switch-${compType(props)}`"
         :for="dateStr"
       >
         <div class="z-switch-inner">
@@ -46,7 +46,7 @@ import { uuidv4 } from "../utils/uuid";
 import { computed, ref, h, render, nextTick } from "vue";
 import zIcon from "../icon";
 import { useCompGlobal } from "../utils/compGlobal";
-const { compSize, compTYpe } = useCompGlobal();
+const { compSize, compType } = useCompGlobal();
 
 const dateStr = ref("z-switch" + "-" + uuidv4());
 

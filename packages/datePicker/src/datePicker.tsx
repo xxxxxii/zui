@@ -60,14 +60,14 @@ export default defineComponent({
     const fcous = ref(false);
 
     // 自定义判断传入的字段
-    const compTYpe = computed(() => (props, compInitType = "primary") => {
+    const compType = computed(() => (props, compInitType = "primary") => {
       return props.activeType ? props.activeType : type ? type : compInitType;
     });
     const Class = computed(() => {
       return [
         "z-select",
         hover.value && !fcous.value ? "is-hover" : "",
-        fcous.value ? `is-fcous--${compTYpe.value(props)}` : "",
+        fcous.value ? `is-fcous--${compType.value(props)}` : "",
         showDown.value ? "icon-rotate" : "",
         `z-select--${compSize.value(props)}`,
       ];

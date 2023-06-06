@@ -31,7 +31,7 @@ import { radioProps } from "./radio";
 import { radioGroupContextKey } from "./radio-group";
 
 import { useCompGlobal } from "../../utils/compGlobal";
-const { compSize, compTYpe } = useCompGlobal();
+const { compSize, compType } = useCompGlobal();
 
 const props = defineProps(radioProps);
 
@@ -41,7 +41,7 @@ console.log(radioGroupContext);
 const Class = computed(() => {
   return [
     "z-radio",
-    `z-radio__dot--${compTYpe.value(props)}`,
+    `z-radio__dot--${compType.value(props)}`,
     `z-radio--${compSize.value(props?.size ? props : radioGroupContext)}`,
     props.disabled || radioGroupContext?.disabled ? "is-disabled" : "",
   ];

@@ -30,7 +30,7 @@ import { checkboxProps } from "./checkbox";
 import { checkboxGroupContextKey } from "./checkbox-group";
 
 import { useCompGlobal } from "../../utils/compGlobal";
-const { compSize, compTYpe } = useCompGlobal();
+const { compSize, compType } = useCompGlobal();
 
 const emit = defineEmits(["checked", "update:modelValue"]);
 const props = defineProps(checkboxProps);
@@ -54,7 +54,7 @@ const Class = computed(() => {
     props.indeterminate ? "is-indeterminate" : "",
     props.disabled ? "is-disabled" : "",
     checkboxGroupContext?.mode === "vertical" ? "is-vertical" : "",
-    `z-checkbox--${compTYpe.value(props)}`,
+    `z-checkbox--${compType.value(props)}`,
     `z-checkbox--${compSize.value(props?.size ? props : checkboxGroupContext)}`,
   ];
 });

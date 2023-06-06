@@ -52,7 +52,7 @@ import { computed, ref, watch } from "vue";
 import { useCompGlobal } from "../utils/compGlobal";
 const emit = defineEmits(["update:modelValue", "blur"]);
 
-const { compSize, compTYpe } = useCompGlobal();
+const { compSize, compType } = useCompGlobal();
 const fromItemContext = inject(formItemContextKey, null);
 
 const props = defineProps({
@@ -102,7 +102,7 @@ const zClass = computed(() => {
       "z-input-clearable": props.clearable,
     },
     `z-input--${compSize.value(props)}`,
-    `z-input--${compTYpe.value(props)}`,
+    `z-input--${compType.value(props)}`,
   ];
 });
 

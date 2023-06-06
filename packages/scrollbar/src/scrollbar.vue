@@ -6,7 +6,7 @@
 -->
 <template>
   <div :class="Class">
-  <slot ></slot>
+    <slot></slot>
   </div>
 </template>
 
@@ -19,7 +19,7 @@ export default {
 <script setup lang="ts">
 import { computed } from "vue";
 import { useCompGlobal } from "../../utils/compGlobal";
-const { compTYpe } = useCompGlobal();
+const { compType } = useCompGlobal();
 
 const props = defineProps({
   type: {
@@ -28,7 +28,7 @@ const props = defineProps({
 });
 
 const Class = computed(() => {
-  return ["z-scrollbar", `z-scrollbar--${compTYpe.value(props)}`];
+  return ["z-scrollbar", `z-scrollbar--${compType.value(props)}`];
 });
 </script>
 

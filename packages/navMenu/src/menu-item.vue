@@ -29,7 +29,7 @@ import { subMenuContextKey } from "./sub-menu";
 import { menuContextKey } from "./menu";
 import { uuidv4 } from "../../utils";
 import { useCompGlobal } from "../../utils/compGlobal";
-const { compSize, compTYpe } = useCompGlobal();
+const { compSize, compType } = useCompGlobal();
 
 const props = defineProps(menuItemProps);
 
@@ -55,12 +55,12 @@ const Class = computed(() => {
   return [
     "z-menu-item",
     menuContext?.menuActive === props?.path
-      ? `is-active--${compTYpe.value(menuContext)}`
+      ? `is-active--${compType.value(menuContext)}`
       : "",
     menuContext?.collapse && menuContext?.mode === "horizontal"
       ? "z-menu-item--horizontal"
       : "",
-    `z-menu-item--${compTYpe.value(menuContext)}`,
+    `z-menu-item--${compType.value(menuContext)}`,
   ];
 });
 

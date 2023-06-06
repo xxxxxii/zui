@@ -28,7 +28,7 @@ export default defineComponent({
 
   setup(props, { slots, attrs, emit }) {
     const { compSize, type } = useCompGlobal();
-    const compTYpe = computed(() => (props, compInitType = "primary") => {
+    const compType = computed(() => (props, compInitType = "primary") => {
       return props.activeType ? props.activeType : type ? type : compInitType;
     });
     const date = new Date(); // 时间
@@ -212,7 +212,7 @@ export default defineComponent({
 
     init();
     const Class = computed(() => {
-      return ["z-calendar", `z-calendar--${compTYpe.value(props)}`];
+      return ["z-calendar", `z-calendar--${compType.value(props)}`];
     });
 
     return () => (
@@ -315,7 +315,7 @@ export default defineComponent({
           </div>
           <z-button
             class="z-calendar-confirm"
-            type={compTYpe.value(props)}
+            type={compType.value(props)}
             size="xs"
             onClick={confirm}
           >

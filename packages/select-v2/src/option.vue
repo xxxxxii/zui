@@ -20,7 +20,7 @@ import { inject, computed, watch } from "vue";
 import { optionProps } from "./option";
 import { selectContextKey } from "./select";
 import { useCompGlobal } from "../../utils/compGlobal";
-const { compSize, compTYpe } = useCompGlobal();
+const { compSize, compType } = useCompGlobal();
 const props = defineProps(optionProps);
 
 const selectContext = inject(selectContextKey, null);
@@ -32,7 +32,7 @@ const Class = computed(() => {
     "z-option-item",
     selectContext?.modelValue === props.value ||
     (selectContext?.modelValue as Array<number | string>)?.includes(props.value)
-      ? `is-active--${compTYpe.value(props)}`
+      ? `is-active--${compType.value(props)}`
       : "",
   ];
 });

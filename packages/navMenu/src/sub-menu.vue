@@ -59,7 +59,7 @@ import { subMenuContextKey, subMenuProps } from "./sub-menu";
 import { menuContextKey } from "./menu";
 import { deepClone } from "../../utils";
 import { useCompGlobal } from "../../utils/compGlobal";
-const { compSize, compTYpe } = useCompGlobal();
+const { compSize, compType } = useCompGlobal();
 
 const showMenu = ref(false);
 const cacheMenuOpen = ref(false);
@@ -83,7 +83,7 @@ const Class = computed(() => {
     menuContext?.collapse && menuContext?.mode === "horizontal"
       ? "z-menu-item--horizontal"
       : "",
-    `z-menu-item--${compTYpe.value(menuContext)}`,
+    `z-menu-item--${compType.value(menuContext)}`,
   ];
 });
 
