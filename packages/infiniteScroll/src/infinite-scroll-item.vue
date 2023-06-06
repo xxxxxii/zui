@@ -1,3 +1,9 @@
+<!--
+ * @Description: 
+ * @version: 0.0.1
+ * @Author: yulinZ
+ * @LastEditTime: 2023-06-05 17:00:42
+-->
 <template>
   <div class="z-infinite-scroll-item">
     <slot />
@@ -42,9 +48,10 @@ provide(radioGroupContextKey, context.value);
 </script>
 
 <style scoped lang="scss">
-.z-radio-group {
-  display: inline-flex;
-  flex-flow: wrap;
+.z-infinite-scroll-item {
+  display: flex;
+  text-align: center;
+  justify-content: center;
   align-items: center;
 }
 </style>

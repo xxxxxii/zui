@@ -14,6 +14,8 @@ html.dark {
   }
 }
 .z-scrollbar {
+  scrollbar-width: thin !important;
+  /* 火狐滚动条无法自定义宽度，只能通过此属性使滚动条宽度变细 */
   /* 整个滚动条的样式 */
   ::-webkit-scrollbar {
     width: 6px;
@@ -52,7 +54,14 @@ html.dark {
     cursor: pointer;
   }
 }
+.z-scrollbar:hover {
+  overflow-y: auto;
+}
 .z-scrollbar--primary {
+  scrollbar-color: rgba($color: $primary, $alpha: 0.3) rgba(0, 0, 0, 0);
+  /* 第一个方块颜色，第二个轨道颜色(用于更改火狐浏览器样式) */
+
+  -ms-overflow-style: none;
   /* 滚动条里面的小方块，能上下移动 */
   ::-webkit-scrollbar-thumb {
     border-radius: 6px;
@@ -69,6 +78,7 @@ html.dark {
   }
 }
 .z-scrollbar--warning {
+  scrollbar-color: rgba($color: $warning, $alpha: 0.3) rgba(0, 0, 0, 0);
   /* 滚动条里面的小方块，能上下移动 */
   ::-webkit-scrollbar-thumb {
     border-radius: 6px;
@@ -86,6 +96,7 @@ html.dark {
 }
 
 .z-scrollbar--success {
+  scrollbar-color: rgba($color: $success, $alpha: 0.3) rgba(0, 0, 0, 0);
   /* 滚动条里面的小方块，能上下移动 */
   ::-webkit-scrollbar-thumb {
     border-radius: 6px;
@@ -103,7 +114,8 @@ html.dark {
 }
 
 .z-scrollbar--info {
-  /* 滚动条里面的小方块，能上下移动 */
+  scrollbar-color: rgba($color: $info, $alpha: 0.3) rgba(0, 0, 0, 0);
+  /* 第一个方块颜色，第二个轨道颜色(用于更改火狐浏览器样式) */
   ::-webkit-scrollbar-thumb {
     border-radius: 6px;
     // box-shadow: inset 0 0 1px 0 #f2f2f2;
@@ -119,12 +131,13 @@ html.dark {
   }
 }
 .z-scrollbar--danger {
+  scrollbar-color: rgba($color: $danger, $alpha: 0.3) rgba(0, 0, 0, 0);
   /* 滚动条里面的小方块，能上下移动 */
   ::-webkit-scrollbar-thumb {
     border-radius: 6px;
     // box-shadow: inset 0 0 1px 0 #f2f2f2;
     // border: 3px solid #f2f2f2;
-    background-color: rgba($color: $info, $alpha: 0.3);
+    background-color: rgba($color: $danger, $alpha: 0.3);
   }
 
   /* 滚动条滑块hover时样式 */
@@ -133,4 +146,8 @@ html.dark {
     background-color: rgba($color: $danger, $alpha: 0.9);
     cursor: pointer;
   }
+}
+
+* {
+  scrollbar-width: thin;
 }

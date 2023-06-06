@@ -1,14 +1,16 @@
 <template>
   <label :class="Class">
-    <input
-      type="radio"
-      :value="value"
-      :checked="checked"
-      :disabled="disabled"
-      @change="radioChange"
-      v-bind="$attrs"
-    /><span> </span
-    ><span class="z-radio__label">
+    <div class="z-radio__input">
+      <input
+        type="radio"
+        :value="value"
+        :checked="checked"
+        :disabled="disabled"
+        @change="radioChange"
+        v-bind="$attrs"
+      /><span> </span>
+    </div>
+    <span class="z-radio__label">
       <slot>
         {{ label }}
       </slot>
@@ -34,12 +36,14 @@ const { compSize, compTYpe } = useCompGlobal();
 const props = defineProps(radioProps);
 
 const radioGroupContext = inject(radioGroupContextKey, null);
+console.log(radioGroupContext);
 
 const Class = computed(() => {
   return [
     "z-radio",
     props.disabled || radioGroupContext?.disabled ? "is-disabled" : "",
     `z-radio__dot--${compTYpe.value(props)}`,
+    `z-radio--${compSize.value(props?.size ? props : radioGroupContext)}`,
   ];
 });
 
@@ -66,12 +70,22 @@ const radioChange = (e) => {
 .z-radio {
   display: flex;
   align-items: center;
+  justify-content: center;
   font-size: 14px;
   transition: all 0.5s linear;
 
+  &__input {
+    white-space: nowrap;
+    cursor: pointer;
+    outline: none;
+    display: inline-flex;
+    position: relative;
+    vertical-align: middle;
+  }
   &__label {
     padding: 0 8px 0 6px;
     cursor: pointer;
+    line-height: 14px;
   }
 
   input[type="radio"] + span {
@@ -124,6 +138,37 @@ const radioChange = (e) => {
 
   input[type="radio"] {
     display: none;
+  }
+}
+
+.z-radio--lg {
+  input[type="radio"] + span {
+    width: 16px;
+    height: 16px;
+    &::after {
+      width: 4px;
+      height: 4px;
+    }
+  }
+}
+.z-radio--md {
+  input[type="radio"] + span {
+    width: 14px;
+    height: 14px;
+    &::after {
+      width: 4px;
+      height: 4px;
+    }
+  }
+}
+.z-radio--xs {
+  input[type="radio"] + span {
+    width: 12px;
+    height: 12px;
+    &::after {
+      width: 4px;
+      height: 4px;
+    }
   }
 }
 

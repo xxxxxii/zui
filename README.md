@@ -2,7 +2,7 @@
  * @Description:
  * @version: 0.0.1
  * @Author: yulinZ
- * @LastEditTime: 2023-06-02 15:23:40
+ * @LastEditTime: 2023-06-06 15:47:51
 -->
 
 # Vue 3 UI
@@ -100,3 +100,9 @@ font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC",
 2. fix dialog 可见时 页面还能滚动
 3. 更新datePicker组件跟随 全局控制
 4. input，select 样式调整 
+
+
+## v0.0.11 2023-6-6
+1. add：radio 组件的size 属性支持
+2. add：checkbox 组件的size 属性支持
+3. fix：若干样式问题和bug

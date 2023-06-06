@@ -132,7 +132,7 @@ const drawerRef: Ref = ref(null);
 
     .z-drawer__body {
       flex: 1;
-      overflow-y: scroll;
+      overflow-y: auto;
     }
     .z-drawer__header {
       display: flex;

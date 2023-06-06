@@ -3,14 +3,13 @@
  * @version: 
  * @Author: yulinZ
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-06-01 09:42:33
+ * @LastEditTime: 2023-06-06 10:41:34
 -->
 <template>
   <div class="z-icon">
     <svg
       class="icon"
       aria-hidden="true"
-      :font-size="size"
       :color="color"
       :style="styles"
     >
@@ -38,6 +37,7 @@ const props = defineProps({
   },
   size: {
     type: String,
+    default: "14",
   },
   styles: {
     type: Object,
@@ -51,8 +51,8 @@ const props = defineProps({
   justify-content: center;
 }
 .icon {
-  width: 14px;
-  height: 14px;
+  width: v-bind(size + "px");
+  height: v-bind(size + "px");
   vertical-align: -0.15em;
   fill: currentColor;
   overflow: hidden;

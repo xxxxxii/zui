@@ -2,12 +2,13 @@
  * @Description: 
  * @version: 0.0.1
  * @Author: yulinZ
- * @LastEditTime: 2023-06-05 14:40:07
+ * @LastEditTime: 2023-06-05 17:20:22
 -->
 <template>
   <div>
     <h2>无限滚动</h2>
-    <z-infinite-scroll :listData="listData" :num="4"> </z-infinite-scroll>
+    <z-infinite-scroll :threshold="1" :listData="listData" :num="4" doneText="没有数据了..">
+    </z-infinite-scroll>
   </div>
 </template>
 
@@ -17,7 +18,7 @@ import { h } from "vue";
 // 生成1000000条数据
 function getData() {
   let data = [];
-  for (var i = 0; i < 1000; i++) {
+  for (var i = 0; i < 10; i++) {
     data.push({
       name: "test" + i,
       id: i,

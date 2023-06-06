@@ -1,8 +1,15 @@
+<!--
+ * @Description:
+ * @version: 0.0.1
+ * @Author: yulinZ
+ * @LastEditTime: 2023-06-06 14:06:24
+-->
+
 # Checkbox 组件
 
 <script setup>
   import demo from "./demo.vue"
-    import demoGroup from "./demoGroup.vue"
+  import demoGroup from "./demoGroup.vue"
   import preView from "@/components/preview/preview.vue"
 </script>
 <demo />
