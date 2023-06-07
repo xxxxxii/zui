@@ -51,13 +51,21 @@ $input-xs-height: 24px;
 $input-md-height: 32px;
 $input-lg-height: 38px;
 
+// bem
+@import "./bem.scss";
+
+// 通用动画
+@import "./animation.scss";
+
+// 通用样式
+@import "./public.scss";
+
 @import "./fcous.scss";
 @import "./select.scss";
 @import "./skeleton.scss";
 @import "./menu.scss";
 @import "./scrollbar.scss";
-
-@import "./animation.scss";
+@import "./slider.scss";
 
 :root {
   font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC",
@@ -88,7 +96,4 @@ html.dark {
     background-size: 400% 100%;
     animation: z-skeleton-loading 1.4s ease infinite;
   }
-  // .z-menu{
-  //     background-color: $comp-dark-bg;
-  // }
 }

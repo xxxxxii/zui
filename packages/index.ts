@@ -27,6 +27,7 @@ import zSkeleton from "./skeleton";
 import zText from "./text";
 import zColorPicker from "./colorPicker";
 import zDatePicker from "./datePicker";
+import zSlider from "./slider";
 
 import { zCheckbox, zCheckboxGroup } from "./checkbox";
 import { zRadio, zRadioGroup } from "./radio";
@@ -92,6 +93,7 @@ const plugins: any = [
   zDatePicker,
   zInfiniteScroll,
   zInfiniteScrollItem,
+  zSlider,
 ];
 
 const install = (app: App) => {
@@ -149,5 +151,6 @@ export {
   zDatePicker,
   zInfiniteScroll,
   zInfiniteScrollItem,
+  zSlider,
 };
 export default ZUI;

@@ -1,0 +1,88 @@
+$lg-h: 8px;
+$md-h: 5px;
+$xs-h: 3px;
+
+@include b("slider") {
+  @include e("input") {
+    width: 100%;
+    display: inline-block;
+    background: rgba($color: $primary, $alpha: 0.3);
+    border-radius: 2px;
+    position: relative;
+  }
+  @include e("bar") {
+    height: $xs-h;
+    background: $primary;
+    position: absolute;
+    width: 20%;
+    border-radius: 2px;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  @include e("button") {
+    position: absolute;
+    left: 20%;
+    top: 0;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+  }
+  @include m("md") {
+    $h-2: calc($md-h / 2);
+    @include e("input") {
+      height: $md-h;
+      border-radius: $h-2;
+      -webkit-border-radius: $h-2;
+      -moz-border-radius: $h-2;
+      -ms-border-radius: $h-2;
+      -o-border-radius: $h-2;
+      @include e("button") {
+        margin-top: $h-2;
+      }
+    }
+    @include e("bar") {
+      height: $md-h;
+      border-radius: $h-2;
+    }
+  }
+  @include m("lg") {
+    $h-2: calc($lg-h / 2);
+    @include e("input") {
+      height: $lg-h;
+      border-radius: $h-2;
+      -webkit-border-radius: $h-2;
+      -moz-border-radius: $h-2;
+      -ms-border-radius: $h-2;
+      -o-border-radius: $h-2;
+      @include e("button") {
+        margin-top: $h-2;
+      }
+    }
+    @include e("bar") {
+      height: $lg-h;
+      border-radius: $h-2;
+    }
+  }
+  @include m("xs") {
+    $h-2: calc($xs-h / 2);
+    @include e("input") {
+      height: $xs-h;
+      border-radius: $h-2;
+      -webkit-border-radius: $h-2;
+      -moz-border-radius: $h-2;
+      -ms-border-radius: $h-2;
+      -o-border-radius: $h-2;
+      @include e("button") {
+        margin-top: $h-2;
+      }
+    }
+    @include e("bar") {
+      height: $xs-h;
+      border-radius: $h-2;
+    }
+  }
+}

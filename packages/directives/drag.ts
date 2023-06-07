@@ -6,26 +6,21 @@ export default {
   },
 };
 
-
-
 function eventHandle(el, { parentPos, dragDom, isDrag }) {
-
   // 获取可移动元素的父节点
   let parentNode = el.parentNode;
 
   // 设置父节点定位
-  parentNode.style.position = parentPos || 'relative';
+  parentNode.style.position = parentPos || "relative";
   el.style.position = "absolute";
 
-  let dragArea = dragDom ? el.querySelector(dragDom) : el
-
+  let dragArea = dragDom ? el.querySelector(dragDom) : el;
 
   if (!isDrag) {
-    dragArea.onmouseover = null
-    dragArea.onmousedown = null
-    return
+    dragArea.onmouseover = null;
+    dragArea.onmousedown = null;
+    return;
   }
-
 
   // 设置鼠标hover效果:移动上前去显示可移动的提示效果，并且禁用页面可选择，离开恢复正常
   dragArea.onmouseover = () => {
@@ -82,30 +77,35 @@ function eventHandle(el, { parentPos, dragDom, isDrag }) {
   };
 }
 
-const _binding: any = ref({})
+const _binding: any = ref({});
 
 export const Drag = {
   mounted(el, binding) {
-    _binding.value = binding.value
-    const { parentPos, dragDom, isDrag } = _binding.value ? _binding.value : { parentPos: 'relative', dragDom: null, isDrag: true }
+    _binding.value = binding.value;
+    const { parentPos, dragDom, isDrag } = _binding.value
+      ? _binding.value
+      : { parentPos: "relative", dragDom: null, isDrag: true };
 
-    eventHandle(el, { parentPos, dragDom, isDrag })
-
+    eventHandle(el, { parentPos, dragDom, isDrag });
   },
   beforeUpdate(el, binding) {
-    _binding.value = binding.value
+    _binding.value = binding.value;
 
-    const { parentPos, dragDom, isDrag } = _binding.value ? _binding.value : { parentPos: 'relative', dragDom: null, isDrag: true }
-    eventHandle(el, { parentPos, dragDom, isDrag })
+    const { parentPos, dragDom, isDrag } = _binding.value
+      ? _binding.value
+      : { parentPos: "relative", dragDom: null, isDrag: true };
+    eventHandle(el, { parentPos, dragDom, isDrag });
   },
   beforeUnmount() {
     _binding.value = null;
-
-  }
-}
+  },
+};
 
 const defaneDrag = (app: {
-  directive: (arg0: string, arg1: { mounted(el: any, binding: any): void }) => void;
+  directive: (
+    arg0: string,
+    arg1: { mounted(el: any, binding: any): void }
+  ) => void;
 }) => {
   app.directive("drag", Drag);
 };

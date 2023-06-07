@@ -6,10 +6,10 @@
     @mouseenter="mouseenter"
     @mouseleave="mouseleave"
   >
-    <span class="z-popover__trigger" ref="popoverTriggerRef">
+    <div class="z-popover__trigger" ref="popoverTriggerRef">
       <!-- @click="clickTrigger" -->
       <slot />
-    </span>
+    </div>
 
     <transition name="popover">
       <div
@@ -23,8 +23,8 @@
         </span>
         <span v-else class="z-popover__text">
           <div>{{ title }}</div>
-          <div class="z-popover__text__content">
-            {{ content }} {{ placement }}
+          <div v-if="content" class="z-popover__text__content">
+            {{ content }}
           </div>
         </span>
       </div>
@@ -211,12 +211,11 @@ onMounted(() => {});
   -o-transform: translate(0, v-bind(aniYHeight));
 }
 .z-popover {
-  display: block;
   position: relative;
   // width: 100%;
+  display: inline-block;
   &__trigger {
-    box-sizing: border-box;
-    display: block;
+    display: inline-block;
   }
   &__content {
     position: absolute;

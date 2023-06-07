@@ -3,8 +3,9 @@
     <z-global-config :config="config" style="height: 100vh; overflow: auto">
       <z-header class="doc-header">
         <div class="doc-header-box">
-          <span class="logo"> ZUI </span
-          ><span
+          <span class="logo"> ZUI </span>
+
+          <span
             ><z-tag round>V {{ version }}</z-tag>
           </span>
           <div class="menu-box">
@@ -49,7 +50,7 @@ import { version } from "../package.json";
 
 const config = ref({
   type: "info",
-  size: "xs",
+  size: "md",
 });
 
 const menus: any = ref([
