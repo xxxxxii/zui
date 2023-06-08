@@ -2,7 +2,7 @@
  * @Description:
  * @version: 0.0.1
  * @Author: yulinZ
- * @LastEditTime: 2023-06-06 15:47:51
+ * @LastEditTime: 2023-06-08 15:04:44
 -->
 
 # Vue 3 UI
@@ -98,11 +98,17 @@ font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC",
 
 1. fix navMenu 侧边模式下 hover 触发状态下点击还能控制的 bug,active 变化时为更新 bug
 2. fix dialog 可见时 页面还能滚动
-3. 更新datePicker组件跟随 全局控制
-4. input，select 样式调整 
-
+3. 更新 datePicker 组件跟随 全局控制
+4. input，select 样式调整
 
 ## v0.0.11 2023-6-6
-1. add：radio 组件的size 属性支持
-2. add：checkbox 组件的size 属性支持
-3. fix：若干样式问题和bug
+
+1. add：radio 组件的 size 属性支持
+2. add：checkbox 组件的 size 属性支持
+3. fix：若干样式问题和 bug
+
+## v0.0.11 2023-6-8
+
+1. add: slider 组件
+2. fix: slider 组件功能 bug
+3. edit: popover 组件样式

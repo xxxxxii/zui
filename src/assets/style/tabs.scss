@@ -1,0 +1,50 @@
+@include b("tabs") {
+  @include e("header") {
+    display: flex;
+    align-items: center;
+  }
+  @include e("btns") {
+    --container_width: 300px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    background-color: #fff;
+    color: #000000;
+    width: var(--container_width);
+    overflow: hidden;
+    border: 1px solid rgba(53, 52, 52, 0.226);
+    input {
+      display: none;
+    }
+    label {
+      width: 100%;
+      padding: 10px;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1;
+      font-weight: 600;
+      letter-spacing: -1px;
+      font-size: 14px;
+    }
+    label:has(input:checked) {
+      color: #fff;
+    }
+    label:has(input:checked) ~ .selection {
+      background-color: $primary;
+      display: inline-block;
+    }
+
+    .selection {
+      display: none;
+      position: absolute;
+      height: 100%;
+      z-index: 0;
+      left: 0;
+      top: 0;
+      transition: 0.15s ease;
+    }
+  }
+}

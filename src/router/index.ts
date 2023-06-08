@@ -2,7 +2,7 @@
  * @Author: xxxxxii 1973329248@qq.com
  * @Date: 2023-02-27 03:31:06
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-06-07 10:10:21
+ * @LastEditTime: 2023-06-08 15:19:55
  * @FilePath: \z-ui\src\router\index.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -335,6 +335,16 @@ export const routesList = [
           group: "通用组件",
         },
         component: () => import("@/pages/slider/doc/index.md"),
+      },
+      {
+        // tabs
+        path: "/tabs",
+        name: "tabs",
+        meta: {
+          title: "tabs 标签页",
+          group: "通用组件",
+        },
+        component: () => import("@/pages/tabs/doc/index.md"),
       },
     ],
   },
