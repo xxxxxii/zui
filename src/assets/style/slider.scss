@@ -1,12 +1,13 @@
 $lg-h: 8px;
 $md-h: 5px;
 $xs-h: 3px;
+$op: 0.3;
 
 @include b("slider") {
   @include e("input") {
     width: 100%;
     display: inline-block;
-    background: rgba($color: $primary, $alpha: 0.3);
+    background: rgba($color: $primary, $alpha: $op);
     border-radius: 2px;
     position: relative;
   }
@@ -20,17 +21,64 @@ $xs-h: 3px;
       cursor: pointer;
     }
   }
-
-  @include e("button") {
-    position: absolute;
-    left: 20%;
-    top: 0;
-    transform: translate(-50%, -50%);
-    -webkit-transform: translate(-50%, -50%);
-    -moz-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    -o-transform: translate(-50%, -50%);
+  @include e("dot") {
+    @include e("dotbtn") {
+      position: relative;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      &::after {
+        content: "";
+        width: 80%;
+        height: 80%;
+        background: #fff;
+        border-radius: 50%;
+        @extend .pos-center;
+      }
+    }
   }
+  &__button,
+  &__button--start {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @extend .pos-center;
+    // transform: translate(-50%, -50%);
+    // -webkit-transform: translate(-50%, -50%);
+    // -moz-transform: translate(-50%, -50%);
+    // -ms-transform: translate(-50%, -50%);
+    // -o-transform: translate(-50%, -50%);
+    z-index: 999;
+  }
+  .z-slider__markbox {
+    position: absolute;
+    top: 0;
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transform: translate((-50%), 0);
+    -webkit-transform: translate((-50%), 0);
+    -moz-transform: translate((-50%), 0);
+    -ms-transform: translate((-50%), 0);
+    -o-transform: translate((-50%), 0);
+    .z-slider__mark {
+      background: #ffffff;
+      border-radius: 50%;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      -ms-border-radius: 50%;
+      -o-border-radius: 50%;
+    }
+  }
+
+  // size
   @include m("md") {
     $h-2: calc($md-h / 2);
     @include e("input") {
@@ -40,8 +88,10 @@ $xs-h: 3px;
       -moz-border-radius: $h-2;
       -ms-border-radius: $h-2;
       -o-border-radius: $h-2;
-      @include e("button") {
-        margin-top: $h-2;
+
+      .z-slider__mark {
+        width: $md-h;
+        height: $md-h;
       }
     }
     @include e("bar") {
@@ -58,8 +108,9 @@ $xs-h: 3px;
       -moz-border-radius: $h-2;
       -ms-border-radius: $h-2;
       -o-border-radius: $h-2;
-      @include e("button") {
-        margin-top: $h-2;
+      .z-slider__mark {
+        width: $lg-h;
+        height: $lg-h;
       }
     }
     @include e("bar") {
@@ -76,13 +127,76 @@ $xs-h: 3px;
       -moz-border-radius: $h-2;
       -ms-border-radius: $h-2;
       -o-border-radius: $h-2;
-      @include e("button") {
-        margin-top: $h-2;
+      .z-slider__mark {
+        width: $xs-h;
+        height: $xs-h;
       }
     }
     @include e("bar") {
       height: $xs-h;
       border-radius: $h-2;
+    }
+  }
+
+  // type
+  @include m("success") {
+    $b-color: $success;
+    @include e("input") {
+      background: rgba($color: $b-color, $alpha: $op);
+    }
+    @include e("bar") {
+      background: $b-color;
+    }
+    @include e("dotbtn") {
+      background: $b-color;
+    }
+  }
+  @include m("primary") {
+    $b-color: $primary;
+    @include e("input") {
+      background: rgba($color: $b-color, $alpha: $op);
+    }
+    @include e("bar") {
+      background: $b-color;
+    }
+    @include e("dotbtn") {
+      background: $b-color;
+    }
+  }
+  @include m("info") {
+    $b-color: $info;
+    @include e("input") {
+      background: rgba($color: $b-color, $alpha: $op);
+    }
+    @include e("bar") {
+      background: $b-color;
+    }
+    @include e("dotbtn") {
+      background: $b-color;
+    }
+  }
+  @include m("danger") {
+    $b-color: $danger;
+    @include e("input") {
+      background: rgba($color: $b-color, $alpha: $op);
+    }
+    @include e("bar") {
+      background: $b-color;
+    }
+    @include e("dotbtn") {
+      background: $b-color;
+    }
+  }
+  @include m("warning") {
+    $b-color: $warning;
+    @include e("input") {
+      background: rgba($color: $b-color, $alpha: $op);
+    }
+    @include e("bar") {
+      background: $b-color;
+    }
+    @include e("dotbtn") {
+      background: $b-color;
     }
   }
 }

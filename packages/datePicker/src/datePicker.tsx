@@ -3,7 +3,7 @@
  * @version:
  * @Author: yulinZ
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-06-02 10:47:41
+ * @LastEditTime: 2023-06-08 14:55:34
  */
 import { defineComponent, computed, ref, Transition } from "vue";
 import zCalendar from "./calendar.jsx";
@@ -120,6 +120,7 @@ export default defineComponent({
     return () => (
       <div class={Class.value} style={{ width: props.width }}>
         <z-popover
+          width="auto"
           placement="bottom"
           trigger="click"
           selfSet

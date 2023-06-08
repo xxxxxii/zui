@@ -71,7 +71,7 @@ const visible = ref(props.visible);
 // visible.value = true;
 const mouseenter = () => {
   emit("hover", true);
-  if (props.trigger === "hover") {
+  if (props.trigger === "hover" && !props.selfSet) {
     visible.value = true;
     getContentHeight();
   }
@@ -79,7 +79,7 @@ const mouseenter = () => {
 
 const mouseleave = () => {
   emit("hover", false);
-  if (props.trigger === "hover") {
+  if (props.trigger === "hover" && !props.selfSet) {
     visible.value = false;
   }
 };
@@ -212,20 +212,24 @@ onMounted(() => {});
 }
 .z-popover {
   position: relative;
-  // width: 100%;
   display: inline-block;
+
   &__trigger {
-    display: inline-block;
   }
   &__content {
     position: absolute;
+    transform: translate(-50%, 0);
+    left: 50%;
     z-index: 1000;
+    width: v-bind(width);
     background-color: $comp-light-bg;
     box-shadow: $border-light-shadow;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 .z-popover__content {
-  width: v-bind(width);
 }
 .z-popover__text {
   display: block;
