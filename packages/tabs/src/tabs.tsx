@@ -75,7 +75,9 @@ export default defineComponent({
                   childList.value.length +
                 "px"
               });width:${100 + "px"}` */}
-            <span class="selection" style={{ width: "100px" }}></span>
+            <span class="selection" style={{ width: "100px" }}>
+              222
+            </span>
           </div>
         </div>
         <div class="z-tabs__body">{slots.default()}</div>
