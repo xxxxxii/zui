@@ -1,3 +1,9 @@
+/*
+ * @Description:
+ * @version: 0.0.1
+ * @Author: yulinZ
+ * @LastEditTime: 2023-06-09 09:46:20
+ */
 import { VNode, defineComponent, provide, ref, computed, h, watch } from "vue";
 import { TabsContextKey, tabsProps } from "./tabs";
 
@@ -69,13 +75,17 @@ export default defineComponent({
                 </label>
               );
             })}
-
-            {/* `translateX:(${
-                (childList.value.length * 100 * curretnIndex.value) /
-                  childList.value.length +
-                "px"
-              });width:${100 + "px"}` */}
-            <span class="selection" style={{ width: "100px" }}></span>
+            <span
+              class="selection"
+              style={{
+                width: "100px",
+                transform: `translateX(calc(${
+                  (childList.value.length * 100 * curretnIndex.value) /
+                    childList.value.length +
+                  "px"
+                }))`,
+              }}
+            ></span>
           </div>
         </div>
         <div class="z-tabs__body">{slots.default()}</div>
