@@ -2,12 +2,12 @@
  * @Description:
  * @version: 0.0.1
  * @Author: yulinZ
- * @LastEditTime: 2023-06-08 16:52:38
+ * @LastEditTime: 2023-06-14 11:14:43
  */
 import type { ExtractPropTypes, InjectionKey, PropType } from "vue";
 
 export const tabPaneProps = {
-  table: {
+  lable: {
     type: String,
   },
   name: {

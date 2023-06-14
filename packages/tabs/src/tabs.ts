@@ -2,7 +2,7 @@
  * @Description:
  * @version: 0.0.1
  * @Author: yulinZ
- * @LastEditTime: 2023-06-08 16:59:18
+ * @LastEditTime: 2023-06-14 17:37:30
  */
 import type { ExtractPropTypes, InjectionKey, PropType, VNode } from "vue";
 
@@ -11,6 +11,9 @@ export const tabsProps = {
     type: String,
     default: "0",
   },
+  type:{
+    type:String
+  },
 } as const;
 
 export type TabsProps = Partial<ExtractPropTypes<typeof tabsProps>>;
@@ -18,8 +21,6 @@ export type TabsProps = Partial<ExtractPropTypes<typeof tabsProps>>;
 export interface TabsContext extends TabsProps {
   collectChild: (item: any) => void;
   updateChildName: () => void;
-  childList: [];
-  childName: Number;
   selectTab: String;
 }
 

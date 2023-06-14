@@ -1,25 +1,101 @@
 @include b("tabs") {
   @include e("header") {
-    display: flex;
+    display: inline-flex;
     align-items: center;
+    border-bottom: 1px solid #e9e9e9;
+    width: 100%;
+    overflow-x: auto;
   }
+  //  组件主题色 start
+  @include m("info") {
+    label {
+      &:has(input:checked) {
+        color: $info;
+      }
+    }
+    .selection {
+      .z-tabs_bar-wrapper {
+        position: relative;
+        .z-tabs_btns-bar {
+          background-color: $info;
+        }
+      }
+    }
+  }
+  @include m("primary") {
+    label {
+      &:has(input:checked) {
+        color: $primary;
+      }
+    }
+    .selection {
+      .z-tabs_bar-wrapper {
+        position: relative;
+        .z-tabs_btns-bar {
+          background-color: $primary;
+        }
+      }
+    }
+  }
+  @include m("success") {
+    label {
+      &:has(input:checked) {
+        color: $success;
+      }
+    }
+    .selection {
+      .z-tabs_bar-wrapper {
+        position: relative;
+        .z-tabs_btns-bar {
+          background-color: $success;
+        }
+      }
+    }
+  }
+  @include m("danger") {
+    label {
+      &:has(input:checked) {
+        color: $danger;
+      }
+    }
+    .selection {
+      .z-tabs_bar-wrapper {
+        position: relative;
+        .z-tabs_btns-bar {
+          background-color: $danger;
+        }
+      }
+    }
+  }
+  @include m("warning") {
+    label {
+      &:has(input:checked) {
+        color: $warning;
+      }
+    }
+    .selection {
+      .z-tabs_bar-wrapper {
+        position: relative;
+        .z-tabs_btns-bar {
+          background-color: $warning;
+        }
+      }
+    }
+  }
+
+  //  组件主题色 end
   @include e("btns") {
-    --container_width: 300px;
     position: relative;
     display: flex;
     align-items: center;
-    border-radius: 10px;
-    background-color: #fff;
-    color: #000000;
-    width: var(--container_width);
     overflow: hidden;
-    border: 1px solid rgba(53, 52, 52, 0.226);
     input {
       display: none;
     }
+
     label {
+      padding: 10px 15px;
       width: 100%;
-      padding: 10px;
       cursor: pointer;
       display: flex;
       justify-content: center;
@@ -28,23 +104,93 @@
       font-weight: 600;
       letter-spacing: -1px;
       font-size: 14px;
+      .z-tabs__btn {
+        margin: 2px;
+      }
+      &:first-child {
+        padding: 10px 15px 10px 0;
+      }
+      &:nth-last-child(2) {
+        padding: 10px 0 10px 15px;
+      }
+      .z-tabs__btn {
+        display: flex;
+        align-items: center;
+        line-height: 14px;
+      }
+
+      &:has(input:checked) {
+        transition: 0.2s ease;
+      }
+      &:has(input:checked) ~ .selection {
+        display: inline-block;
+      }
     }
-    label:has(input:checked) {
-      color: #fff;
+    label:first-child ~ .selection {
+      .z-tabs_bar-wrapper {
+        justify-content: start;
+        .z-tabs_btns-bar {
+          width: calc(100% - 15px);
+        }
+      }
+    }
+    label:has(input:checked):first-child ~ .selection {
+      .z-tabs_bar-wrapper {
+        justify-content: start;
+        .z-tabs_btns-bar {
+          width: calc(100% - 15px);
+        }
+      }
+    }
+    label:has(input:checked):nth-last-child(2) ~ .selection {
+      .z-tabs_bar-wrapper {
+        justify-content: end;
+        .z-tabs_btns-bar {
+          width: calc(100% - 15px);
+        }
+      }
     }
     label:has(input:checked) ~ .selection {
-      background-color: $primary;
-      display: inline-block;
+      .z-tabs_bar-wrapper {
+        justify-content: center;
+        .z-tabs_btns-bar {
+          width: calc(100% - 30px);
+        }
+      }
     }
-
     .selection {
-      display: none;
       position: absolute;
       height: 100%;
       z-index: 0;
       left: 0;
       top: 0;
-      transition: 0.15s ease;
+      transition: 0.2s ease;
+      -webkit-transition: 0.2s ease;
+      -moz-transition: 0.2s ease;
+      -ms-transition: 0.2s ease;
+      -o-transition: 0.2s ease;
+      display: flex;
+      align-items: center;
+      .z-tabs_bar-wrapper {
+        width: 100%;
+        height: 100%;
+        flex: auto;
+        display: flex;
+        align-items: end;
+        position: relative;
+        .z-tabs_btns-bar {
+          width: 40px;
+          height: 2px;
+          // background-color: $primary;
+          bottom: 0;
+          right: 0;
+        }
+      }
     }
+  }
+}
+html.dark {
+  @include e("header") {
+    border-bottom: 1px solid #3f3f3f;
   }
 }

@@ -1,5 +1,5 @@
 <template>
-  <div v-if="paneShow">
+  <div v-if="paneShow" :id="tabName">
     <slot />
   </div>
 </template>
@@ -10,31 +10,30 @@ export default {
 };
 </script>
 <script setup lang="ts">
-import { inject, onMounted, ref, useSlots, computed } from "vue";
+import { inject, onMounted, ref, computed, getCurrentInstance } from "vue";
 import { tabPaneProps } from "./tab-pane";
 import { TabsContextKey } from "./tabs";
+const { proxy } = getCurrentInstance();
 
 const tabsContent = inject(TabsContextKey, null);
-const defSlot = useSlots().default();
 
 const props = defineProps(tabPaneProps);
-const tabName = ref(props.name ? props.name : tabsContent?.childName + "");
-tabsContent?.updateChildName();
-console.log(tabName.value, tabsContent?.modelValue);
+const tabName = ref(props.name ? props.name : props.lable);
+console.log(tabName.value, tabsContent?.selectTab);
 
 const paneShow = computed(() => {
-  return tabsContent?.selectTab && tabName.value === tabsContent?.selectTab;
+  return tabsContent?.selectTab === tabName.value;
 });
 
 const content = ref({
   ...props,
   tabName,
-  defSlot,
 });
 
-tabsContent.collectChild(content.value);
-
-onMounted(() => {});
+onMounted(() => {
+  // 收集子组件实例
+  tabsContent.collectChild(proxy);
+});
 </script>
 
 <style scoped lang="scss"></style>
