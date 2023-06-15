@@ -215,8 +215,6 @@ onMounted(() => {});
   display: inline-block;
   width:  v-bind(width);
 
-  &__trigger {
-  }
   &__content {
     position: absolute;
     transform: translate(-50%, 0);
