@@ -213,6 +213,7 @@ onMounted(() => {});
 .z-popover {
   position: relative;
   display: inline-block;
+  width:  v-bind(width);
 
   &__trigger {
   }
@@ -227,6 +228,9 @@ onMounted(() => {});
     display: flex;
     justify-content: center;
     align-items: center;
+    >span{
+      width: 100%;
+    }
   }
 }
 .z-popover__content {

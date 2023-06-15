@@ -2,8 +2,8 @@
  * @Description: 
  * @version: 
  * @Author: yulinZ
- * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-06-06 10:41:34
+ * @LastEditors: error: error: git config user.name & please set dead value or install git && error: git config user.email & please set dead value or install git & please set dead value or install git
+ * @LastEditTime: 2023-06-14 21:57:03
 -->
 <template>
   <div class="z-icon">
@@ -49,6 +49,8 @@ const props = defineProps({
 .z-icon {
   display: inline-flex;
   justify-content: center;
+  align-items: center;
+  fill: currentColor;
 }
 .icon {
   width: v-bind(size + "px");

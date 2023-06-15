@@ -1,7 +1,7 @@
 <template>
   <transition name="message" @before-leave="onClose" @after-leave="onDestroy">
     <div :style="{ top: topOffset + 'px' }" :class="zClass" v-if="visiable">
-      <z-icon v-show="isIcon" :name="iconName" :color="iconColor"></z-icon>
+      <z-icon v-show="isIcon" :name="iconName" :color="iconColor"  size="16"></z-icon>
       <span>
         {{ message }}
       </span>
@@ -124,6 +124,7 @@ onUnmounted(() => {});
   transition: all 0.4s linear;
   display: flex;
   align-items: center;
+  line-height: 14px;
   > .z-icon {
     margin-right: 6px;
   }

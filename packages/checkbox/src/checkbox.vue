@@ -125,13 +125,15 @@ const checkboxChange = (e) => {
       border: solid white;
       border-width: 0 2px 2px 0;
       transform: rotate(45deg);
-      animation: checkbox-ani 0.2s ease-out;
+      // animation: checkbox-ani 0.2s ease-out;
       @keyframes checkbox-ani {
         0% {
-          transform: rotate(45deg) scale(0);
+          transform: rotate(45deg);
+           opacity: 0; 
         }
         100% {
-          transform: rotate(45deg) scale(1);
+          transform: rotate(45deg);
+          opacity: 1; 
         }
       }
     }
