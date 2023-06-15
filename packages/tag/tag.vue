@@ -90,6 +90,7 @@ const tagClose = () => {
     &__label {
       display: flex;
       align-content: center;
+      line-height: 1;
     }
     .icon {
       margin: 2px;

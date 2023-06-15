@@ -17,7 +17,7 @@
             class="z-select__wrapper__tags"
           >
             <z-tag
-              style="margin: 1px"
+              class="z-select_tag"
               v-for="(item, index) in tagList"
               :key="item?.vallue || index"
               closeable
@@ -259,6 +259,11 @@ provide(selectContextKey, context.value);
 <style lang="scss" scoped>
 .z-select {
   width: v-bind(width);
+  &_tag {
+    margin: 1px;
+    background: $comp-light-second-bg;
+    color: $light-color;
+  }
 }
 input {
   outline: none;
@@ -281,6 +286,11 @@ input {
 
 html.dark {
   .z-select {
+    &_tag {
+      margin: 1px;
+      background: $comp-dark-second-bg;
+      color: $dark-color;
+    }
     input {
       background: $dark-bg;
       color: $dark-color;

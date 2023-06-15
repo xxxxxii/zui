@@ -2,7 +2,7 @@
  * @Description:
  * @version: 0.0.1
  * @Author: yulinZ
- * @LastEditTime: 2023-06-08 15:04:44
+ * @LastEditTime: 2023-06-15 17:12:38
 -->
 
 # Vue 3 UI
@@ -112,3 +112,14 @@ font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC",
 1. add: slider 组件
 2. fix: slider 组件功能 bug
 3. edit: popover 组件样式
+
+## v0.0.11 2023-6-14
+
+1. 完成 tabs 组件基础功能开发
+2. fix:select dropdown style bug
+
+## v0.0.11 2023-6-15
+
+1. edit:select 多选 tag 样式
+2. add: tabs 组件 shou type
+3. add: tabs 组件 的排列位置 tabPosition

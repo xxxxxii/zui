@@ -1,10 +1,18 @@
+$border-color: rgba(#979797, 0.3);
+$header-border-color: rgba(#979797, 0.3);
+:root {
+  $border-color: #fff;
+}
 @include b("tabs") {
   @include e("header") {
     display: inline-flex;
     align-items: center;
-    border-bottom: 1px solid #e9e9e9;
     width: 100%;
     overflow-x: auto;
+  }
+  @include e("body") {
+    width: 100%;
+    height: 100%;
   }
   //  组件主题色 start
   @include m("info") {
@@ -82,8 +90,10 @@
       }
     }
   }
-
   //  组件主题色 end
+
+  // 组件 tab 样式
+
   @include e("btns") {
     position: relative;
     display: flex;
@@ -142,7 +152,7 @@
         }
       }
     }
-    label:has(input:checked):nth-last-child(2) ~ .selection {
+    label:has(input:checked):nth-last-child(1) ~ .selection {
       .z-tabs_bar-wrapper {
         justify-content: end;
         .z-tabs_btns-bar {
@@ -158,12 +168,12 @@
         }
       }
     }
+
     .selection {
       position: absolute;
       height: 100%;
       z-index: 0;
-      left: 0;
-      top: 0;
+
       transition: 0.2s ease;
       -webkit-transition: 0.2s ease;
       -moz-transition: 0.2s ease;
@@ -178,19 +188,261 @@
         display: flex;
         align-items: end;
         position: relative;
-        .z-tabs_btns-bar {
-          width: 40px;
-          height: 2px;
-          // background-color: $primary;
-          bottom: 0;
-          right: 0;
+        left: 0;
+        right: 0;
+        top: 0;
+        right: 0;
+        justify-content: center;
+      }
+    }
+  }
+}
+.z-tabs--left,
+.z-tabs--right {
+  display: flex;
+  @include e("header") {
+    flex: none;
+    width: fit-content;
+    box-sizing: border-box;
+    height: 100%;
+    @include e("btns") {
+      display: inline-flex;
+      flex-direction: column;
+      label {
+        padding: 10px 15px;
+        &:first-child {
+          padding: 10px 15px;
+        }
+        &:nth-last-child(2) {
+          padding: 10px 15px;
         }
       }
     }
   }
 }
-html.dark {
+.z-tabs--left {
   @include e("header") {
-    border-bottom: 1px solid #3f3f3f;
+    margin-right: 8px;
+  }
+}
+.z-tabs--right {
+  flex-direction: row-reverse;
+  @include e("header") {
+    margin-left: 8px;
+  }
+}
+.z-tabs--top {
+  display: flex;
+  flex-direction: column;
+}
+.z-tabs--bottom {
+  display: flex;
+  flex-direction: column-reverse;
+}
+// 组件 tab 样式
+.z-tabs--bar.z-tabs--left {
+  display: flex;
+  @include e("header") {
+    border-right: 1px solid $header-border-color;
+    flex: none;
+    width: fit-content;
+    box-sizing: border-box;
+    margin-right: 8px;
+    height: 100%;
+    .z-tabs__btns {
+      display: inline-flex;
+      flex-direction: column;
+      // padding: 0 15px;
+      label {
+        padding: 10px 15px;
+        &:first-child {
+          padding: 10px 15px;
+        }
+        &:nth-last-child(2) {
+          padding: 10px 15px;
+        }
+      }
+      .selection {
+        right: 0;
+        top: 0;
+        z-index: 999;
+        .z-tabs_bar-wrapper {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          .z-tabs_btns-bar {
+            height: calc(100% - 20px);
+            width: 2px !important;
+          }
+        }
+      }
+
+      label:has(input:checked) ~ .selection {
+        .z-tabs_bar-wrapper {
+          .z-tabs_btns-bar {
+            width: calc(100% - 20px);
+          }
+        }
+      }
+    }
+  }
+}
+.z-tabs--bar.z-tabs--right {
+  display: flex;
+  flex-direction: row-reverse;
+  @include e("header") {
+    border-left: 1px solid $header-border-color;
+    flex: none;
+    width: fit-content;
+    box-sizing: border-box;
+    margin-right: 8px;
+    height: 100%;
+    .z-tabs__btns {
+      display: inline-flex;
+      flex-direction: column;
+      // padding: 10px 15px;
+      label {
+        padding: 10px 15px;
+        &:first-child {
+          padding: 10px 15px;
+        }
+        &:nth-last-child(2) {
+          padding: 10px 15px;
+        }
+      }
+      .selection {
+        left: 0;
+        top: 0;
+        z-index: 999;
+        .z-tabs_bar-wrapper {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          .z-tabs_btns-bar {
+            height: calc(100% - 20px);
+            width: 2px !important;
+          }
+        }
+      }
+
+      label:has(input:checked) ~ .selection {
+        .z-tabs_bar-wrapper {
+          .z-tabs_btns-bar {
+            width: calc(100% - 20px);
+          }
+        }
+      }
+    }
+  }
+}
+.z-tabs--bar.z-tabs--top {
+  @include e("header") {
+    border-bottom: 1px solid $header-border-color;
+    .z-tabs__btns {
+      .selection {
+        bottom: 0;
+        left: 0;
+        display: flex;
+        justify-content: center;
+        .z-tabs_bar-wrapper {
+          justify-content: center;
+          align-items: end;
+          .z-tabs_btns-bar {
+            height: 2px;
+            bottom: 0;
+            right: 0;
+          }
+        }
+      }
+    }
+  }
+}
+.z-tabs--bar.z-tabs--bottom {
+  display: flex;
+  flex-direction: column-reverse;
+  @include e("header") {
+    border-bottom: 1px solid $header-border-color;
+    .z-tabs__btns {
+      .selection {
+        bottom: 0;
+        left: 0;
+        .z-tabs_bar-wrapper {
+          justify-content: end;
+          align-items: end;
+          .z-tabs_btns-bar {
+            height: 2px;
+            bottom: 0;
+            right: 0;
+          }
+        }
+      }
+    }
+  }
+}
+.z-tabs--card.z-tabs--top,
+.z-tabs--card.z-tabs--bottom {
+  @include e("header") {
+    border-bottom: 1px solid $header-border-color;
+    .z-tabs__btns {
+      label {
+        padding: 10px 15px;
+        border: 1px solid $border-color;
+        margin-left: -1px;
+        &:first-child {
+          border: 1px solid $border-color;
+          margin-left: 0px;
+          border-top-left-radius: 4px;
+          border-bottom-left-radius: 4px;
+        }
+        &:nth-last-child(1) {
+          border-top-right-radius: 4px;
+          border-bottom-right-radius: 4px;
+        }
+      }
+      label:has(input:checked) {
+        background: #f5f7fa;
+      }
+    }
+  }
+}
+.z-tabs--card.z-tabs--left,
+.z-tabs--card.z-tabs--right {
+  @include e("header") {
+    // border-bottom: 1px solid $header-border-color;
+    .z-tabs__btns {
+      border: 1px solid $border-color;
+      label {
+        // padding: 10px 15px;
+        // margin-left: -1px;
+        // border-top: 1px solid $border-color;
+        border-bottom: 1px solid $border-color;
+        &:first-child {
+          border-bottom: 1px solid $border-color;
+          border-top-left-radius: 4px;
+          border-bottom-left-radius: 4px;
+        }
+        &:nth-last-child(1) {
+          border-bottom: none;
+          border-top-right-radius: 4px;
+          border-bottom-right-radius: 4px;
+        }
+      }
+      label:has(input:checked) {
+        background: #f5f7fa;
+      }
+    }
+  }
+}
+
+html.dark {
+  .z-tabs--card.z-tabs--left,
+  .z-tabs--card.z-tabs--right {
+    @include e("header") {
+      border-right: none;
+      border-left: none;
+      label:has(input:checked) {
+        background: rgba($color: #3f3f3f, $alpha: 0.5);
+      }
+    }
   }
 }

@@ -2,7 +2,7 @@
  * @Description:
  * @version: 0.0.1
  * @Author: yulinZ
- * @LastEditTime: 2023-06-14 18:09:52
+ * @LastEditTime: 2023-06-15 18:09:55
  */
 import {
   defineComponent,
@@ -22,7 +22,7 @@ import { useCompGlobal } from "../../utils/compGlobal";
 
 export default defineComponent({
   name: "z-tabs",
-  emits: ["update:modelValue"],
+  emits: ["update:modelValue", "change"],
   props: tabsProps,
 
   setup(props, { slots, emit }) {
@@ -32,11 +32,12 @@ export default defineComponent({
     const childName = ref(compId + "_" + "0");
     let curretnIndex = ref(0);
     let btnWidth = ref(null);
+    const selectTab = ref(props.modelValue);
 
     // 初始化组件
     onMounted(async () => {
       await nextTick();
-      initComp(props.modelValue);
+      await initComp(props.modelValue, props.tabPosition);
     });
 
     // 组件class
@@ -45,33 +46,58 @@ export default defineComponent({
         "z-tabs",
         `z-tabs--${compSize.value(props)}`,
         `z-tabs--${compType.value(props)}`,
+        `z-tabs--${props.tabPosition}`,
+        `z-tabs--${props.showType}`,
       ];
     });
 
-    const initComp = (selectTab) => {
+    const initComp = async (selectTab, pos) => {
       let index = childList.value.findIndex((item) => item.name === selectTab);
+
       let dom = document.getElementById(
-        compId + childList.value[index].name
-      ).parentNode;
-      btnWidth.value = (dom as HTMLElement).offsetWidth + "px";
+        compId + childList.value[index]?.name
+      )?.parentNode;
+      if (!dom) return;
+
       // 获取全部兄弟节点
       let allChild = dom.parentNode.children;
 
-      // 计算动画条的左边距离
-      let w = 0;
-      for (let i = 0; i < index; i++) {
-        w += (allChild[i] as HTMLElement).offsetWidth;
+      if (pos === "top" || pos === "bottom") {
+        btnWidth.value = (dom as HTMLElement).offsetWidth + "px";
+        console.log(btnWidth.value);
+        // 计算动画条的左边距离
+        let w = 0;
+        for (let i = 0; i < index; i++) {
+          w += (allChild[i] as HTMLElement).offsetWidth;
+        }
+        translateX.value = w + "px";
+      } else {
+        btnWidth.value = (dom as HTMLElement).offsetHeight + "px";
+        // 计算动画条的左边距离
+        let w = 0;
+        for (let i = 0; i < index; i++) {
+          w += (allChild[i] as HTMLElement).offsetHeight;
+        }
+        translateX.value = w + "px";
       }
-      translateX.value = w + "px";
     };
 
-    const setIndex = computed(() => {
-      let index = childList.value.findIndex(
-        (item) => item.name === props.modelValue
-      );
-      console.log(index);
-      return index;
-    });
+    const btnW = () => {
+      nextTick(() => {
+        let index = childList.value.findIndex(
+          (item) => item.name === selectTab.value
+        );
+        let dom = document.getElementById(
+          compId + childList.value[index]?.name
+        )?.parentNode;
+        if (!dom) return;
+        if (props.tabPosition === "top" || props.tabPosition === "bottom") {
+          return (dom as HTMLElement).offsetWidth + "px";
+        } else {
+          return (dom as HTMLElement).offsetHeight + "px";
+        }
+      });
+    };
 
     // 收集子组件
     const collectChild = (item: any) => {
@@ -80,6 +106,7 @@ export default defineComponent({
         defSlot: item.$slots?.label,
         name: item?.name || item.lable,
       });
+
       console.log(childList.value);
     };
 
@@ -89,15 +116,20 @@ export default defineComponent({
       childName.value =
         childNameSlist[0].toString() + "_" + (parseInt(childNameSlist[1]) + 1);
     };
-    const selectTab = ref(props.modelValue);
 
     watch(
-      () => props.modelValue,
-      (newVal) => {
-        selectTab.value = newVal;
-        initComp(selectTab.value);
+      () => [props.modelValue, props.tabPosition],
+      async (newVal) => {
+        selectTab.value = newVal[0];
+        console.log("props.tabPosition", newVal[1]);
+        initComp(selectTab.value, newVal[1]);
+      },
+      {
+        deep: true,
+        immediate: true,
       }
     );
+
     const content = ref({
       ...props,
       selectTab,
@@ -108,26 +140,60 @@ export default defineComponent({
       return selectTab.value === item;
     });
 
+    const tabBarStyle = computed(() => {
+      return {
+        // props.tabPosition === 'top' || props.tabPosition === 'bottom'? :
+        width:
+          props.tabPosition === "top" || props.tabPosition === "bottom"
+            ? btnWidth.value
+            : "",
+        height:
+          props.tabPosition === "left" || props.tabPosition === "right"
+            ? btnWidth.value
+            : "",
+        transform:
+          props.tabPosition === "top" || props.tabPosition === "bottom"
+            ? `translateX(${translateX.value})`
+            : `translateY(${translateX.value})`,
+      };
+    });
     // 按钮底部的bar x 方向距离
     const translateX = ref(null);
-    const tabClick = (e, tabName, index) => {
+    const tabClick = async (e, tabName, index) => {
       console.log(e.target.parentNode.offsetWidth);
-      // 获取点击元素的宽度
-      btnWidth.value = e.target.parentNode.offsetWidth + "px";
+
       // 获取全部兄弟节点
       let allChild = e.target.parentNode.parentNode.children;
 
-      // 计算动画条的左边距离
-      let w = 0;
-      for (let i = 0; i < index; i++) {
-        console.log(allChild[i]);
-        allChild[i].offsetWidth;
-        w += allChild[i].offsetWidth;
+      if (props.tabPosition === "top" || props.tabPosition === "bottom") {
+        // 获取点击元素的宽度
+        btnWidth.value = e.target.parentNode.offsetWidth + "px";
+        console.log(btnWidth.value);
+        // e.target.parentNode.offsetWidth + "px";
+        // 计算动画条的左边距离
+        let w = 0;
+        for (let i = 0; i < index; i++) {
+          console.log(allChild[i]);
+          allChild[i].offsetWidth;
+          w += allChild[i].offsetWidth;
+        }
+        translateX.value = w + "px";
+      } else {
+        // 获取点击元素的宽度
+        btnWidth.value = e.target.parentNode.offsetHeight + "px";
+        // 计算动画条的左边距离
+        let w = 0;
+        for (let i = 0; i < index; i++) {
+          console.log(allChild[i]);
+          allChild[i].offsetHeight;
+          w += allChild[i].offsetHeight;
+        }
+        translateX.value = w + "px";
       }
-      translateX.value = w + "px";
       // 记录当前tab 的index
       curretnIndex.value = index;
       emit("update:modelValue", tabName);
+      emit("change", tabName);
     };
     provide(TabsContextKey, content.value);
     return () => (
@@ -154,17 +220,15 @@ export default defineComponent({
               );
             })}
 
-            <span
-              class="selection"
-              style={{
-                width: btnWidth.value,
-                transform: `translateX(${translateX.value})`,
-              }}
-            >
-              <div class="z-tabs_bar-wrapper">
-                <div class="z-tabs_btns-bar"></div>
-              </div>
-            </span>
+            {props.showType === "bar" ? (
+              <span class="selection" style={tabBarStyle.value}>
+                <div class="z-tabs_bar-wrapper">
+                  <div class="z-tabs_btns-bar"></div>
+                </div>
+              </span>
+            ) : (
+              ""
+            )}
           </div>
         </div>
         <div class="z-tabs__body">{slots.default()}</div>
