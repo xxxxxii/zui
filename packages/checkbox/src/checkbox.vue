@@ -103,7 +103,6 @@ const checkboxChange = (e) => {
       background-color: none;
     }
   }
-
   .z-checkbox__mark {
     top: 0;
     left: 0;
