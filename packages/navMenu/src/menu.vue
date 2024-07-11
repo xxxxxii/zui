@@ -11,7 +11,7 @@ export default {
 </script>
 
 <script setup lang="ts">
-import { ref, computed, watch, toRefs, provide } from "vue";
+import { ref, computed, watch, toRefs, provide, toRaw, nextTick } from "vue";
 import { menuContextKey, menuProps } from "./menu";
 
 const props = defineProps(menuProps);
@@ -73,30 +73,32 @@ const collectMneuContext = (item) => {
 watch(
   () => props.collapse,
   (newVal) => {
-    if (newVal) {
-      if (props.mode === "vertical") {
-        setOverflowStyle(true);
-      }
+    console.log(newVal, "props.collapse");
+    nextTick(() => {
+      if (newVal) {
+        if (props.mode === "vertical") {
+          setOverflowStyle(true);
+        }
 
-      subMenuContextList.value.map((item) => {
-        item?.setShowMenu(false);
-      });
-    } else {
-      if (props.opens && Array.isArray(props.opens)) {
-        let arr = [];
-        props.opens.forEach((menusPathItem) => {
-          arr.push(
-            ...subMenuContextList.value.filter((item) => {
-              return item.path === menusPathItem;
-            })
-          );
+        subMenuContextList.value.map((item) => {
+          item?.setShowMenu(false);
         });
-        console.log(props.opens, arr);
-        arr.map((item) => {
-          item?.setShowMenu(true);
-        });
+      } else {
+        if (props.opens && Array.isArray(props.opens)) {
+          let arr = [];
+          props.opens.forEach((menusPathItem) => {
+            arr.push(
+              ...subMenuContextList.value.filter((item) => {
+                return item.path === menusPathItem;
+              })
+            );
+          });
+          arr.map((item) => {
+            item?.setShowMenu(true);
+          });
+        }
       }
-    }
+    });
   },
   {
     immediate: true,
@@ -150,7 +152,7 @@ provide(menuContextKey, context.value);
   width: v-bind(menuWidth);
   background: $menu-light-theme;
   transition: width 0.3s;
-  display: inline;
+  // display: inline;
 }
 html.dark {
   .z-nav-menu {

@@ -24,24 +24,24 @@ export default defineConfig({
   ],
 
   build: {
-    rollupOptions: {
-      external: [
-        "vue",
-        "md-editor-v3",
-        "vue-router",
-        "vite-plugin-vue-markdown",
-        "v3-yl-ui",
-      ],
-      output: {
-        globals: {
-          vue: "Vue",
-        },
-      },
-    },
-    lib: {
-      entry: "./packages/index.ts",
-      name: "v3-yl-ui",
-    },
+    // rollupOptions: {
+    //   external: [
+    //     "vue",
+    //     "md-editor-v3",
+    //     "vue-router",
+    //     "vite-plugin-vue-markdown",
+    //     "v3-yl-ui",
+    //   ],
+    //   output: {
+    //     globals: {
+    //       vue: "Vue",
+    //     },
+    //   },
+    // },
+    // lib: {
+    //   entry: "./packages/index.ts",
+    //   name: "v3-yl-ui",
+    // },
 
     minify: "terser",
     terserOptions: {

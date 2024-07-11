@@ -49,7 +49,7 @@ import { useRoute, useRouter } from "vue-router";
 import { version } from "../package.json";
 
 const config = ref({
-  type: "info",
+  // type: "info",
   size: "md",
 });
 

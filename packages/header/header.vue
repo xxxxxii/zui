@@ -25,9 +25,9 @@ const props = defineProps({
 
 <style lang="scss" scoped>
 .z-header {
-  display: flex;
-  flex-direction: row;
-  flex: 1;
+  // display: flex;
+  // flex-direction: row;
+  // flex: 1;
   flex-basis: auto;
   box-sizing: border-box;
   padding: v-bind(padding);

@@ -6,7 +6,12 @@
     @mouseenter="mouseenter"
     @mouseleave="mouseleave"
   >
-    <div class="z-sub-menu__title" @click="showSubMenu">
+    <div
+      ref="subMenuTitle"
+      class="z-sub-menu__title"
+      @mouseenter="subMenuTitleHover"
+      @click="showSubMenu"
+    >
       <div class="z-sub-menu__title__right">
         <z-icon
           class="z-sub-menu__title__right--icon"
@@ -54,6 +59,10 @@ import {
   toRefs,
   useSlots,
   computed,
+  toRaw,
+  onMounted,
+  nextTick,
+  getCurrentInstance,
 } from "vue";
 import { subMenuContextKey, subMenuProps } from "./sub-menu";
 import { menuContextKey } from "./menu";
@@ -67,7 +76,7 @@ const cacheMenuOpen = ref(false);
 const props = defineProps(subMenuProps);
 
 const slot = useSlots().default()[0].children;
-
+const { proxy } = getCurrentInstance();
 const subMenuData = ref({
   title: props.title || slot,
   children: [],
@@ -95,6 +104,12 @@ const collectMneu = (item) => {
 
 const menuContext = inject(menuContextKey, null);
 const subMenuContext = inject(subMenuContextKey, null);
+
+console.log(props.path, toRaw(menuContext.opens), "menuContext");
+
+// if (props.path in toRaw(menuContext.opens)) {
+//   // showMenu.value = true;
+// }
 
 const showSubMenu = () => {
   // 垂直模式下 hover 触发 不能点击
@@ -132,9 +147,9 @@ const titleStyle = computed(() => {
 const menuInlineStyle = computed(() => {
   if (menuContext?.collapse) {
     return {
-      position: "absolute",
-      top: "0",
-      left: "100%",
+      position: "fixed",
+      // top: "0",
+      // left: "100%",
       width: "200px",
       zIndex: 1000,
     };
@@ -183,23 +198,80 @@ const itemPadding = computed(() => {
   } else return "0 20px 0 " + subMenuData.value.tier * 20 + "px";
 });
 
-const mouseenter = () => {
+const mouseenter = (e) => {
+  // e.stopPropagation();
   if (menuContext?.trigger === "hover" || menuContext?.collapse)
     showMenu.value = true;
   cacheMenuOpen.value = showMenu.value;
   menuContext?.setOverflowStyle(false);
-  console.log(menuContext);
+  console.log(menuContext, "menuContext");
+  // if (menuContext?.collapse) {
+  //   showMenu.value = true;
+  //   let subMneuDom = e.target.querySelector(".z-sub-menu--inline");
+  //   subMneuDom.style.display = "block";
+  //   subMneuDom.style.top = e.clientY + "px";
+  //   subMneuDom.style.left = e.clientX + "px";
+  //   console.log(subMneuDom, "e");
+  // }
+  return false;
 };
-const mouseleave = () => {
+const mouseleave = (e) => {
+  e.stopPropagation();
+
   if (menuContext?.trigger === "hover" || menuContext?.collapse)
     showMenu.value = false;
   cacheMenuOpen.value = showMenu.value;
+  // if (menuContext?.collapse) {
+  //   showMenu.value = false;
+  //   let subMneuDom = e.target.querySelector(".z-sub-menu--inline");
+  //   subMneuDom.style.display = "none";
+  // }
+  return false;
 };
-
+const subMenuTitleHover = (e) => {
+  console.log("subMenuTitleHover", e);
+  e.stopPropagation();
+  e.preventDefault();
+  nextTick(() => {
+    let curDom = document.querySelector(".z-sub-menu__title");
+    let rect = curDom.getBoundingClientRect();
+    let curRef = proxy.$refs.subMenuTitle;
+    console.log(
+      rect,
+      proxy.$refs.subMenuTitle.offsetTop,
+      window.scrollY,
+      "curDom"
+    );
+    if (menuContext?.collapse) {
+      const childMenuDom = e.target?.nextSibling;
+      childMenuDom.style.position = "fixed";
+      childMenuDom.style.display = "block";
+      childMenuDom.style.top = e.clientY + "px";
+      childMenuDom.style.left = rect.left + curRef.offsetWidth + "px";
+      console.log(e.target.nextSibling, "222222");
+    }
+  });
+};
 watch(
   () => showMenu.value,
   () => {
     menuContext?.collectMenuState(props.path, showMenu.value);
+  }
+);
+watch(
+  () => menuContext?.collapse,
+  () => {
+    document
+      .querySelector(".z-menu-item .z-sub-menu__title")
+      .addEventListener("mouseenter", (e: any) => {});
+
+    document
+      .querySelector(".z-sub-menu__title")
+      .addEventListener("mouseleave", (e: any) => {
+        const childMenuDom = e.target?.nextSibling;
+        childMenuDom.style.position = "fixed";
+        childMenuDom.style.display = "none";
+      });
   }
 );
 
@@ -228,6 +300,34 @@ onUnmounted(() => {});
 const setShowMenu = (flag) => {
   showMenu.value = flag;
 };
+
+onMounted(() => {
+  console.log(document, "document");
+
+  document
+    .querySelector(".z-sub-menu__title")
+    .addEventListener("mouseenter", (e: any) => {
+      console.log(e, "mouseenter");
+      if (menuContext?.collapse) {
+        const childMenuDom = e.target?.nextSibling;
+        childMenuDom.style.position = "fixed";
+        childMenuDom.style.display = "block";
+        childMenuDom.style.top = e.clientY + "px";
+        childMenuDom.style.left = e.clientX + "px";
+        console.log(e.target.nextSibling, "222222");
+      }
+    });
+
+  document
+    .querySelector(".z-sub-menu__title")
+    .addEventListener("mouseleave", (e: any) => {
+      if (menuContext?.collapse) {
+        const childMenuDom = e.target?.nextSibling;
+        childMenuDom.style.position = "fixed";
+        childMenuDom.style.display = "none";
+      }
+    });
+});
 
 const context = ref({
   ...toRefs(props),
@@ -315,7 +415,7 @@ html.dark {
   }
 }
 .is-horizontal {
-  .z-sub-menu--inline {
+  > .z-sub-menu--inline {
     > div {
       box-shadow: $border-light-shadow;
     }

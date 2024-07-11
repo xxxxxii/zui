@@ -123,3 +123,8 @@ font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC",
 1. edit:select 多选 tag 样式
 2. add: tabs 组件 shou type
 3. add: tabs 组件 的排列位置 tabPosition
+
+## v0.0.12 2023-3-29
+
+1. fix:menu hover bug
+2. fix:init open item bug

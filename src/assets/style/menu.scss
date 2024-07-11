@@ -5,10 +5,6 @@
       color: $primary;
     }
   }
-  &:hover {
-    background: rgba($primary, 0.2);
-    color: $primary;
-  }
 }
 
 .z-menu-item--info {
@@ -18,10 +14,6 @@
       color: $info;
     }
   }
-  //   &:hover {
-  //     background: rgba($info, 0.2);
-  //     color: $info;
-  //   }
 }
 .z-menu-item--success {
   .z-sub-menu__title {

@@ -56,7 +56,7 @@ import { ref } from "vue";
 
 const collapse = ref(false);
 
-const opens = ref([]);
+const opens = ref(["1", "1-4"]);
 
 const openMenu = (path, paths) => {
   console.log("open", path, paths);
